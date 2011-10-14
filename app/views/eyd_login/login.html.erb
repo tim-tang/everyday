@@ -1,0 +1,24 @@
+<div id="logincontainer">
+  <!-- Status Bar Start -->
+  <% if flash[:alert] %>
+    <div class="status warning">
+      <p><img src="images/icons/icon_warning.png" alt="Warning" />
+      <span>Attention!</span> 
+      <%= flash[:alert] %>
+      </p>
+    </div>
+  <% end %>
+  <!-- Status Bar End -->
+  <div id="loginbox">
+    <div id="innerlogin">
+      <%= form_tag do%>
+        <p>Enter your username:</p>
+        <%= text_field_tag :name, params[:name], :class=>"logininput" %>
+        <p>Enter your password:</p>
+        <%= password_field_tag :password, params[:password], :class=>"logininput"%>
+        <%= submit_tag "Submit", :class=>"loginbtn" %>
+      <% end%>
+    </div>
+  </div>
+  <img src="images/login_fade.png" alt="Fade" />
+</div>

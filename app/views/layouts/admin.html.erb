@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Everyday</title>
+    <%= stylesheet_link_tag :all %>
+    <%= stylesheet_link_tag "white/style.css", :media => "screen" %>
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js'></script>
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js'></script>
+    <%= javascript_include_tag "wmd.combined.min.js" %>
+    <%= javascript_include_tag "jquery.rails.js", "application.js" %>
+    <%= javascript_include_tag "functions.js" %>
+    <%= javascript_include_tag "piroBox.1_2.js" %>
+    <%= csrf_meta_tag %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $().piroBox({
+            my_speed: 600, //animation speed
+            bg_alpha: 0.5, //background opacity
+            radius: 4, //caption rounded corner
+            scrollImage : false, // true == image follows the page, false == image remains in the same open position
+            pirobox_next : 'piro_next', // Nav buttons -> piro_next == inside piroBox , piro_next_out == outside piroBox
+            pirobox_prev : 'piro_prev',// Nav buttons -> piro_prev == inside piroBox , piro_prev_out == outside piroBox
+            close_all : '.piro_close',// add class .piro_overlay(with comma)if you want overlay click close piroBox
+            slideShow : 'slideshow', // just delete slideshow between '' if you don't want it.
+            slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
+          });
+        });
+</script>
+
+  </head>
+  <body id="homepage">
+    <div id="header">
+      <%= render :partial=>'eyd_admin/header', :object=>"xxx"%>
+    </div>
+
+    <div id="rightside">
+      <%= yield%>
+    </div>
+
+    <div id="leftside">
+      <%= render :partial=>'eyd_admin/sidebar', :object=>"xxx"%>
+    </div>
+  </body>
+</html>

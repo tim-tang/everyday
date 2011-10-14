@@ -1,0 +1,48 @@
+<!-- Alternative Content Box Start -->
+<div class="contentcontainer">
+  <div class="headings alts">
+    <h2>Draft Blog Listing</h2>
+  </div>
+  <div class="contentbox">
+    <%= form_tag(:action=> 'destroy') do%>
+      <table width="100%">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Tags</th>
+            <th>Date</th>
+            <th>Editing</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @total_blogs.each do |eyd_blog|%>
+            <tr>
+              <td><%= eyd_blog.id%></td>
+              <td><%= eyd_blog.title%></td>
+              <td><%= eyd_blog.tag_list%></td>
+              <td><%= eyd_blog.updated_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+              <td><%= link_to image_tag("icons/icon_edit.png"), blog_edit_path(eyd_blog)%></a></td>
+            <td><%= check_box_tag 'blog_ids[]', eyd_blog.id, false,:id=>"ibook_#{eyd_blog.id}"%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="extrabottom">
+      <ul>
+        <li><%= submit_tag "Delete Selected Items", :class=>"btn"%></li>
+      </ul>
+    </div>
+  <% end %>
+  <div class="flickr_pagination">
+    <%= will_paginate @total_blogs,:class=>"pagination" %>
+  </div>
+  <div style="clear: both;"></div>
+</div>
+</div>
+<!-- Alternative Content Box End -->
+
+<div id="footer">
+  &copy; Copyright 2011 reserved by tim.tang
+</div> 

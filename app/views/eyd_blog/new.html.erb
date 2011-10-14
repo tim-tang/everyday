@@ -1,0 +1,53 @@
+<div class="contentcontainer">
+  <div class="headings alt">
+    <h2>Blog Creating</h2>
+  </div>
+  <div class="contentbox">
+    <%= form_for @eyd_blog, :url=> blog_create_path do |f| %>
+      <%= render :partial=>'eyd_blog/error', :eyd_blog=>@eyd_blog%>
+      <p>
+      <label><strong>Title :</strong></label>
+      <%= f.text_field :title, :class=>"inputbox"%>
+      </p>
+      <p>
+      <label><strong>Tags :</strong></label>
+      <%= f.text_field :blog_tags, :class=>"inputbox"%> <br/>
+      <span class="highlighted">(This is an example of tag input: Funny,Silly)</span>
+      </p>
+      <p>
+      <label><strong>Category :</strong></label>
+      <%= f.collection_select :constant_id, EydConstant.find(:all, :conditions=>{:user_id => session[:user_id]}), :id, :category, {:prompt =>"Please select ..."} %>
+      </p>
+      <p>
+      <label><strong>Video URL :</strong></label>
+      <%= f.text_field :video_url, :class=>"inputbox"%>
+      </p>
+      <p>
+      <label><strong>Save As Draft :</strong>
+      <%= f.check_box :is_draft, :class=>"inputbox"%>
+    </label>
+      </p>
+      <p>
+      <label><strong>Content :</strong></label>
+      <div id="editor-button-bar"></div>
+      <%= f.text_area :content, :id=>"editor-input", :required =>"required", :rows=>"16", :cols=>"70"%>
+      </p>
+      <p>
+      <div class="noticebox">
+          <div id="editor-preview"></div>
+      </div>
+      </p>
+      <%= f.submit "Submit", :class=>"btn"%> <input type="reset" value="Reset" class="btn" />
+    <% end %>
+  </div>
+</div>
+<div id="footer">
+  &copy; Copyright 2011 reserved by tim.tang
+</div> 
+<script language="javascript">
+  setup_wmd({
+    input: "editor-input",
+    button_bar: "editor-button-bar",
+    preview: "editor-preview"
+  });
+</script>

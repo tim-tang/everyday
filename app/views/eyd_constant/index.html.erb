@@ -1,0 +1,46 @@
+<!-- Alternative Content Box Start -->
+<div class="contentcontainer">
+  <div class="headings alts">
+    <h2>Categories Listing</h2>
+  </div>
+  <div class="contentbox">
+    <%= form_tag(:action=> 'destroy') do%>
+      <table width="100%">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Editing</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @total_constants.each do |eyd_constant|%>
+            <tr>
+              <td><%= eyd_constant.id%></td>
+              <td><%= eyd_constant.category%></td>
+              <td><%= eyd_constant.updated_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+              <td><%= link_to image_tag("icons/icon_edit.png"), constant_edit_path(eyd_constant)%></a></td>
+            <td><%= check_box_tag 'constant_ids[]', eyd_constant.id, false,:id=>"ibook_#{eyd_constant.id}"%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="extrabottom">
+      <ul>
+        <li><%= submit_tag "Delete Selected Items", :class=>"btn"%></li>
+      </ul>
+    </div>
+  <% end %>
+  <div class="flickr_pagination">
+    <%= will_paginate @total_constants,:class=>"pagination" %>
+  </div>
+  <div style="clear: both;"></div>
+</div>
+</div>
+<!-- Alternative Content Box End -->
+
+<div id="footer">
+  &copy; Copyright 2011 reserved by tim.tang
+</div> 

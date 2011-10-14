@@ -1,0 +1,35 @@
+<div class="contentcontainer">
+  <div class="headings alt">
+    <h2>iBook Uploading</h2>
+  </div>
+  <div class="contentbox">
+    <%= form_for EydIbook.new, :url=> ibook_index_path,:html => {:multipart => true} do |f| %>
+      <p>
+      <label for="textfield"><strong>Tags:</strong></label>
+      <input type="text" id="eyd_tags" class="inputbox" value="" /> <br />
+      <span class="highlighted">(This is an example of tag input: Funny,Silly)</span>
+      </p>
+      <p>
+      <label for="textfield"><strong>iBook Image URL  :</strong></label>
+      <input type="text" id="eyd_image_url" class="inputbox" value="" /> <br />
+      </p>
+      <ul class="list">
+        <div id="ibooks_preview"/>
+      </ul>
+      <p>
+      <label for="testfield"><strong>Upload Books:</strong></label>
+      <%= f.file_field :ibook %>
+      </p>
+      <p>
+      <label for="textfield"><strong>Description:</strong></label>
+      <textarea value="" class="text-input textarea" id="eyd_desc" name="textfield" rows="10" cols="75"></textarea>
+      </p>
+      <br/>
+      <%= f.submit "Submit", :class=>"btn", :id=>"upload_ibook" %> <input type="reset" value="Reset" class="btn" />
+    <% end %>
+  </div>
+</div>
+<%= render :partial => "eyd_ibook/show" %>
+<div id="footer">
+  &copy; Copyright 2011 reserved by tim.tang
+</div> 

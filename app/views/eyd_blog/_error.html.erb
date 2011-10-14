@@ -1,0 +1,12 @@
+<p>
+<% if @eyd_blog.errors.any? %>
+  <ul>
+    <% @eyd_blog.errors.full_messages.each do |msg| %>
+      <div class="status error">
+        <p><%= image_tag("icons/icon_error.png")%>
+        <span><%= msg%></span></p>
+      </div>
+    <% end %>
+  </ul>
+<% end %>
+</p>

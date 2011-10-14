@@ -1,0 +1,2 @@
+module EydConstantHelper
+end

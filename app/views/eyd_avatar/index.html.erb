@@ -1,0 +1,64 @@
+<!-- Alternative Content Box Start -->
+<div class="contentcontainer">
+  <div class="headings alts">
+    <h2>Photos Listing</h2>
+  </div>
+  <div class="contentbox">
+    <%= form_tag(:action=> 'destroy') do%>
+    <table width="100%">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Thumbnail</th>
+          <th>File</th>
+          <th>Photo Style</th>
+          <th>Size</th>
+          <th>Tags</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @total_avatars.each do |eyd_avatar|%>
+        <tr>
+          <td><%= eyd_avatar.id%></td>
+          <td><%= link_to image_tag(eyd_avatar.avatar.url.sub("original","thumb")), eyd_avatar.avatar.url, :class=>"pirobox", :title => eyd_avatar.tag_list %></td>
+          <td><%= eyd_avatar.avatar_file_name%></td>
+          <td>
+            <ul>
+              <li><%= link_to "Thumbnail", eyd_avatar.avatar.url.sub("original", "thumb")%></li>
+              <li><%= link_to "Medium", eyd_avatar.avatar.url.sub("original", "medium")%></li>
+              <li><%= link_to "Large", eyd_avatar.avatar.url.sub("original", "large")%></li>
+            </ul>
+          </td>
+          <td><%= (eyd_avatar.avatar_file_size/(1024.0)).round(2)%> KB</td>
+          <td>
+            <ul>
+            <% eyd_avatar.tags.each do |tag|%>
+              <li><%= tag.name %></li>
+            <% end %>
+            </ul>
+            </td>
+          <td><%= eyd_avatar.avatar_updated_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+          <td><%= check_box_tag 'avatar_ids[]', eyd_avatar.id, false,:id=>"avatar_#{eyd_avatar.id}"%></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="extrabottom">
+      <ul>
+        <li><%= submit_tag "Delete Selected Items", :class=>"btn"%></li>
+      </ul>
+    </div>
+   <% end %>
+    <div class="flickr_pagination">
+    <%= will_paginate @total_avatars,:class=>"pagination"%>
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+</div>
+<!-- Alternative Content Box End -->
+
+<div id="footer">
+  &copy; Copyright 2011 reserved by tim.tang
+</div> 

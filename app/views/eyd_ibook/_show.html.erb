@@ -1,0 +1,45 @@
+<%= javascript_include_tag "swfobject.js", "jquery.uploadify.v2.1.0.js" %>
+<script type="text/javascript" charset="utf-8">
+<%- session_key = Rails.application.config.session_options[:key] -%> 
+$(document).ready(function() {
+    var title="";
+    var desc="";
+    var image_url="";
+	
+	$('#eyd_ibook_ibook').click(function(event){ 
+		event.preventDefault();
+	}); 
+	
+	$('#eyd_ibook_ibook').uploadify({
+  	    uploader : '/uploadify/uploadify.swf',
+		cancelImg : '/uploadify/cancel.png',
+		multi : true,
+		auto : false,
+  	    script : '/ibook_upload',
+		onComplete : function(event, queueID, fileObj, response, data) { 
+			var dat = eval('(' + response + ')');
+			$.getScript(dat.upload);},
+    	scriptData : {
+	        '_http_accept': 'application/javascript',
+			'format' : 'json',
+	        '_method': 'post',
+	        '<%= session_key %>' : encodeURIComponent('<%= u cookies[session_key] %>'),
+	        'authenticity_token': encodeURIComponent('<%= form_authenticity_token %>'),
+            'title': title,
+            'desc': desc,
+            'image_url': image_url
+	      }
+	});
+	
+	$('#upload_ibook').click(function(event){ 
+			event.preventDefault(); 
+            title=$('#eyd_tags').val();
+            desc=$('#eyd_desc').val();
+            image_url=$('#eyd_image_url').val();
+            $('#eyd_ibook_ibook').uploadifySettings('scriptData',{'title':title,'desc':desc,'image_url':image_url}); 
+			$('#eyd_ibook_ibook').uploadifyUpload(); 
+		});
+		
+}); 
+</script>
+

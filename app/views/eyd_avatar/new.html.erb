@@ -1,0 +1,31 @@
+<div class="contentcontainer">
+  <div class="headings alt">
+    <h2>Photo Uploading</h2>
+  </div>
+  <div class="contentbox">
+    <%= form_for EydAvatar.new, :url=> avatar_index_path,:html => {:multipart => true} do |f| %>
+      <p>
+      <label for="textfield"><strong>Tags:</strong></label>
+      <input type="text" id="textfield" class="inputbox" value="" /> <br/>
+      <span class="highlighted">(This is an example of tag input: Funny,Silly)</span>
+      </p>
+      <ul class="list">
+        <div id="avatars_preview"></div>
+      </ul>
+      <p>
+      <label for="testfield"><strong>Upload Photos:</strong></label>
+      <%= f.file_field :avatar %>
+      </p>
+      <p>
+      <label for="textfield"><strong>Description:</strong></label>
+      <textarea value="" class="text-input textarea" id="wysiwyg" name="textfield" rows="10" cols="75"></textarea>
+      </p>
+      <br/>
+      <%= f.submit "Submit", :class=>"btn", :id=>"upload_avatar" %> <input type="reset" value="Reset" class="btn" />
+    <% end %>
+  </div>
+</div>
+<%= render :partial => "eyd_avatar/show" %>
+<div id="footer">
+  &copy; Copyright 2011 reserved by tim.tang
+</div> 

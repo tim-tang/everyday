@@ -1,0 +1,52 @@
+<!-- Alternative Content Box Start -->
+<div class="contentcontainer">
+  <div class="headings alts">
+    <h2>Photos Listing</h2>
+  </div>
+  <div class="contentbox">
+    <%= form_tag(:action=> 'destroy') do%>
+    <table width="100%">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>iBook Cover</th>
+          <th>Name</th>
+          <th>Size</th>
+          <th>Tags</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @total_ibooks.each do |eyd_ibook|%>
+        <tr>
+          <td><%= eyd_ibook.id%></td>
+          <% if eyd_ibook.image_url != nil%>
+          <td><%= image_tag(eyd_ibook.image_url)%></td>
+        <% end %>
+          <td><%= eyd_ibook.ibook_file_name%></td>
+          <td><%= (eyd_ibook.ibook_file_size/(1024*1024.0)).round(2)%> MB</td>
+          <td><%= eyd_ibook.tag_list%></td>
+          <td><%= eyd_ibook.ibook_updated_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+          <td><%= check_box_tag 'ibook_ids[]', eyd_ibook.id, false,:id=>"ibook_#{eyd_ibook.id}"%></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="extrabottom">
+      <ul>
+        <li><%= submit_tag "Delete Selected Items", :class=>"btn"%></li>
+      </ul>
+    </div>
+   <% end %>
+    <div class="flickr_pagination">
+    <%= will_paginate @total_ibooks,:class=>"pagination" %>
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+</div>
+<!-- Alternative Content Box End -->
+
+<div id="footer">
+  &copy; Copyright 2011 reserved by tim.tang
+</div> 

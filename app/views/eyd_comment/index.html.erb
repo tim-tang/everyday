@@ -1,0 +1,46 @@
+<!-- Alternative Content Box Start -->
+<div class="contentcontainer">
+  <div class="headings alts">
+    <h2>Comments Listing</h2>
+  </div>
+  <div class="contentbox">
+    <%= form_tag(:action=> 'destroy') do%>
+      <table width="100%">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>UserName</th>
+            <th>Content</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @total_comments.each do |eyd_comment|%>
+            <tr>
+              <td><%= eyd_comment.id%></td>
+              <td><%= eyd_comment.name%></td>
+              <td><%= eyd_comment.content%></td>
+              <td><%= eyd_comment.updated_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+            <td><%= check_box_tag 'comment_ids[]', eyd_comment.id, false,:id=>"comment_#{eyd_comment.id}"%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="extrabottom">
+      <ul>
+        <li><%= submit_tag "Delete Selected Items", :class=>"btn"%></li>
+      </ul>
+    </div>
+  <% end %>
+  <div class="flickr_pagination">
+    <%= will_paginate @total_comments,:class=>"pagination" %>
+  </div>
+  <div style="clear: both;"></div>
+</div>
+</div>
+<!-- Alternative Content Box End -->
+
+<div id="footer">
+  &copy; Copyright 2011 reserved by tim.tang
+</div> 
