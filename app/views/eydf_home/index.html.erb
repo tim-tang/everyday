@@ -1,0 +1,29 @@
+<div id="content">
+  <% @total_blogs.each do |blog|%>
+    <div class="post">
+      <%= render :partial=>'eydf_home/postmeta',:locals=> {:blog=>blog}%>
+
+      <div class="post_content">
+        <h2><%= link_to blog.title, show_blog_path(blog) %></h2>
+        <%=simple_format truncate(rich_content(blog.content), :length=>360)%>
+        <div align=left>
+          <%= link_to image_tag('readmore.png'), show_blog_path(blog), :title=>"Read More..." %>
+        </div>
+      </div>
+      <div class="cleaner"></div>
+    </div> <!-- end of a post -->
+  <% end %>
+  <div class="flickr_pagination">
+    <%= will_paginate @total_blogs,:class=>"pagination" %>
+  </div>
+  <div class="cleaner"></div>
+</div> 
+<!-- end of content -->
+
+<div id="sidebar">
+  <%= render :partial=>'eydf_home/subrss', :object=>"xxx"%>
+  <%= render :partial=>'eydf_home/cloudtags', :object=>"xxx"%>
+  <%= render :partial=>'eydf_home/categories', :object=>"xxx"%>
+  <%= render :partial=>'eydf_home/comments', :object=>"xxx"%>
+  <%= render :partial=>'eydf_home/archivals', :object=>"xxx"%>
+</div>

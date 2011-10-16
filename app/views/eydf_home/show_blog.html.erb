@@ -1,0 +1,126 @@
+<div id="content">
+  <div class="post">
+    <%= render :partial=>'eydf_home/postmeta',:locals=> {:blog=>@blog}%>
+    <div class="post_content">
+      <h2><%= @blog.title%></h2>
+      <%=simple_format rich_content(@blog.content)%>
+      <!-- Comments section start -->
+      <h2>Comments</h2>
+      <div id="comment_section">
+        <ol class="comments first_level">
+          <!-- One comment -->
+          <% @total_comments.each do |comment|%>
+            <li>
+            <div class="comment_box commentbox1">
+              <div class="gravatar">
+                <%= image_tag("avator.jpg")%>
+              </div>
+              <div class="comment_text">
+                <span class="highlighted"><%= comment.name%></span>
+                <%= comment.updated_at.strftime("%Y-%m-%d %H:%M:%S")%>
+                <p><%=simple_format rich_content(comment.content)%></p>
+                <div align=right>
+                  <a href="#bottom", onclick="referMsg(this)"><%= image_tag("reply.png")%></a>
+                </div>
+              </div>
+              <div class="cleaner"></div>
+            </div>                        
+            </li>
+          <% end %>
+          <!-- One comment end -->
+          <!--
+          <li>
+          <ol class="comments">
+            <li>
+            <div class="comment_box commentbox2">
+              <div class="gravatar">
+                <%= image_tag("avator.jpg")%>
+              </div>
+              <div class="comment_text">
+                <div class="comment_author"><span class="highlighted">Joel</span><span class="date">November 18th, 2048</span><span class="time">08:30 AM</span></div>
+                <p>Nullam bibendum tempor est nec cursus. Vestibulum eget ligula et ipsum laoreet aliquam sed ut risus.</p>
+                <div align=right><a href="#"><%= image_tag("reply.png")%></a></div>
+              </div>
+              <div class="cleaner"></div>
+            </div>                        
+            </li>
+            <li>
+            <ol class="comments">
+              <li>
+              <div class="comment_box commentbox1">
+                <div class="gravatar">
+                  <%= image_tag("avator.jpg")%>
+                </div>
+                <div class="comment_text">
+                  <div class="comment_author">Cindy<span class="date">November 24th, 2048</span><span class="time">11:20 PM</span></div>
+                  <p>Sed malesuada, ante sed faucibus faucibus, lectus enim scelerisque tortor</p>
+                  <div align=right><a href="#"><%= image_tag("reply.png")%></a></div>
+                </div>
+                <div class="cleaner"></div>
+              </div>                        
+              </li>
+            </ol>
+            </li>
+          </ol>
+          </li>
+          -->
+        </ol>
+      </div>
+      <div class="flickr_pagination">
+        <%= will_paginate @total_comments,:class=>"pagination" %>
+      </div>
+      <br/>
+      <!-- Comment form start -->
+      <div id="comment_form">
+        <h3>Leave A Comment</h3>
+        <%= form_for @eyd_comment, :url=> comment_create_path do |f| %>
+          <%= render :partial=>'eyd_comment/error', :eyd_comment=>@eyd_comment%>
+          <div class="form_row">
+            <label>Name ( * required )</label><br/>
+            <%= f.text_field :name%>
+          </div>
+          <div class="form_row">
+            <label>Email</label><br/>
+            <%= f.text_field :email%>
+          </div>
+          <div class="form_row">
+            <label>Comment</label><br/>
+            <div id="editor-button-bar"></div>
+            <%= f.text_area :content, :id=>"comment_content", :required =>"required", :row=>"16", :cols=>"40"%>
+          </div>
+          <div id="editor-preview"></div>
+          <%= f.hidden_field :blog_id, "value"=>@blog.id %>
+          <%= f.submit "Submit", :class=>"submit_btn"%>
+        <% end %>
+      </div>
+      <!-- Comment form end -->
+    </div>
+    <!-- Comments section end -->
+    <div class="cleaner"></div>
+  </div> <!-- end of a post -->
+  <div class="cleaner"></div>
+</div> 
+<!-- end of content -->
+
+<div id="sidebar">
+  <%= render :partial=>'eydf_home/subrss', :object=>"xxx"%>
+  <%= render :partial=>'eydf_home/cloudtags', :object=>"xxx"%>
+  <%= render :partial=>'eydf_home/categories', :object=>"xxx"%>
+  <%= render :partial=>'eydf_home/comments', :object=>"xxx"%>
+  <%= render :partial=>'eydf_home/archivals', :object=>"xxx"%>
+</div>
+<script type="text/javascript">
+  setup_wmd({
+    input: "comment_content",
+    button_bar: "editor-button-bar",
+    preview: "editor-preview"
+  });
+
+  function referMsg(node) {
+    window.location.hash = "#bottom"
+      jQuery("#comment_content").attr("value","");
+    var atname = jQuery(node).parent().parent().find('span').text();
+      jQuery("#comment_content").attr("value","***@" + atname + "***: ").focus();
+  };
+</script>
+

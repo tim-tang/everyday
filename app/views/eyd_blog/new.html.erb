@@ -9,15 +9,18 @@
       <label><strong>Title :</strong></label>
       <%= f.text_field :title, :class=>"inputbox"%>
       </p>
+      <br/>
       <p>
       <label><strong>Tags :</strong></label>
       <%= f.text_field :blog_tags, :class=>"inputbox"%> <br/>
       <span class="highlighted">(This is an example of tag input: Funny,Silly)</span>
       </p>
+      <br/>
       <p>
       <label><strong>Category :</strong></label>
       <%= f.collection_select :constant_id, EydConstant.find(:all, :conditions=>{:user_id => session[:user_id]}), :id, :category, {:prompt =>"Please select ..."} %>
       </p>
+      <br/>
       <p>
       <label><strong>Video URL :</strong></label>
       <%= f.text_field :video_url, :class=>"inputbox"%>

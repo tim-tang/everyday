@@ -1,0 +1,12 @@
+<p>
+<% if @eyd_comment.errors.any? %>
+  <ul>
+    <% @eyd_comment.errors.full_messages.each do |msg| %>
+      <div class="status error">
+        <p><img src="images/icons/icon_error.png" alt="Warning" />
+        <span><%= msg%></span></p>
+      </div>
+    <% end %>
+  </ul>
+<% end %>
+</p>

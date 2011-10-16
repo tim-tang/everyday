@@ -1,0 +1,14 @@
+<div class="sidebar_box">
+  <h3>Cloud Tags</h3>
+  <ul class="tmo_list">
+    <div class="alphacloud">
+      <% if EydBlog.tag_counts.length > 0%>
+        <% tag_cloud(EydBlog.tag_counts, %w(common1 common2 common3 common4)) do |tag, css_class|%>
+          <%= link_to tag.name, {:action=>:tag_list, :id=> tag.name}, :class=>css_class, :title=>EydBlog.tag_counts_on(tag.name).count %>
+        <% end %>
+      <% else %>
+        <%= content_tag :p, "No tags"%>
+      <% end %>
+    </div>
+  </ul>
+</div>

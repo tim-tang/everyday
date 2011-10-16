@@ -1,4 +1,12 @@
 Everyday::Application.routes.draw do
+  root :to => "eydf_home#index"
+  match 'eydf_home/rss_feed' => 'eydf_home#rss_feed', :as => :rss_feed, :defaults=> {:format => 'atom'} 
+  controller :eydf_home do
+    get 'show_blog/:id' => :show_blog, :as => :show_blog
+    get 'tag_list/:id' => :tag_list, :as => :tag_list
+    get 'archival_list/:id' => :archival_list, :as => :archival_list 
+    get 'category_list/:id' => :category_list, :as => :category_list
+  end
 
   controller :eyd_login do
     get 'login' => :login
@@ -49,6 +57,7 @@ Everyday::Application.routes.draw do
   controller :eyd_comment do
     get 'comment_index' => :index
     post 'comment_destroy' => :destroy
+    post 'comment_create' => :create
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.

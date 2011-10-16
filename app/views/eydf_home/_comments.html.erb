@@ -1,0 +1,9 @@
+<% @comments = EydComment.find_by_sql("select comment.* from eyd_comments comment order by comment.updated_at desc limit 5") %>
+<div class="sidebar_box">
+  <h3>Recent Comments</h3>
+  <ul class="recent_comment">
+    <% @comments.each do |comment|%>
+      <li><%= image_tag("comment.gif")%><span class="highlighted"><%= comment.name%></span> says: <%= link_to simple_format(truncate(rich_content(comment.content), :length=>60)),show_blog_path(comment.blog_id), :class=>"post_title"%></li>
+  <% end %>
+  </ul>
+</div>

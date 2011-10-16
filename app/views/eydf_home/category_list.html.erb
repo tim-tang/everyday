@@ -1,0 +1,17 @@
+<div class="contentbox nopad">
+  <% @total_blogs.each do |blog|%>
+    <div class="newsitem">
+      <p><span><strong><%= blog.updated_at.strftime("%Y-%m-%d %H:%M:%S")%></strong><span>
+      <strong>Tags:</strong> <span class="highlighted"><%=blog.tag_list %></span></p>
+          <h3><%= blog.title%></h3>
+          <%=simple_format truncate(rich_content(blog.content), :length=>60)%>
+          <%= link_to image_tag('readmore.png'), show_blog_path(blog),:title=>"Read More ..." %>
+          <br />
+        </div>
+      <% end %>
+      <br/>
+      <div class="flickr_pagination">
+        <%= will_paginate @total_blogs,:class=>"pagination" %>
+      </div>
+      <br/>
+    </div>

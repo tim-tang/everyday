@@ -1,0 +1,7 @@
+<% @comment_count = EydComment.count_by_sql("select count(0) from eyd_comments comment where comment.blog_id = #{blog.id}")%>
+<div class="post_meta">
+  <p>Author<span><%= blog.author%></span></p>
+  <p>Date<span><%= blog.updated_at.strftime("%Y-%m-%d %H:%M:%S")%></span></p>
+  <p>Comments<span><%= link_to @comment_count, show_blog_path(blog) %> Comments</span></p>
+  <p>Tags<span><%= blog.tag_list%></span></p>
+</div>
