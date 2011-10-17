@@ -2,11 +2,16 @@
 <html>
   <head>
     <title>Everyday</title>
-    <%= stylesheet_link_tag :all %>
+    <%= stylesheet_link_tag "login.css", :media => "screen" %>
+    <%= stylesheet_link_tag "layout.css", :media => "screen" %>
+    <%= stylesheet_link_tag "flickr_pagination.css", :media => "screen" %>
+    <%= stylesheet_link_tag "styles.css", :media => "screen" %>
+    <%= stylesheet_link_tag "uploadify.css", :media => "screen" %>
+    <%= stylesheet_link_tag "wmd.css", :media => "screen" %>
     <%= stylesheet_link_tag "white/style.css", :media => "screen" %>
     <link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
-    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js'></script>
-    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js'></script>
+    <%= javascript_include_tag "jquery.min-1.5.1.js" %>
+    <%= javascript_include_tag "jquery-ui.min-1.8.6.js" %>
     <%= javascript_include_tag "wmd.combined.min.js" %>
     <%= javascript_include_tag "jquery.rails.js", "application.js" %>
     <%= javascript_include_tag "functions.js" %>

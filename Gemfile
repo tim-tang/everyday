@@ -10,6 +10,7 @@ gem 'acts-as-taggable-on', '~>2.1.0'
 gem 'paperclip'
 gem 'mime-types', :require => 'mime/types'
 gem 'will_paginate','>= 3.0.pre'
+gem 'redcarpet'
 
 # Use unicorn as the web server
 # gem 'unicorn'

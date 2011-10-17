@@ -22,7 +22,7 @@
         <tr>
           <td><%= eyd_ibook.id%></td>
           <% if eyd_ibook.image_url != nil%>
-          <td><%= image_tag(eyd_ibook.image_url)%></td>
+            <td><%= image_tag(eyd_ibook.image_url)%></td>
         <% end %>
           <td><%= eyd_ibook.ibook_file_name%></td>
           <td><%= (eyd_ibook.ibook_file_size/(1024*1024.0)).round(2)%> MB</td>

@@ -1,0 +1,10 @@
+<% @constants = EydConstant.find_by_sql("select constant.* from eyd_constants constant where constant.user_id=1 order by constant.updated_at desc") %>
+<div class="sidebar_box">
+  <h3>Categories</h3>
+  <ul class="tmo_list">
+    <% @constants.each do |const|%>
+      <% @blog_counts = EydConstant.count_by_sql("select count(*) from eyd_blogs blog where blog.constant_id = #{const.id} and blog.user_id=1")%>
+      <li><%= image_tag("category_list.png")%><%= link_to const.category, {:action => :category_list, :id=> const.id}%>( <%= @blog_counts.to_s%> blogs)</li>
+    <% end %>
+  </ul>
+</div>

@@ -1,5 +1,5 @@
 class EydCommentController < ApplicationController
-  before_filter :authorize
+  skip_before_filter :authorize, :only => [:create]
   layout 'admin'
 
   def index
@@ -18,4 +18,18 @@ class EydCommentController < ApplicationController
       format.xml {head ok}
     end
   end
+
+  def create
+    @eyd_comment = EydComment.new(params[:eyd_comment])
+    respond_to do |format|
+      if @eyd_comment.save
+        format.html { redirect_to(show_blog_path(@eyd_comment.blog_id), :notice => 'Category was successfully created.') }
+        format.xml  { render :xml => @eyd_comment, :status => :created }
+      else
+        format.html { redirect_to(show_blog_path(@eyd_comment.blog_id))}
+        format.xml  { render :xml => @eyd_comment.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
 end

@@ -3,7 +3,7 @@
     <img src="images/avatar.png" width="44" height="44" class="hoverimg" alt="Avatar" />
     <p>Welcome to login:</p>
     <p class="username"><%= session[:user_name]%></p>
-    <%= button_to "Log out", logout_path, :method => :delete, :class=>"userbtn" %>
+    <%= button_to "Log out", root_path, :method => :delete, :class=>"userbtn" %>
   </div>
   <ul id="nav">
     <li>
@@ -13,13 +13,6 @@
       <li><%= link_to "Photo Uploading", avatar_new_path%></li>
     </ul>
     </li>
-    <!--
-    <li><a class="expanded heading">Tags Management</a>
-    <ul class="navigation">
-      <li><a href="tags_listing.html" title="" class="likelogin">Tags Listing</a></li>
-    </ul>
-    -->
-    </li>            
     <li><a class="expanded heading">iBooks Management</a>
     <ul class="navigation">
       <li><%= link_to "iBooks Listing", ibook_index_path%></li>
