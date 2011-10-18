@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -44,6 +43,14 @@ slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
             <div id="templatemo_main_wrapper">
               <div id="templatemo_main">
                 <%= yield %>
+
+                <div id="sidebar">
+                  <%= render :partial=>'eydf_home/subrss', :object=>"xxx"%>
+                  <%= render :partial=>'eydf_home/cloudtags', :object=>"xxx"%>
+                  <%= render :partial=>'eydf_home/categories', :object=>"xxx"%>
+                  <%= render :partial=>'eydf_home/comments', :object=>"xxx"%>
+                  <%= render :partial=>'eydf_home/archivals', :object=>"xxx"%>
+                </div>
                 <div class="cleaner"></div>
               </div>
             </div>
@@ -55,3 +62,4 @@ slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
         </div>
       </body>
     </html>
+

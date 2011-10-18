@@ -2,7 +2,8 @@ class EydfHomeController < ApplicationController
   skip_before_filter :authorize
 
   def index
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=1 and blog.is_draft=false order by blog.updated_at desc"], :page => params[:page], :per_page=>5 
+    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=1 and blog.is_draft=false order by blog.created_at desc"], :page => params[:page], :per_page=>10 
+    fetch_index_curt
   end
 
   def show_blog
@@ -20,6 +21,9 @@ class EydfHomeController < ApplicationController
         @prev_blog = @prev_next_blogs[0]
       end
     end
+    #update view count
+    @blog.view_count+=1
+    @blog.update_attribute("view_count",@blog.view_count);
   end
 
 
@@ -47,4 +51,65 @@ class EydfHomeController < ApplicationController
     end
   end
 
+  def ibook_list 
+    @total_ibooks = EydIbook.paginate_by_sql ["select ibook.* from eyd_ibooks ibook where ibook.user_id=1 order by ibook.updated_at desc"], :page => params[:page], :per_page=>5 
+    fetch_ibook_curt                     
+  end
+
+  def download
+    @ibook = EydIbook.find(params[:id])
+    @ibook.download_count+=1
+    @ibook.update_attribute("download_count",@ibook.download_count) 
+    #TODO: to send file let user to downlaod.
+    #send_file "public/"+@ibook.url unless @ibook.url.nil?
+    #send_file "#{RAILS_ROOT}/public/files/"+params[:filename] unless params[:filename].blank? 
+    render :nothing => true  
+  end
+
+  def guest_list
+    @eyd_comment = EydComment.new
+    @total_comments = EydComment.paginate_by_sql ["select comment.* from eyd_comments comment where comment.is_guestbook=true order by comment.updated_at desc"], :page => params[:page], :per_page=>10
+    fetch_guestbook_curt 
+  end
+  
+  private
+  def fetch_index_curt  
+    session[:curt_index]="current"
+    session[:curt_tech] =""
+    session[:curt_ibook] =""
+    session[:curt_guestbk] =""
+    session[:curt_gallery] =""
+  end
+
+  def fetch_ibook_curt  
+    session[:curt_index]=""
+    session[:curt_tech] =""
+    session[:curt_ibook] ="current"
+    session[:curt_guestbk] =""
+    session[:curt_gallery] =""
+  end
+
+  def fetch_gallery_curt  
+    session[:curt_index]=""
+    session[:curt_tech] =""
+    session[:curt_ibook] =""
+    session[:curt_guestbk] =""
+    session[:curt_gallery] ="current"
+  end
+
+  def fetch_guestbook_curt  
+    session[:curt_index]=""
+    session[:curt_tech] =""
+    session[:curt_ibook] =""
+    session[:curt_guestbk] ="current"
+    session[:curt_gallery] =""
+  end
+
+  def fetch_tech_curt  
+    session[:curt_index]=""
+    session[:curt_tech] ="current"
+    session[:curt_ibook] =""
+    session[:curt_guestbk] =""
+    session[:curt_gallery] =""
+  end
 end

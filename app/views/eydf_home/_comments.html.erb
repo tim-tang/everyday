@@ -1,4 +1,4 @@
-<% @comments = EydComment.find_by_sql("select comment.* from eyd_comments comment order by comment.updated_at desc limit 5") %>
+<% @comments = EydComment.find_by_sql("select comment.* from eyd_comments comment where comment.is_guestbook = false order by comment.updated_at desc limit 5") %>
 <div class="sidebar_box">
   <h3>Recent Comments</h3>
   <ul class="recent_comment">

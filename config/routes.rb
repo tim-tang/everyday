@@ -1,11 +1,16 @@
 Everyday::Application.routes.draw do
+
   root :to => "eydf_home#index"
   match 'eydf_home/rss_feed' => 'eydf_home#rss_feed', :as => :rss_feed, :defaults=> {:format => 'atom'} 
+
   controller :eydf_home do
     get 'show_blog/:id' => :show_blog, :as => :show_blog
     get 'tag_list/:id' => :tag_list, :as => :tag_list
     get 'archival_list/:id' => :archival_list, :as => :archival_list 
     get 'category_list/:id' => :category_list, :as => :category_list
+    get 'ibook_list' => :ibook_list, :as => :ibook_list
+    get 'ibook_download/:id' => :download, :as => :ibook_download
+    get 'guest_book' => :guest_list, :as => :guest_book
   end
 
   controller :eyd_login do

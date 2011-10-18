@@ -1,0 +1,48 @@
+<div id="content">
+  <div class="content_box">
+    <h2>About Our Blog</h2>
+    <%= image_tag "avator.jpg", :class=>"image_wrapper image_fl",  :alt=>"image", :title=>"About Us"%>
+    <p><em>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent aliquam velit a magna sodales quis elementum ipsum auctor. Ut at metus leo, et dictum sem</em></p>
+    <p align="justify">In ac libero urna.e sed odio ut mi auctor blandit. Duis luctus nulla metus, a vulputate mauris. Integer sed nisi sapien, ut gravida mauris. Nam et tellus libero. Cras purus libero, dapibus nec rutrum in, dapibus nec risus. Ut interdum mi sit amet magna feugiat auctor. Fusce venenatis consequat lacinia. Vivamus elit erat, tincidunt eget scelerisque vitae, aliquet non purus. Proin posuere justo ut lorem placerat porta. Nam dignissim nunc sed diam congue pretium. Nunc convallis, lorem bibendum consequat varius, arcu orci tempor mi, vel rhoncus sem quam quis metus. </p>
+    <p align="justify">Sed eu libero eu nisl cursus vehicula. Donec tortor t, aliquam a ante. Cras eros libero, egestas et lobortis ornare, lacinia id leo. </p>
+  </div>
+
+  <!-- Comments section start -->
+  <% if @total_comments.size > 0%>
+    <h2>Comments</h2>
+  <% end %>
+  <div id="comment_section2">
+   <%= render :partial=>'eydf_home/comment_list', :total_comments=>@total_comments%>
+  </div>
+
+  <div class="flickr_pagination">
+    <%= will_paginate @total_comments,:class=>"pagination" %>
+  </div>
+
+  <span style="float:right" class="dotted_line">
+    <strong><%= link_to "Home", root_path, :title=>"Home page"%></strong><%= image_tag "home.png", :align=>"absmiddle"%>
+  </span>
+   <%= render :partial=>'eydf_home/comment_form', :eyd_comment=>@eyd_comment%>
+</div>
+
+
+<script type="text/javascript">
+  setup_wmd({
+input: "comment_content",
+button_bar: "editor-button-bar",
+preview: "editor-preview"
+});
+
+function replyMsg(node,is_reply) {
+  window.location.hash = "#bottom";
+  jQuery("#comment_content").attr("value","");
+  if(is_reply){
+    var atname = jQuery(node).parent().parent().find('span').text();
+    jQuery("#comment_content").attr("value","***@" + atname + "***: ").focus();
+  }else{
+    var atname = jQuery(node).parent().parent().text();
+    jQuery("#comment_content").attr("value","***@***:"+atname.replace(/(^[\s]*)|([\s]*$)/g,"")+"\n\n---\n").focus();
+  }
+};
+</script>
+

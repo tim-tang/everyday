@@ -17,7 +17,7 @@ body {
 
 a, a:link, a:visited { color: #333; text-decoration: underline; }
 a:hover { color: #000; text-decoration: none; }
-
+desc
 p { margin: 0px; padding: 0; }
 img { border: none; }
 
@@ -196,10 +196,15 @@ em { color: #e55822; }
 #comment_section {
 	clear: both;
 	margin-bottom: 20px;
-	width: 428px;
+	width: 439px;
 	color: #333;
 }
-
+#comment_section2 {
+	clear: both;
+	margin-bottom: 20px;
+	width: 600px;
+	color: #333;
+ }
 .first_level {
 	margin: 0; padding: 0;
 }
@@ -276,7 +281,7 @@ em { color: #e55822; }
 #gallery { clear: both; }
 #gallery a { border: none; }
 
-#gallery .gallery_box { padding: 0 0 30px 0; margin: 0 0 30px 0; border-bottom: 1px dashed #666; }
+#gallery .gallery_box { padding: 8px 0 0px 0; margin: 0 0 0px 0; border-top: 1px dashed #666; }
 #gallery .gallery_box .left { float: left; width: 300px; }	
 #gallery .gallery_box .left img { width: 260px; height: 160px; border: 5px solid #fff; }
 #gallery .gallery_box .right { float: right; width: 300px; }

@@ -1,0 +1,23 @@
+<ol class="comments first_level">
+  <!-- One comment -->
+  <% @total_comments.each do |comment|%>
+    <li>
+    <div class="comment_box commentbox1">
+      <div class="gravatar">
+        <%= image_tag("avatar.png")%>
+      </div>
+      <div class="comment_text">
+        <span class="highlighted"><%= comment.name%></span>
+        <%= comment.updated_at.strftime("%Y-%m-%d %H:%M:%S")%>
+        <p><%=simple_format rich_content(comment.content)%></p>
+        <div align=right>
+          <a href="#bottom", onclick="replyMsg(this,true)"><%= image_tag "reply.png", :title=>"reply"%></a>
+          <a href="#bottom", onclick="replyMsg(this,false)"><%= image_tag "refer.png", :title=>"reference"%></a>
+        </div>
+      </div>
+      <div class="cleaner"></div>
+    </div>                        
+    </li>
+  <% end %>
+</ol>
+

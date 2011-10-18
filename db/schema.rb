@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111013131552) do
+ActiveRecord::Schema.define(:version => 20111018070547) do
 
   create_table "eyd_avatars", :force => true do |t|
     t.string   "avatar_file_name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20111013131552) do
     t.boolean  "is_draft"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "view_count"
   end
 
   create_table "eyd_comments", :force => true do |t|
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20111013131552) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "download_count",     :default => 0
   end
 
   create_table "eyd_users", :force => true do |t|

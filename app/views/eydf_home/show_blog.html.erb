@@ -6,46 +6,25 @@
       <%=simple_format rich_content(@blog.content)%>
       <div class="dotted_line_nopad"></div>
       <% if @prev_blog !=nil%>
-      <span style="float:left;">
-        <%= image_tag "back.png", :align=>"absmiddle"%><strong><%= link_to @prev_blog.title, show_blog_path(@prev_blog), :title=>"Previous Post"%></strong>
-      </span>
-    <% end %>
-    <% if @next_blog !=nil%>
-      <span style="float:right;">
-        <strong><%= link_to @next_blog.title , show_blog_path(@next_blog), :title=>"Next Post"%></strong><%= image_tag "next.png", :align=>"absmiddle"%> 
-      </span>
-    <% end %>
+        <span style="float:left;">
+          <%= image_tag "back.png", :align=>"absmiddle"%><strong><%= link_to @prev_blog.title, show_blog_path(@prev_blog), :title=>"Previous Post"%></strong>
+        </span>
+      <% end %>
+      <% if @next_blog !=nil%>
+        <span style="float:right;">
+          <strong><%= link_to @next_blog.title , show_blog_path(@next_blog), :title=>"Next Post"%></strong><%= image_tag "next.png", :align=>"absmiddle"%> 
+        </span>
+      <% end %>
       <br/>
       <br/>
       <!-- Comments section start -->
       <% if @total_comments.size > 0%>
-      <h2>Comments</h2>
-    <% end %>
+        <h2>Comments</h2>
+      <% end %>
       <div id="comment_section">
-        <ol class="comments first_level">
-          <!-- One comment -->
-          <% @total_comments.each do |comment|%>
-            <li>
-            <div class="comment_box commentbox1">
-              <div class="gravatar">
-                <%= image_tag("avatar.png")%>
-              </div>
-              <div class="comment_text">
-                <span class="highlighted"><%= comment.name%></span>
-                <%= comment.updated_at.strftime("%Y-%m-%d %H:%M:%S")%>
-                <p><%=simple_format rich_content(comment.content)%></p>
-                <div align=right>
-                  <a href="#bottom", onclick="replyMsg(this,true)"><%= image_tag "reply.png", :title=>"reply"%></a>
-                  <a href="#bottom", onclick="replyMsg(this,false)"><%= image_tag "refer.png", :title=>"reference"%></a>
-                </div>
-              </div>
-              <div class="cleaner"></div>
-            </div>                        
-            </li>
-          <% end %>
-        </ol>
+        <%= render :partial=>'eydf_home/comment_list', :total_comments=>@total_comments%>
       </div>
-      
+
       <div class="flickr_pagination">
         <%= will_paginate @total_comments,:class=>"pagination" %>
       </div>
@@ -53,30 +32,7 @@
       <span style="float:right" class="dotted_line">
         <strong><%= link_to "Home", root_path, :title=>"Home page"%></strong><%= image_tag "home.png", :align=>"absmiddle"%>
       </span>
-      <!-- Comment form start -->
-      <div id="comment_form">
-        <h3>Leave A Comment</h3>
-        <%= form_for @eyd_comment, :url=> comment_create_path do |f| %>
-          <%= render :partial=>'eyd_comment/error', :eyd_comment=>@eyd_comment%>
-          <div class="form_row">
-            <label>Name ( * required )</label><br/>
-            <%= f.text_field :name, "value"=>"Anonymous"%>
-          </div>
-          <div class="form_row">
-            <label>Email</label><br/>
-            <%= f.text_field :email%>
-          </div>
-          <div class="form_row">
-            <label>Comment</label><br/>
-            <div id="editor-button-bar"></div>
-            <%= f.text_area :content, :id=>"comment_content", :required =>"required", :row=>"16", :cols=>"40"%>
-          </div>
-          <div id="editor-preview"></div>
-          <%= f.hidden_field :blog_id, "value"=>@blog.id %>
-          <%= f.submit "Submit", :class=>"submit_btn"%>
-        <% end %>
-      </div>
-      <!-- Comment form end -->
+      <%= render :partial=>'eydf_home/comment_form', :eyd_comment=>@eyd_comment%>
     </div>
     <!-- Comments section end -->
     <div class="cleaner"></div>
@@ -85,13 +41,6 @@
 </div> 
 <!-- end of content -->
 
-<div id="sidebar">
-  <%= render :partial=>'eydf_home/subrss', :object=>"xxx"%>
-  <%= render :partial=>'eydf_home/cloudtags', :object=>"xxx"%>
-  <%= render :partial=>'eydf_home/categories', :object=>"xxx"%>
-  <%= render :partial=>'eydf_home/comments', :object=>"xxx"%>
-  <%= render :partial=>'eydf_home/archivals', :object=>"xxx"%>
-</div>
 <script type="text/javascript">
   setup_wmd({
 input: "comment_content",

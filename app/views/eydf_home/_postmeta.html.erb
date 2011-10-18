@@ -9,8 +9,9 @@
       <%= link_to tag, {:action => :tag_list, :id=>tag}, :title=>"Tags" %>
     <% end %> 
     <span>
-      </p>
-      <p><span><%= image_tag "category.png", :align=>"absmiddle" %>&nbsp;<%= link_to @category[0].category, {:action => :category_list, :id=> @category[0].id}, :title=>"Categories"%></span></p>
+  </p>
+  <p><span><%= image_tag "category.png", :align=>"absmiddle" %>&nbsp;<%= link_to @category[0].category, {:action => :category_list, :id=> @category[0].id}, :title=>"Categories"%></span></p>
+  <p><span><%= image_tag "calculator.png", :align=>"absmiddle"%>&nbsp;<%= blog.view_count%> viewer</span></p>
       <!--
       <p><script type="text/javascript" charset="utf-8">
         (function(){

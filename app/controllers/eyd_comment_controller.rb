@@ -23,10 +23,18 @@ class EydCommentController < ApplicationController
     @eyd_comment = EydComment.new(params[:eyd_comment])
     respond_to do |format|
       if @eyd_comment.save
-        format.html { redirect_to(show_blog_path(@eyd_comment.blog_id), :notice => 'Category was successfully created.') }
+        if @eyd_comment.is_guestbook ==true
+          format.html { redirect_to(guest_book_path, :notice => 'Category was successfully created.') }
+        else
+          format.html { redirect_to(show_blog_path(@eyd_comment.blog_id), :notice => 'Category was successfully created.') }
+        end
         format.xml  { render :xml => @eyd_comment, :status => :created }
       else
-        format.html { redirect_to(show_blog_path(@eyd_comment.blog_id))}
+        if @eyd_comment.is_guestbook ==true
+          format.html { redirect_to(guest_book_path)}
+        else
+          format.html { redirect_to(show_blog_path(@eyd_comment.blog_id))}
+        end
         format.xml  { render :xml => @eyd_comment.errors, :status => :unprocessable_entity }
       end
     end

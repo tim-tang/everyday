@@ -1,0 +1,29 @@
+<div id="content">
+  <div class="content_box">
+    <h2>iBooks Gallery</h2>
+    <h6><em>adipiscing elit. variusUt sit amet arcu elit, in posuere arcu. Phasellus in sapien vel felis imperdiet ullamcorper.</em></h6>
+    <div class="cleaner_h40"></div>
+    <div id="gallery">
+      <% @total_ibooks.each do |ibook|%>
+        <div class="gallery_box">
+          <div class="left post_img">
+            <p>
+            <%= image_tag ibook.image_url%>
+            </p>
+          </div>
+          <div class="right">
+            <h5><%= ibook.ibook_file_name%></h5>
+            <div><%= image_tag "tag.png", :style=>"absmiddle"%><em><%= ibook.tag_list%></em>
+              <div style="width:280px;height:80px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><%= ibook.desc%></div> </div>
+            <div align="right"><em>&raquo;<%= ibook.download_count%>  downloads</em> <%= link_to image_tag("download.png", :alt=>"download",:style=>"absmiddle", :title=>"download"), {:action =>:download, :id=>ibook.id}%></div>
+          </div>
+          <div class="cleaner"></div>
+        </div>
+      <% end %>
+    </div>  
+  </div>
+  <div class="flickr_pagination">
+    <%= will_paginate @total_ibooks,:class=>"pagination" %>
+  </div>
+  <div class="cleaner"></div>
+</div>
