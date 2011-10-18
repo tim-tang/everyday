@@ -6,6 +6,11 @@ class EydfHomeController < ApplicationController
     fetch_index_curt
   end
 
+  def tech_list
+    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=1 and blog.is_draft=false order by blog.created_at desc"], :page => params[:page], :per_page=>10 
+   fetch_tech_curt 
+  end
+
   def show_blog
     @eyd_comment = EydComment.new
     @blog = EydBlog.find(params[:id])

@@ -11,6 +11,7 @@ Everyday::Application.routes.draw do
     get 'ibook_list' => :ibook_list, :as => :ibook_list
     get 'ibook_download/:id' => :download, :as => :ibook_download
     get 'guest_book' => :guest_list, :as => :guest_book
+    get 'tech_list' => :tech_list, :as => :tech_list
   end
 
   controller :eyd_login do
