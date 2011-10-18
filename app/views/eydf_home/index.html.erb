@@ -2,7 +2,6 @@
   <% @total_blogs.each do |blog|%>
     <div class="post">
       <%= render :partial=>'eydf_home/postmeta',:locals=> {:blog=>blog}%>
-
       <div class="post_content post_img">
         <h4><%= image_tag "page.png", :align=>"absmiddle"%><%= link_to blog.title, show_blog_path(blog) %></h4>
         <%=simple_format truncate(rich_content(blog.content), :length=>360)%>

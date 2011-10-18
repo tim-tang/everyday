@@ -188,7 +188,6 @@ em { color: #e55822; }
 .recent_comment li a:hover { color: #d06802; text-decoration: underline; }
 .recent_comment li .author { color:#900; }
 .recent_comment li .post_title { color:#000; }
-
 .ads a { display: block; width: 234px; height: 60px; background: #999; border: 3px solid #FFF; margin-bottom: 10px; }
 
 .service_box { clear: both; margin-bottom: 50px; }
