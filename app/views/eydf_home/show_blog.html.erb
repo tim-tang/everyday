@@ -4,7 +4,7 @@
     <div class="post_content post_img">
       <h4><%= image_tag "page_full.png", :align=>"absmiddle"%><%= @blog.title%></h4>
       <%=simple_format rich_content(@blog.content)%>
-      <div class="dotted_line"></div>
+      <div class="dotted_line_nopad"></div>
       <% if @prev_blog !=nil%>
       <span style="float:left;">
         <%= image_tag "back.png", :align=>"absmiddle"%><strong><%= link_to @prev_blog.title, show_blog_path(@prev_blog), :title=>"Previous Post"%></strong>

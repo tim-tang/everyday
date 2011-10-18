@@ -1,3 +1,5 @@
+<h2>Archival Listing</h2>
+<div class="dotted_dash"></div>
 <% @total_blogs.each do |blog|%>
   <p>
   <%= image_tag "tag.png", :align=>"absmiddle"%> 
@@ -10,8 +12,6 @@
   <h3><%= blog.title%></h3>
   <%=simple_format truncate(rich_content(blog.content), :length=>60)%>
   <%= link_to image_tag("play.png")+"Read More ...", show_blog_path(blog),:title=>"Read More ...", :style=>"float:right" %>
-  <br />
-  <br />
   <div class="dotted_line"></div>
 <% end %>
 <br/>
