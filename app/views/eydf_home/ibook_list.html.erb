@@ -12,10 +12,10 @@
             </p>
           </div>
           <div class="right">
-            <h5><%= ibook.ibook_file_name%></h5>
+            <h6><%= ibook.ibook_file_name%></h6>
             <div><%= image_tag "tag.png", :style=>"absmiddle"%><em><%= ibook.tag_list%></em>
-              <div style="width:280px;height:80px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><%= ibook.desc%></div> </div>
-            <div align="right"><em>&raquo;<%= ibook.download_count%>  downloads</em> <%= link_to image_tag("download.png", :alt=>"download",:style=>"absmiddle", :title=>"download"), {:action =>:download, :id=>ibook.id}%></div>
+              <p><%= ibook.desc%></p> </div>
+            <div align="right"><em>Size: <%= (ibook.ibook_file_size/(1024*1024.0)).round(2)%>MB   </em>&raquo;<%= ibook.download_count%>  Downloads</em> <%= link_to image_tag("download.png", :alt=>"download",:style=>"absmiddle", :title=>"download"), {:action =>:download, :id=>ibook.id}%></div>
           </div>
           <div class="cleaner"></div>
         </div>

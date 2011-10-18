@@ -60,10 +60,10 @@ class EydfHomeController < ApplicationController
     @ibook = EydIbook.find(params[:id])
     @ibook.download_count+=1
     @ibook.update_attribute("download_count",@ibook.download_count) 
-    #TODO: to send file let user to downlaod.
-    #send_file "public/"+@ibook.url unless @ibook.url.nil?
-    #send_file "#{RAILS_ROOT}/public/files/"+params[:filename] unless params[:filename].blank? 
-    render :nothing => true  
+    if @ibook.ibook.url!=nil
+      url = @ibook.ibook.url.split("?") 
+      send_file "#{RAILS_ROOT}/public/"+url[0] unless @ibook.ibook.url.nil?
+    end
   end
 
   def guest_list
