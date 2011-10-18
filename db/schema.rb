@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20111018070547) do
     t.boolean  "is_draft"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "view_count"
+    t.integer  "view_count",  :default => 0
   end
 
   create_table "eyd_comments", :force => true do |t|

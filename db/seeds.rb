@@ -6,8 +6,8 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 #   rake db:seed
-EydUser.create(:name=>"tim.tang", :password=>"tim83tang", :password_confirmation=>"tim83tang")
 EydUser.create(:name=>"lisa.dong", :password=>"pas$word123", :password_confirmation=>"pas$word123")
+EydUser.create(:name=>"tim.tang", :password=>"tim83tang", :password_confirmation=>"tim83tang")
 
 EydConstant.create(:id=>1,:category => 'YoYo blog', :user_id=>"1")
 EydConstant.create(:id=>2,:category => 'Tim technic blog', :user_id=>"2")
