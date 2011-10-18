@@ -8,7 +8,7 @@
       </div>
       <div class="comment_text">
         <span class="highlighted"><%= comment.name%></span>
-        <%= comment.updated_at.strftime("%Y-%m-%d %H:%M:%S")%>
+        <%= comment.updated_at.strftime("%Y-%m-%d %H:%M:%S %A")%>
         <p><%=simple_format rich_content(comment.content)%></p>
         <div align=right>
           <a href="#bottom", onclick="replyMsg(this,true)"><%= image_tag "reply.png", :title=>"reply"%></a>
