@@ -5,6 +5,8 @@
     <%= stylesheet_link_tag "templatemo_style.css", :media => "screen" %>
     <%= stylesheet_link_tag "flickr_pagination.css", :media => "screen" %>
     <%= stylesheet_link_tag "wmd.css", :media => "screen" %>
+
+    <%= stylesheet_link_tag "galleriffic-2.css", :media => "screen" %>
     <%= stylesheet_link_tag "white/style.css", :media => "screen" %>
     <link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
     <%= auto_discovery_link_tag :atom, "/eydf_home/rss_feed" %>
@@ -15,6 +17,10 @@
     <%= javascript_include_tag "jquery.rails.js", "application.js" %>
     <%= javascript_include_tag "functions.js" %>
     <%= javascript_include_tag "piroBox.1_2.js" %>
+
+    <%= javascript_include_tag "jquery.galleriffic.js" %>
+    <%= javascript_include_tag "jquery.opacityrollover.js" %>
+
     <%= csrf_meta_tag %>
     <script type="text/javascript">
       $(document).ready(function() {
@@ -43,7 +49,7 @@ slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
             <div id="templatemo_main_wrapper">
               <div id="templatemo_main">
                 <%= yield %>
-
+             <% if session[:curt_gallery] != "current"%>
                 <div id="sidebar">
                   <% if session[:curt_tech] =="current" || session[:curt_ibook] =="current"%>
                     <% session[:userId] = 2%>
@@ -56,6 +62,7 @@ slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
                   <%= render :partial=>'eydf_home/comments', :object=>"xxx"%>
                   <%= render :partial=>'eydf_home/archivals', :locals=>{:userId=>session[:userId]}%>
                 </div>
+              <% end %>
                 <div class="cleaner"></div>
               </div>
             </div>

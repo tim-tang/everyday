@@ -1,11 +1,12 @@
 <div class="footer_col_w200">
   <h3>Our Pages</h3>
   <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About Us</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="blog_post.html">Blog Post</a></li>
-    <li><a href="contact.html">Contact Us</a></li>
+    <li><%= link_to "Home", root_path%></li>
+    <li><%= link_to "Gallery", gallery_list_path%></li>
+    <li><%= link_to "Tim's Blog", tech_list_path%></li>
+    <li><%= link_to "iBooks", ibook_list_path%></a></li>
+    <li><%= link_to "Guest Book", guest_book_path %></li>
+    <li><%= link_to "Administrator", login_path %></li>
   </ul>            
 </div>
 
@@ -22,9 +23,10 @@
 
 <div class="footer_col_w400">
   <h3>Contact Us</h3>
-  <p align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin augue urna, vehicula sed cursus a, faucibus vel sem.</p>
-  <p>Copyright by tim.tang <a href="#">Your Company Name</a></p>
-  <p> <a href="http://www.iwebsitetemplate.com" target="_parent">Website Hosted</a> by <a href="http://www.templatemo.com" target="_parent">Linode VPS</a></p>
+  <p align="justify">Email: tang.jilong@gmail.com</p>
+  <p align="justify">Linode referral code: d942998f8e55bf9e31a0f3cdc394abd882f6e38b</p>
+  <p>All Copyright reserved by <a href="http://weibo.com/everydaycn">Tim.Tang</a></p>
+  <p>Website Hosted by <a href="http://www.linode.com/?r=d942998f8e55bf9e31a0f3cdc394abd882f6e38b" target="_parent">Linode VPS</a></p>
   <strong>Choosing Language: </strong>
   <p>
      <a href="#"><%= image_tag "cn.png" %></a>

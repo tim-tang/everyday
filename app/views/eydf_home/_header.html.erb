@@ -4,7 +4,7 @@
 <div id="templatemo_menu">
   <ul>
     <li><%= link_to 'Home', root_path, :class=>session[:curt_index]%></li>
-    <li><a href=#>Gallery</a></li>
+    <li><%= link_to "Gallery", gallery_list_path, :class=>session[:curt_gallery] %></li>
     <li><%= link_to 'Tims Blogs', tech_list_path, :class=>session[:curt_tech]%></li>
     <li><%= link_to 'iBooks', ibook_list_path, :class=>session[:curt_ibook]%></li>
     <li><%= link_to 'Guest Book', guest_book_path, :class=> session[:curt_guestbk]%></li>

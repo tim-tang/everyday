@@ -80,6 +80,11 @@ class EydfHomeController < ApplicationController
     @total_comments = EydComment.paginate_by_sql ["select comment.* from eyd_comments comment where comment.is_guestbook=true order by comment.updated_at desc"], :page => params[:page], :per_page=>10
     fetch_guestbook_curt 
   end
+
+  def gallery_list
+    @total_avatars = EydAvatar.find_by_sql("select ava.* from eyd_avatars ava where ava.user_id=#{session[:userId]} order by ava.updated_at desc") 
+    fetch_gallery_curt  
+  end
   
   private
   def fetch_index_curt  
