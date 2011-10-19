@@ -15,8 +15,8 @@ body {
 	background-position: top;
 }
 
-a, a:link, a:visited { color: #333; text-decoration: underline; }
-a:hover { color: #000; text-decoration: none; }
+a, a:link, a:visited { color: #333; text-decoration: none; }
+a:hover { color: red; text-decoration: underline; }
 desc
 p { margin: 0px; padding: 0; }
 img { border: none; }
@@ -58,6 +58,9 @@ em { color: #e55822; }
 .tmo_list li { margin: 0 0 5px; padding: 0 0 5px 0; border-bottom: 1px dotted #666; }
 .tmo_list li a { color: #333; text-decoration: none; }
 .tmo_list li a:hover { color: #d06802; text-decoration: underline; }
+
+
+.tag_list { margin: 5px 0; padding: 0; list-style: none; }
 
 .btn_more a {
 	color: #000;

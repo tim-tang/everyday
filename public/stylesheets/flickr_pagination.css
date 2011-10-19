@@ -33,25 +33,25 @@ margin-left: 1em; }
 .common1 {
   color:gray;
   font-size:12px;
-  font-family: bold;
+  font-style: bold;
   line-height:1.2em;
 }
 .common2 {
   color:#A4CE5A !important;
   font-size:16px;
-  font-family: bold;
+  font-style: bold;
   line-height:1.2em;
 }
 .common4 {
   color:#5A870C !important;
-  font-size: 26px;
-  font-family: bold;
+  font-size: 20px;
+  font-style: bold;
   line-height:1.5em;
 }
 .common3 {
   color:orange;
   font-size:18px;
-  font-family: bold;
+  font-style: bold;
   line-height:1.3em;
 }
 

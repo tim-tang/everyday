@@ -30,7 +30,7 @@ slideShow : 'slideshow', // just delete slideshow between '' if you don't want i
 slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
 });
           });
-</script>
+        </script>
       </head>
       <body>
         <%= link_to image_tag("forkme_right_white_ffffff.png"), "https://github.com/tim-tang/everyday", :style=>"position: absolute; top: 0; right: 0; border: 0;"%>
@@ -45,11 +45,16 @@ slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
                 <%= yield %>
 
                 <div id="sidebar">
-                  <%= render :partial=>'eydf_home/subrss', :object=>"xxx"%>
+                  <% if session[:curt_tech] =="current" || session[:curt_ibook] =="current"%>
+                    <% session[:userId] = 2%>
+                  <% else %>
+                    <% session[:userId] = 1%>
+                  <% end %>
+                  <%= render :partial=>'eydf_home/subrss', :locals =>{:object=>"xxx"}%>
+                  <%= render :partial=>'eydf_home/categories', :locals =>{:userId=>session[:userId]}%>
                   <%= render :partial=>'eydf_home/cloudtags', :object=>"xxx"%>
-                  <%= render :partial=>'eydf_home/categories', :object=>"xxx"%>
                   <%= render :partial=>'eydf_home/comments', :object=>"xxx"%>
-                  <%= render :partial=>'eydf_home/archivals', :object=>"xxx"%>
+                  <%= render :partial=>'eydf_home/archivals', :locals=>{:userId=>session[:userId]}%>
                 </div>
                 <div class="cleaner"></div>
               </div>

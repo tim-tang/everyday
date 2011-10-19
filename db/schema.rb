@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20111018070547) do
   end
 
   create_table "eyd_ibooks", :force => true do |t|
-    t.string   "ibook_file_name"
+    t.string   "ibook_file_name",                   :null => false
     t.string   "ibook_content_type"
     t.integer  "ibook_file_size"
     t.datetime "ibook_updated_at"
