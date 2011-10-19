@@ -2,7 +2,7 @@
   <!-- Status Bar Start -->
   <% if flash[:alert] %>
     <div class="status warning">
-      <p><img src="images/icons/icon_warning.png" alt="Warning" />
+      <p><%= image_tag "icons/icon_error.png", :alt=>"Warning" %>
       <span>Attention!</span> 
       <%= flash[:alert] %>
       </p>

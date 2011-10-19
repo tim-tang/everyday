@@ -11,3 +11,18 @@ body {background: #E5E5E5 url(../images/bg_login_page.png) repeat-x top;}
 
 #innerlogin p a {background: #ccc url(../images/bg_forgotten_password.png) repeat-x top; text-shadow: 1px 1px 1px #fff; color: #666; font-size: 11px; padding: 4px 10px; border-radius: 5px; -moz-border-radius: 5px; text-decoration: none;}
 #innerlogin p a:hover {background: #ccc url(../images/bg_forgotten_password.png) 0 -25px; color: #333;}
+
+/* Status Bars */
+
+.status {padding: 8px 10px 5px 10px; border-radius: 10px; -moz-border-radius: 10px; text-shadow: 1px 1px 1px #fff; overflow: auto; margin-bottom: 20px; clear: both;}
+.status img {float: left; padding-right: 5px;}
+.status p {padding: 0; margin: 0;}
+.status p span {font-weight: 700;}
+.status .closestatus {float: right; color: #fff; text-align: center; margin-left: 10px;}
+.status .closestatus a {position: relative; color: #fff; text-decoration: none; padding: 5px; width: 10px; height: 10px; display: block; border-radius: 5px; -moz-border-radius: 5px; line-height: .6em; top: -2px; text-shadow: none;}
+
+.warning {border: 3px solid #BF9900; background: #FEEB9C url(../images/bg_fade_yellow_med.png) repeat-x top;}
+.warning span {color: #BF9900;}
+.warning .closestatus a {background: #BF9900;}
+.warning .closestatus a:hover {background: #9B7C00;}
+
