@@ -2,8 +2,8 @@
 <% @category = EydConstant.find_by_sql("select cate.* from eyd_constants cate where cate.id = #{blog.constant_id}")%>
 <div class="post_meta">
   <p><span><%= image_tag "user.png", :align=>"absmiddle"%>&nbsp;<%= blog.author%></span></p>
-  <p><span><%= image_tag "calendar.png", :align=>"absmiddle"%>&nbsp;<%= blog.updated_at.strftime("%Y-%m-%d %A %H:%M:%S")%></span></p>
-  <p><span><%= image_tag "user_comment.png", :align=>"absmiddle"%>&nbsp;<%= link_to @comment_count.to_s+" Comments", show_blog_path(blog), :title=>"Post Comments"%></span></p>
+  <p><span><%= image_tag "calendar.png", :align=>"absmiddle"%>&nbsp;<%= blog.created_at.strftime("%Y-%m-%d %A %H:%M:%S")%></span></p>
+  <p><span><%= image_tag "user_comment.png", :align=>"absmiddle"%>&nbsp;<%= link_to @comment_count.to_s+t('.comm_num'), show_blog_path(blog), :title=>"Post Comments"%></span></p>
   <p><span> <%= image_tag "tag.png", :align=>"absmiddle"%>&nbsp;
     <% blog.tag_list.each do |tag|%>
       <%= link_to tag, {:action => :tag_list, :id=>tag}, :title=>"Tags" %>
@@ -11,7 +11,7 @@
     <span>
   </p>
   <p><span><%= image_tag "category.png", :align=>"absmiddle" %>&nbsp;<%= link_to @category[0].category, {:action => :category_list, :id=> @category[0].id}, :title=>"Categories"%></span></p>
-  <p><span><%= image_tag "calculator.png", :align=>"absmiddle"%>&nbsp;<%= blog.view_count%> viewer</span></p>
+  <p><span><%= image_tag "calculator.png", :align=>"absmiddle"%>&nbsp;<%= blog.view_count%> <%= t('.viewer')%></span></p>
       <!--
       <p><script type="text/javascript" charset="utf-8">
         (function(){

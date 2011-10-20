@@ -1,0 +1,74 @@
+zh:
+  eydf_home:
+    index:
+      read_more: "阅读更多..."
+    postmeta:
+      comm_num: " 条评论"
+      viewer: "人阅读"
+    header:
+      home: "主页"
+      gallery: "图片廊"
+      tblog: "Tim 的博客"
+      ibook: "图书推荐"
+      guest_bk: "留言版"
+      admin: "管理员"
+    footer:
+      website_map: "网站地图"
+      home: "主页"
+      gallery: "图片廊"
+      tblog: "Tim 的博客"
+      ibook: "图书推荐"
+      guest_bk: "留言版"
+      admin: "管理员"
+      friend_links: "友情链接"
+      link1: "The Pragmatic Bookshelf"
+      link2: "Ruby on Rails Guides"
+      link3: "Ruby on Rails Screencasts - RailsCasts"
+      link4: "Stack Overflow"
+      link5: "ihower { blogging }"
+      link6: "夜鸣猪的RubyOnRails空间"
+      contact_us: "联系我们"
+      email: "E-Mail: tang.jilong@gmail.com"
+      copyright: "All Copyright Reserved by Tim.Tang "
+      host: "Website Hosted On Linode VPS" 
+    categories:
+      categories: "博客分类" 
+    cloudtags:
+      cloud_tag: "标签云"
+    comments:
+      comments: "最近评论"
+    archivals:
+      archivals: "博客归档"
+    tag_list:
+      tag_list: "标签博客列表"
+      read_more: "阅读更多..."
+    category_list:
+      category_list: "分类博客列表"
+      read_more: "阅读更多..."
+    archival_list:
+      archival_list: "归档博客列表"
+      read_more: "阅读更多..."
+    show_blog:
+      comments: "评论列表"
+      home: "返回主页"
+    comment_list:
+      reply: "回复"
+      refer: "引用"
+    comment_form:
+      leave_comment: "请留言"
+      name: "姓名 (* 必填)"
+      email: "电子邮箱"
+      content: "内容 (* 必填)"
+      submit: "提交"
+    gallery_list:
+      gallery: "图片廊"
+    tag_gallery_list:
+      gallery: "图片廊"
+    ibook_list:
+      ibook: "图书推荐"
+      downloads: "下载次数"
+      size: "文档大小"
+    guest_list:
+      about_blog: "关于我们"
+      comments: "评论列表"
+      home: "返回首页"

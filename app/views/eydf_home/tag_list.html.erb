@@ -1,6 +1,6 @@
 <div id="content">
   <div class="content_box">
-    <h2>Taggable Listing</h2>
+    <h2><%= t('.tag_list')%></h2>
     <div id="gallery">
       <% @total_blogs.each do |blog|%>
         <div class="gallery_box">
@@ -12,7 +12,7 @@
           <br/>
           <h4><%= link_to blog.title, show_blog_path(blog)%></h4>
           <%=simple_format truncate(rich_content(blog.content), :length=>60)%>
-          <%= link_to image_tag('play.png')+"Read More ...", show_blog_path(blog),:title=>"Read More ...", :style=>"float:right" %>
+          <%= link_to image_tag('play.png')+t('.read_more'), show_blog_path(blog),:title=>"Read More ...", :style=>"float:right" %>
           <div class="cleaner"></div>
         </div>
       <% end %>

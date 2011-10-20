@@ -1,18 +1,18 @@
   <!-- Comment form start -->
   <div id="comment_form">
-    <h3>Leave A Comment</h3>
+    <h3><%= t('.leave_comment')%></h3>
     <%= form_for @eyd_comment, :url=> comment_create_path do |f| %>
       <%= render :partial=>'eyd_comment/error', :eyd_comment=>@eyd_comment%>
       <div class="form_row">
-        <label>Name ( * required )</label><br/>
+        <label><%= t('.name')%></label><br/>
         <%= f.text_field :name, "value"=>"Anonymous"%>
       </div>
       <div class="form_row">
-        <label>Email</label><br/>
+        <label><%= t('.email')%></label><br/>
         <%= f.text_field :email%>
       </div>
       <div class="form_row">
-        <label>Comment</label><br/>
+        <label><%= t('.content')%></label><br/>
         <div id="editor-button-bar"></div>
         <%= f.text_area :content, :id=>"comment_content", :required =>"required", :row=>"16", :cols=>"40"%>
       </div>
@@ -23,7 +23,7 @@
       <% else %>
         <%= f.hidden_field :is_guestbook, "value"=>true %>
       <% end %>
-      <%= f.submit "Submit", :class=>"submit_btn"%>
+      <%= f.submit t('.submit'), :class=>"submit_btn"%>
     <% end %>
   </div>
 

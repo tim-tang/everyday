@@ -11,8 +11,8 @@
         <%= comment.updated_at.strftime("%Y-%m-%d %H:%M:%S %A")%>
         <p><%=simple_format rich_content(comment.content)%></p>
         <div align=right>
-          <a href="#bottom", onclick="replyMsg(this,true)"><%= image_tag "reply.png", :title=>"reply"%></a>
-          <a href="#bottom", onclick="replyMsg(this,false)"><%= image_tag "refer.png", :title=>"reference"%></a>
+          <a href="#bottom", onclick="replyMsg(this,true)"><%= image_tag "reply.png", :title=>t('.reply')%></a>
+          <a href="#bottom", onclick="replyMsg(this,false)"><%= image_tag "refer.png", :title=>t('.refer')%></a>
         </div>
       </div>
       <div class="cleaner"></div>

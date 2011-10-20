@@ -19,7 +19,7 @@
       <br/>
       <!-- Comments section start -->
       <% if @total_comments.size > 0%>
-        <h2>Comments</h2>
+        <h5><%= t('.comments')%></h5>
       <% end %>
       <div id="comment_section">
         <%= render :partial=>'eydf_home/comment_list', :total_comments=>@total_comments%>
@@ -30,7 +30,7 @@
       </div>
 
       <span style="float:right" class="dotted_line">
-        <strong><%= link_to "Home", root_path, :title=>"Home page"%></strong><%= image_tag "home.png", :align=>"absmiddle"%>
+        <strong><%= link_to t('.home'), root_path, :title=>t('.home')%></strong><%= image_tag "home.png", :align=>"absmiddle"%>
       </span>
       <%= render :partial=>'eydf_home/comment_form', :eyd_comment=>@eyd_comment%>
     </div>

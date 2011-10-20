@@ -1,6 +1,6 @@
 <% @archivals = EydBlog.find_by_sql("select year(updated_at) as year, month(updated_at) as month, count(id)as count from eyd_blogs where user_id=#{userId} group by year(updated_at),month(updated_at) order by year(updated_at) desc, month(updated_at) desc")%>
 <div class="sidebar_box">
-  <h3>Blog Archival</h3>
+  <h3><%= t('.archivals')%></h3>
   <ul class="tmo_list">
     <% @archivals.each do |arch|%>
       <% @arch_date = arch.year.to_s+"-"+arch.month.to_s%>

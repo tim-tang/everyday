@@ -1,35 +1,36 @@
 <div class="footer_col_w200">
-  <h3>Our Pages</h3>
+  <h3><%= t(".website_map")%></h3>
   <ul>
-    <li><%= link_to "Home", root_path%></li>
-    <li><%= link_to "Gallery", gallery_list_path%></li>
-    <li><%= link_to "Tim's Blog", tech_list_path%></li>
-    <li><%= link_to "iBooks", ibook_list_path%></a></li>
-    <li><%= link_to "Guest Book", guest_book_path %></li>
-    <li><%= link_to "Administrator", login_path %></li>
+    <li><%= link_to t(".home"), root_path%></li>
+    <li><%= link_to t(".gallery"), gallery_list_path%></li>
+    <li><%= link_to t(".tblog"), tech_list_path%></li>
+    <li><%= link_to t(".ibook"), ibook_list_path%></li>
+    <li><%= link_to t(".guest_bk"), guest_book_path %></li>
+    <li><%= link_to t(".admin"), login_path %></li>
   </ul>            
 </div>
 
 <div class="footer_col_w200">
-  <h3>Friends</h3>
+  <h3><%= t(".friend_links")%></h3>
   <ul>
-    <li><a href="http://www.templatemo.com">Free CSS Templates</a></li>
-    <li><a href="http://www.koflash.com">Websites Gallery</a></li>
-    <li><a href="http://www.flashmo.com/store">Premium Templates</a></li>
-    <li><a href="http://www.templatemo.com/page/1">Website Layouts</a></li>
-    <li><a href="http://www.flashmo.com">Flash Templates</a></li>
+    <li><a href="http://pragprog.com/" target="_blank"><%= t(".link1")%></a></li>
+    <li><a href="http://guides.rubyonrails.org/" target="_blank"><%= t(".link2")%></a></li>
+    <li><a href="http://railscasts.com/" target="_blank"><%= t(".link3")%></a></li>
+    <li><a href="http://stackoverflow.com/" target="_blank"><%= t(".link4")%></a></li>
+    <li><a href="http://ihower.tw/blog/" target="_blank"><%= t(".link5")%></a></li>
+    <li><a href="http://hlee.iteye.com/blog" target="_blank"><%= t(".link6")%></a></li>
   </ul>            
 </div>
 
 <div class="footer_col_w400">
-  <h3>Contact Us</h3>
-  <p align="justify">Email: tang.jilong@gmail.com</p>
+  <h3><%= t(".contact_us")%></h3>
+  <p align="justify"><%= t(".email")%></p>
   <p align="justify">Linode referral code: d942998f8e55bf9e31a0f3cdc394abd882f6e38b</p>
-  <p>All Copyright reserved by <a href="http://weibo.com/everydaycn">Tim.Tang</a></p>
-  <p>Website Hosted by <a href="http://www.linode.com/?r=d942998f8e55bf9e31a0f3cdc394abd882f6e38b" target="_parent">Linode VPS</a></p>
+  <p><%= t(".copyright")%></p>
+  <p><a href="http://www.linode.com/?r=d942998f8e55bf9e31a0f3cdc394abd882f6e38b" target="_parent"><%= t(".host")%></a></p>
   <p>
-    <a href="#"><%= image_tag "cn.png", :style=>"absmiddle" %></a>
-    <a href="#"><%= image_tag "en.png", :stle=> "absmiddle"%></a>
+  <%=  link_to image_tag("cn.png", :stle=>"absmiddle"), :controller=>'eydf_home', :action=>"index", :locale => "zh"%>
+  <%=  link_to image_tag("en.png", :stle=>"absmiddle"), :controller=>'eydf_home', :action=>"index", :locale => "en"%>
    </p>
 </div>
 <div class="cleaner"></div>

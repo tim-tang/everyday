@@ -6,7 +6,7 @@
         <h4><%= image_tag "page.png", :align=>"absmiddle"%><%= link_to blog.title, show_blog_path(blog) %></h4>
         <%=simple_format truncate(rich_content(blog.content), :length=>360)%>
         <div align="right">
-          <%= image_tag 'play.png', :align=>"absmiddle"%><%= link_to "Read More ...",  show_blog_path(blog), :title=>"Read More..." %>
+          <%= image_tag 'play.png', :align=>"absmiddle"%><%= link_to t('.read_more'),  show_blog_path(blog), :title=>"Read More..." %>
         </div>
       </div>
       <div class="cleaner"></div>

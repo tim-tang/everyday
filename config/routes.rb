@@ -1,20 +1,20 @@
 Everyday::Application.routes.draw do
-
-  root :to => "eydf_home#index"
-  match 'eydf_home/rss_feed' => 'eydf_home#rss_feed', :as => :rss_feed, :defaults=> {:format => 'atom'} 
-
-  controller :eydf_home do
-    get 'show_blog/:id' => :show_blog, :as => :show_blog
-    get 'tag_list/:id' => :tag_list, :as => :tag_list
-    get 'archival_list/:id' => :archival_list, :as => :archival_list 
-    get 'category_list/:id' => :category_list, :as => :category_list
-    get 'ibook_list' => :ibook_list, :as => :ibook_list
-    get 'ibook_download/:id' => :download, :as => :ibook_download
-    get 'guest_book' => :guest_list, :as => :guest_book
-    get 'tech_list' => :tech_list, :as => :tech_list
-    get 'tag_ibook_list/:id' => :tag_ibook_list, :as => :tag_ibook_list
-    get 'gallery_list' => :gallery_list, :as => :gallery_list
-    get 'tag_gallery_list/:id' => :tag_gallery_list, :as => :tag_gallery_list
+    root :to => "eydf_home#index"
+  scope '(:locale)' do
+    match 'eydf_home/rss_feed' => 'eydf_home#rss_feed', :as => :rss_feed, :defaults=> {:format => 'atom'} 
+    controller :eydf_home do
+      get 'show_blog/:id' => :show_blog, :as => :show_blog
+      get 'tag_list/:id' => :tag_list, :as => :tag_list
+      get 'archival_list/:id' => :archival_list, :as => :archival_list 
+      get 'category_list/:id' => :category_list, :as => :category_list
+      get 'ibook_list' => :ibook_list, :as => :ibook_list
+      get 'ibook_download/:id' => :download, :as => :ibook_download
+      get 'guest_book' => :guest_list, :as => :guest_book
+      get 'tech_list' => :tech_list, :as => :tech_list
+      get 'tag_ibook_list/:id' => :tag_ibook_list, :as => :tag_ibook_list
+      get 'gallery_list' => :gallery_list, :as => :gallery_list
+      get 'tag_gallery_list/:id' => :tag_gallery_list, :as => :tag_gallery_list
+    end
   end
 
   controller :eyd_login do
@@ -54,7 +54,7 @@ Everyday::Application.routes.draw do
     post 'avatar_upload' => :upload
     post 'avatar_destroy' => :destroy
   end
-  
+
   controller :eyd_ibook do
     get 'ibook_index' => :index
     get 'ibook_show/:id' => :show, :as => :ibook_show

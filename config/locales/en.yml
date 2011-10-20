@@ -2,4 +2,77 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  eydf_home:
+    index:
+      read_more: "Read More..."
+    postmeta:
+      comm_num: " Comments"
+      viewer: "Viewer"
+    header:
+      home: "Home"
+      gallery: "Gallery"
+      tblog: "Tim's Blog"
+      ibook: "iBooks"
+      guest_bk: "Guest Book"
+      admin: "Administrator"
+    footer:
+      website_map: "Our Pages"
+      home: "Home"
+      gallery: "Gallery"
+      tblog: "Tim's Blog"
+      ibook: "iBooks"
+      guest_bk: "Guest Book"
+      admin: "Administrator"
+      friend_links: "Friend Links"
+      link1: "The Pragmatic Bookshelf"
+      link2: "Ruby on Rails Guides"
+      link3: "Ruby on Rails Screencasts - RailsCasts"
+      link4: "Stack Overflow"
+      link6: "ihower { blogging }"
+      link7: "夜鸣猪的RubyOnRails空间"
+      contact_us: "Contact Us"
+      email: "E-Mail: tang.jilong@gmail.com"
+      copyright: "All Copyright Reserved by Tim.Tang "
+      host: "Website Hosted On Linode VPS" 
+    categories:
+      categories: "Categories" 
+    cloudtags:
+      cloud_tag: "Cloud Tags"
+    comments:
+      comments: "Recent Comments"
+    archivals:
+      archivals: "Blog Archivals"
+    tag_list:
+      tag_list: "Taggable Listing"
+      read_more: "Read More..."
+    category_list:
+      category_list: "Category Listing"
+      read_more: "Read More..."
+    archival_list:
+      archival_list: "Archival Listing"
+      read_more: "Read More..."
+    show_blog:
+      comments: "Comments Listing"
+      home: "Back Home"
+    comment_list:
+      reply: "Reply"
+      refer: "Reference"
+    comment_form:
+      leave_comment: "Leave A Comment"
+      name: "Name (* required)"
+      email: "E-Mail"
+      content: "Comment (* required)"
+      submit: "Submit"
+    gallery_list:
+      gallery: "Photo Gallery"
+    tag_gallery_list:
+      gallery: "Photo Gallery"
+    ibook_list:
+      ibook: "iBook Gallery"
+      downloads: "Downloads"
+      size: "Size"
+    guest_list:
+      about_blog: "About Our Blog"
+      comments: "Comments Listing"
+      home: "Back Home"
+

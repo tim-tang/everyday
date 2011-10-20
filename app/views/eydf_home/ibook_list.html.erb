@@ -1,6 +1,6 @@
 <div id="content">
   <div class="content_box">
-    <h2>iBooks Gallery</h2>
+    <h2><%= t('.ibook')%></h2>
     <h6><em>adipiscing elit. variusUt sit amet arcu elit, in posuere arcu. Phasellus in sapien vel felis imperdiet ullamcorper.</em></h6>
     <div class="cleaner_h40"></div>
     <div id="gallery">
@@ -18,15 +18,15 @@
                 <span class="highlighted"><%= link_to tag, {:action=>:tag_ibook_list, :id=>tag}, :title=>"Tags" %></span>
               <% end %>
               <p><%= ibook.desc%></p> </div>
-            <div align="right"><em>Size: <%= (ibook.ibook_file_size/(1024*1024.0)).round(2)%>MB   </em>&raquo;<%= ibook.download_count%>  Downloads</em> <%= link_to image_tag("download.png", :alt=>"download",:style=>"absmiddle", :title=>"download"), {:action =>:download, :id=>ibook.id}%></div>
+            <div align="right"><em><%= t('.size')%>: <%= (ibook.ibook_file_size/(1024*1024.0)).round(2)%>MB || <%= t('.downloads')%>&raquo; <%= ibook.download_count%>  </em> <%= link_to image_tag("download.png", :alt=>"download",:style=>"absmiddle", :title=>"download"), {:action =>:download, :id=>ibook.id}%></div>
           </div>
           <div class="cleaner"></div>
         </div>
       <% end %>
     </div>  
   </div>
+  <div class="cleaner"></div>
   <div class="flickr_pagination">
     <%= will_paginate @total_ibooks,:class=>"pagination" %>
   </div>
-  <div class="cleaner"></div>
 </div>

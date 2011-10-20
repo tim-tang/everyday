@@ -66,7 +66,7 @@ class EydfHomeController < ApplicationController
   end
 
   def ibook_list 
-    @total_ibooks = EydIbook.paginate_by_sql ["select ibook.* from eyd_ibooks ibook where ibook.user_id=1 order by ibook.updated_at desc"], :page => params[:page], :per_page=>5 
+    @total_ibooks = EydIbook.paginate_by_sql ["select ibook.* from eyd_ibooks ibook where ibook.user_id=2 order by ibook.updated_at desc"], :page => params[:page], :per_page=>5 
     fetch_ibook_curt                     
   end
 
