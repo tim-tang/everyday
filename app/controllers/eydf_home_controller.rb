@@ -42,6 +42,10 @@ class EydfHomeController < ApplicationController
     @total_ibooks = EydIbook.tagged_with(params[:id]).paginate :page => params[:page], :per_page => 10
   end
 
+  def tag_gallery_list
+    @total_avatars = EydAvatar.tagged_with(params[:id])
+  end
+
   def archival_list
     @start = "'"+params[:id]+"-01'"
     @end = "'"+params[:id]+"-31'"

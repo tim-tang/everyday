@@ -6,17 +6,17 @@ div.content {
 }
 div.content a, div.navigation a {
 	text-decoration: none;
-	color: #777;
+	color: #9f204c;
 }
-div.content a:focus, div.content a:hover, div.content a:active {
+div.content a:focus, div.content a:hover, div.content a:active {color:#d06802; font-weight: bold;
 	text-decoration: underline;
 }
 div.controls {
-	margin-top: 35px;
-	height: 23px;
+	margin-top: 15px;
+	height: 13px;
 }
 div.controls a {
-	padding: 5px;
+	padding: 2px;
 }
 div.ss-controls {
 	float: left;
@@ -25,12 +25,13 @@ div.nav-controls {
 	float: right;
 }
 div.slideshow-container {
+    margin-top: 98px;
 	position: relative;
 	clear: both;
 	height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */
 }
 div.loader {
-	position: absolute;
+	position: relative;
 	top: 0;
 	left: 0;
 	background-image: url('loader.gif');

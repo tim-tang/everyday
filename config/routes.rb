@@ -14,6 +14,7 @@ Everyday::Application.routes.draw do
     get 'tech_list' => :tech_list, :as => :tech_list
     get 'tag_ibook_list/:id' => :tag_ibook_list, :as => :tag_ibook_list
     get 'gallery_list' => :gallery_list, :as => :gallery_list
+    get 'tag_gallery_list/:id' => :tag_gallery_list, :as => :tag_gallery_list
   end
 
   controller :eyd_login do
