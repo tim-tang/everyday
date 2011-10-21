@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Everyday</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="ruby,rails,linux,ubuntu,mac,blackberry" />
+    <meta name="description" content="Everyday 分享简单快乐" />
+    <meta name="robots" content="ruby on rails,mbp,技术博客,technic,blog" />
+    <title>Everyday | [分享简单快乐]</title>
     <link rel="shortcut icon" type="image/png" href="favicon.ico" />
     <%= stylesheet_link_tag "templatemo_style.css", :media => "screen" %>
     <%= stylesheet_link_tag "flickr_pagination.css", :media => "screen" %>
@@ -35,7 +39,7 @@ slideShow : 'slideshow', // just delete slideshow between '' if you don't want i
 slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
 });
           });
-        </script>
+</script>
       </head>
       <body>
         <%= link_to image_tag("forkme_right_white_ffffff.png"), "https://github.com/tim-tang/everyday", :style=>"position: absolute; top: 0; right: 0; border: 0;"%>
@@ -48,20 +52,20 @@ slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
             <div id="templatemo_main_wrapper">
               <div id="templatemo_main">
                 <%= yield %>
-             <% if session[:curt_gallery] != "current"%>
-                <div id="sidebar">
-                  <% if session[:curt_tech] =="current" || session[:curt_ibook] =="current"%>
-                    <% session[:userId] = 2%>
-                  <% else %>
-                    <% session[:userId] = 1%>
-                  <% end %>
-                  <%= render :partial=>'eydf_home/subrss', :locals =>{:object=>"xxx"}%>
-                  <%= render :partial=>'eydf_home/categories', :locals =>{:userId=>session[:userId]}%>
-                  <%= render :partial=>'eydf_home/cloudtags', :object=>"xxx"%>
-                  <%= render :partial=>'eydf_home/comments', :object=>"xxx"%>
-                  <%= render :partial=>'eydf_home/archivals', :locals=>{:userId=>session[:userId]}%>
-                </div>
-              <% end %>
+                <% if session[:curt_gallery] != "current"%>
+                  <div id="sidebar">
+                    <% if session[:curt_tech] =="current" || session[:curt_ibook] =="current"%>
+                      <% session[:userId] = 2%>
+                    <% else %>
+                      <% session[:userId] = 1%>
+                    <% end %>
+                    <%= render :partial=>'eydf_home/subrss', :locals =>{:object=>"xxx"}%>
+                    <%= render :partial=>'eydf_home/categories', :locals =>{:userId=>session[:userId]}%>
+                    <%= render :partial=>'eydf_home/cloudtags', :object=>"xxx"%>
+                    <%= render :partial=>'eydf_home/comments', :object=>"xxx"%>
+                    <%= render :partial=>'eydf_home/archivals', :locals=>{:userId=>session[:userId]}%>
+                  </div>
+                <% end %>
                 <div class="cleaner"></div>
               </div>
             </div>
