@@ -11,7 +11,7 @@
 
   <div class="alphacloud2">
     <% if EydAvatar.tag_counts.length > 0%>
-      <span><%= image_tag "tag_large.png"%>
+      <span><%= image_tag "tag.png"%>
       <% tag_cloud(EydAvatar.tag_counts, %w(common1 common2 common3 common4)) do |tag, css_class|%>
         <%= link_to tag.name, {:action=>:tag_gallery_list, :id=> tag.name}, :class=>css_class%>
       <% end %>

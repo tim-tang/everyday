@@ -6,6 +6,7 @@ class CreateEydConstants < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :eyd_constants, ["user_id"], :name=>"constant_user_id_index"
   end
 
   def self.down

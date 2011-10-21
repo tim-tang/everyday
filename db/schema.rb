@@ -24,6 +24,10 @@ ActiveRecord::Schema.define(:version => 20111018070547) do
     t.datetime "updated_at"
   end
 
+  add_index "eyd_avatars", ["avatar_updated_at"], :name => "avatar_updated_at_index"
+  add_index "eyd_avatars", ["constant_id"], :name => "avatar_constant_id_index"
+  add_index "eyd_avatars", ["user_id"], :name => "avatar_user_id_index"
+
   create_table "eyd_blogs", :force => true do |t|
     t.string   "title"
     t.string   "author"
@@ -37,6 +41,11 @@ ActiveRecord::Schema.define(:version => 20111018070547) do
     t.integer  "view_count",  :default => 0
   end
 
+  add_index "eyd_blogs", ["constant_id"], :name => "blog_constant_id_index"
+  add_index "eyd_blogs", ["created_at"], :name => "blog_created_at_index"
+  add_index "eyd_blogs", ["is_draft"], :name => "blog_is_draft_index"
+  add_index "eyd_blogs", ["user_id"], :name => "blog_user_id_index"
+
   create_table "eyd_comments", :force => true do |t|
     t.integer  "parent_id"
     t.integer  "blog_id"
@@ -49,12 +58,17 @@ ActiveRecord::Schema.define(:version => 20111018070547) do
     t.datetime "updated_at"
   end
 
+  add_index "eyd_comments", ["blog_id"], :name => "comment_blog_id_index"
+  add_index "eyd_comments", ["is_guestbook"], :name => "comment_is_guestbook_index"
+
   create_table "eyd_constants", :force => true do |t|
     t.string   "category"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "eyd_constants", ["user_id"], :name => "constant_user_id_index"
 
   create_table "eyd_ibooks", :force => true do |t|
     t.string   "ibook_file_name"
@@ -68,6 +82,8 @@ ActiveRecord::Schema.define(:version => 20111018070547) do
     t.datetime "updated_at"
     t.integer  "download_count",     :default => 0
   end
+
+  add_index "eyd_ibooks", ["user_id"], :name => "ibook_user_id_index"
 
   create_table "eyd_users", :force => true do |t|
     t.string   "name"

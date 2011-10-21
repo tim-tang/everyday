@@ -1,4 +1,4 @@
-<% @archivals = EydBlog.find_by_sql("select year(updated_at) as year, month(updated_at) as month, count(id)as count from eyd_blogs where user_id=#{userId} group by year(updated_at),month(updated_at) order by year(updated_at) desc, month(updated_at) desc")%>
+<% @archivals = EydBlog.find_by_sql("select year(created_at) as year, month(created_at) as month, count(id)as count from eyd_blogs where user_id=#{userId} group by year(created_at),month(created_at) order by year(created_at) desc, month(created_at) desc")%>
 <div class="sidebar_box">
   <h3><%= t('.archivals')%></h3>
   <ul class="tmo_list">

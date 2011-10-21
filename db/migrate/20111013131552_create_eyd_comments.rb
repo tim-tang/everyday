@@ -11,6 +11,9 @@ class CreateEydComments < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :eyd_comments, ["blog_id"], :name=>"comment_blog_id_index"
+    add_index :eyd_comments, ["is_guestbook"], :name=>"comment_is_guestbook_index"
+    add_index :eyd_comments, ["updated_at"], :name=>"comment_created_at_index"
   end
 
   def self.down

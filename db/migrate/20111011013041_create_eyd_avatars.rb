@@ -11,6 +11,9 @@ class CreateEydAvatars < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :eyd_avatars, ["user_id"], :name=>"avatar_user_id_index"
+    add_index :eyd_avatars, ["constant_id"], :name=>"avatar_constant_id_index"
+    add_index :eyd_avatars, ["avatar_updated_at"], :name=>"avatar_updated_at_index"
   end
 
   def self.down

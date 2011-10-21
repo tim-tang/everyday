@@ -11,6 +11,7 @@ class CreateEydIbooks < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :eyd_ibooks, ["user_id"], :name=>"ibook_user_id_index"
   end
 
   def self.down
