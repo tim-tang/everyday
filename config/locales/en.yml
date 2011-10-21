@@ -59,6 +59,7 @@ en:
       refer: "Reference"
     comment_form:
       leave_comment: "Leave A Comment"
+      anonymous: "Anonymous"
       name: "Name (* required)"
       email: "E-Mail"
       content: "Comment (* required)"

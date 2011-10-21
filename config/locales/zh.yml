@@ -56,6 +56,7 @@ zh:
       refer: "引用"
     comment_form:
       leave_comment: "请留言"
+      anonymous: "亲们"
       name: "姓名 (* 必填)"
       email: "电子邮箱"
       content: "内容 (* 必填)"

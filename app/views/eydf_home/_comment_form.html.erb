@@ -5,7 +5,7 @@
       <%= render :partial=>'eyd_comment/error', :eyd_comment=>@eyd_comment%>
       <div class="form_row">
         <label><%= t('.name')%></label><br/>
-        <%= f.text_field :name, "value"=>"Anonymous"%>
+        <%= f.text_field :name, "value"=>t(".anonymous")%>
       </div>
       <div class="form_row">
         <label><%= t('.email')%></label><br/>
