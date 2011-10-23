@@ -32,7 +32,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: eyd_pro
+  database: eyd_production
   pool: 5
   username: root
   password: root

@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20111018070547) do
 
   add_index "eyd_comments", ["blog_id"], :name => "comment_blog_id_index"
   add_index "eyd_comments", ["is_guestbook"], :name => "comment_is_guestbook_index"
+  add_index "eyd_comments", ["updated_at"], :name => "comment_created_at_index"
 
   create_table "eyd_constants", :force => true do |t|
     t.string   "category"
