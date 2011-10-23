@@ -87,7 +87,7 @@ class EydfHomeController < ApplicationController
   end
 
   def gallery_list
-    @total_avatars = EydAvatar.find_by_sql("select ava.* from eyd_avatars ava where ava.user_id=1 order by ava.updated_at desc") 
+    @total_avatars = EydAvatar.find_by_sql("select ava.* from eyd_avatars ava where ava.user_id=1 order by ava.updated_at desc limit 280") 
     fetch_gallery_curt  
   end
   

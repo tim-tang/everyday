@@ -26,8 +26,20 @@
 
     <%= csrf_meta_tag %>
     <script type="text/javascript">
-      $(document).ready(function() {
-          $().piroBox({
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-23115957-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+     </script>
+
+     <script type="text/javascript">
+       $(document).ready(function() {
+           $().piroBox({
 my_speed: 600, //animation speed
 bg_alpha: 0.5, //background opacity
 radius: 4, //caption rounded corner
@@ -38,43 +50,43 @@ close_all : '.piro_close',// add class .piro_overlay(with comma)if you want over
 slideShow : 'slideshow', // just delete slideshow between '' if you don't want it.
 slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
 });
-          });
+           });
 </script>
-      </head>
-      <body>
-        <%= link_to image_tag("forkme_right_white_ffffff.png"), "https://github.com/tim-tang/everyday", :style=>"position: absolute; top: 0; right: 0; border: 0;"%>
-        <div id="templatemo_wrapper_outer">
-          <div id="templatemo_wrapper">
-            <div id="templatemo_header"> 
-              <%= render :partial=>'eydf_home/header', :object=>"xxx"%>
-            </div>
+  </head>
+  <body>
+    <%= link_to image_tag("forkme_right_white_ffffff.png"), "https://github.com/tim-tang/everyday", :style=>"position: absolute; top: 0; right: 0; border: 0;"%>
+    <div id="templatemo_wrapper_outer">
+      <div id="templatemo_wrapper">
+        <div id="templatemo_header"> 
+          <%= render :partial=>'eydf_home/header', :object=>"xxx"%>
+        </div>
 
-            <div id="templatemo_main_wrapper">
-              <div id="templatemo_main">
-                <%= yield %>
-                <% if session[:curt_gallery] != "current"%>
-                  <div id="sidebar">
-                    <% if session[:curt_tech] =="current" || session[:curt_ibook] =="current"%>
-                      <% session[:userId] = 2%>
-                    <% else %>
-                      <% session[:userId] = 1%>
-                    <% end %>
-                    <%= render :partial=>'eydf_home/subrss', :locals =>{:object=>"xxx"}%>
-                    <%= render :partial=>'eydf_home/categories', :locals =>{:userId=>session[:userId]}%>
-                    <%= render :partial=>'eydf_home/cloudtags', :object=>"xxx"%>
-                    <%= render :partial=>'eydf_home/comments', :object=>"xxx"%>
-                    <%= render :partial=>'eydf_home/archivals', :locals=>{:userId=>session[:userId]}%>
-                  </div>
+        <div id="templatemo_main_wrapper">
+          <div id="templatemo_main">
+            <%= yield %>
+            <% if session[:curt_gallery] != "current"%>
+              <div id="sidebar">
+                <% if session[:curt_tech] =="current" || session[:curt_ibook] =="current"%>
+                  <% session[:userId] = 2%>
+                <% else %>
+                  <% session[:userId] = 1%>
                 <% end %>
-                <div class="cleaner"></div>
+                <%= render :partial=>'eydf_home/subrss', :locals =>{:object=>"xxx"}%>
+                <%= render :partial=>'eydf_home/categories', :locals =>{:userId=>session[:userId]}%>
+                <%= render :partial=>'eydf_home/cloudtags', :object=>"xxx"%>
+                <%= render :partial=>'eydf_home/comments', :object=>"xxx"%>
+                <%= render :partial=>'eydf_home/archivals', :locals=>{:userId=>session[:userId]}%>
               </div>
-            </div>
-          </div>
-
-          <div id="templatemo_footer">
-            <%= render :partial=>'eydf_home/footer', :object=>"xxx"%>
+            <% end %>
+            <div class="cleaner"></div>
           </div>
         </div>
-      </body>
-    </html>
+      </div>
+
+      <div id="templatemo_footer">
+        <%= render :partial=>'eydf_home/footer', :object=>"xxx"%>
+      </div>
+    </div>
+  </body>
+</html>
 
