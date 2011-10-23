@@ -3,6 +3,9 @@
     <%= render :partial=>'eydf_home/postmeta',:locals=> {:blog=>@blog}%>
     <div class="post_content post_img">
       <h4><%= image_tag "page_full.png", :align=>"absmiddle"%><%= @blog.title%></h4>
+      <% if @blog.video_url !=nil || @blog.video_url !=''%>
+      <embed src=<%=@blog.video_url%> quality="high" width="500" height="400" align="middle" allowScriptAccess="always" allowfullscreen="true" type="application/x-shockwave-flash"></embed>
+    <% end %>
       <%=simple_format rich_content(@blog.content)%>
       <div class="dotted_line_nopad"></div>
       <% if @prev_blog !=nil%>
