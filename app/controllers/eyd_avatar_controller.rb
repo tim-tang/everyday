@@ -21,6 +21,12 @@ class EydAvatarController < ApplicationController
       @eydAvatar.tag_list = @eydAvatar.title
     end
     if @eydAvatar.save
+      # expire gallery list cache page
+      expire_page(:controller => 'eydf_home', :action=>'gallery_list')
+      @eydAvatar.tag_list.each do |tag|
+        expire_page(:controller => 'eydf_home', :action=>'tag_gallery_list', :id=> tag)
+      end
+
       flash[:notice] = "Avatar successfully created"
       respond_to do |format|
         format.html {redirect_to @eydAvatar}
@@ -35,6 +41,11 @@ class EydAvatarController < ApplicationController
     if params[:avatar_ids] != nil
       params[:avatar_ids].each do |avatar_id|
         @eyd_avatar = EydAvatar.find(avatar_id)
+        # expire gallery list cache page
+        expire_page(:controller => 'eydf_home', :action=>'gallery_list')
+        @eyd_avatar.tag_list.each do |tag|
+          expire_page(:controller => 'eydf_home', :action=>'tag_gallery_list', :id=> tag)
+        end
         @eyd_avatar.destroy
       end
     end

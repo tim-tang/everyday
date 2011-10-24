@@ -66,11 +66,6 @@ slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
             <%= yield %>
             <% if session[:curt_gallery] != "current"%>
               <div id="sidebar">
-                <% if session[:curt_tech] =="current" || session[:curt_ibook] =="current"%>
-                  <% session[:userId] = 2%>
-                <% else %>
-                  <% session[:userId] = 1%>
-                <% end %>
                 <%= render :partial=>'eydf_home/subrss', :locals =>{:object=>"xxx"}%>
                 <%= render :partial=>'eydf_home/categories', :locals =>{:userId=>session[:userId]}%>
                 <%= render :partial=>'eydf_home/cloudtags', :object=>"xxx"%>
