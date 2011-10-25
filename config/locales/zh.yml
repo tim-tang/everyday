@@ -37,6 +37,7 @@ zh:
       cloud_tag: "标签云"
     comments:
       comments: "最近评论"
+      says: "评论:"
     archivals:
       archivals: "博客归档"
     tag_list:

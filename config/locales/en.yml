@@ -40,6 +40,7 @@ en:
       cloud_tag: "Cloud Tags"
     comments:
       comments: "Recent Comments"
+      says: "says:"
     archivals:
       archivals: "Blog Archivals"
     tag_list:

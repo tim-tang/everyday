@@ -2,7 +2,7 @@
   <h3><%= t('.comments')%></h3>
   <ul class="recent_comment">
     <% @comments.each do |comment|%>
-      <li><%= image_tag("balloon.png")%><span class="highlighted"><%= comment.name%></span> says: <%= link_to simple_format(truncate(rich_content(comment.content), :length=>60)),show_blog_path(comment.blog_id), :class=>"post_title"%></li>
+      <li><%= image_tag("balloon.png")%><span class="highlighted"><%= comment.name%></span><%= t('.says')%> <%= link_to simple_format(truncate(rich_content(comment.content), :length=>60)),show_blog_path(comment.blog_id), :class=>"post_title"%></li>
   <% end %>
   </ul>
 </div>
