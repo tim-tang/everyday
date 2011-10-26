@@ -87,7 +87,7 @@ class EydfHomeController < ApplicationController
   def archival_list
     @start = "'"+params[:id]+"-01'"
     @end = "'"+params[:id]+"-31'"
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:userId]} and blog.is_draft=false and blog.updated_at between #{@start} and #{@end} order by blog.updated_at desc"], :page => params[:page], :per_page=>10 
+    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:userId]} and blog.is_draft=false and blog.created_at between #{@start} and #{@end} order by blog.created_at desc"], :page => params[:page], :per_page=>10 
   end
 
   def category_list
@@ -95,8 +95,8 @@ class EydfHomeController < ApplicationController
   end
 
   def rss_feed
-    @total_blogs = EydBlog.order("updated_at desc")
-    @updated = @total_blogs.first.updated_at unless @total_blogs.empty?
+    @total_blogs = EydBlog.order("created_at desc")
+    @updated = @total_blogs.first.created_at unless @total_blogs.empty?
     respond_to do |format|
       format.atom {render :layout => false}
       format.rss { redirect_to rss_feed_path(:format => :atom), :status => :moved_permanently }

@@ -17,7 +17,6 @@ body {
 
 a, a:link, a:visited { color: #333; text-decoration: none; }
 a:hover { color: red; text-decoration: underline; }
-desc
 p { margin: 0px; padding: 0; }
 img { border: none; }
 
@@ -149,6 +148,7 @@ em { color: #e55822; }
 .post_meta p { margin-bottom: 5px; }
 
 .post_content {
+    color: #000000;
 	float: right;
 	width: 460px;
 	padding-left: 22px;
