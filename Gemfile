@@ -11,6 +11,7 @@ gem 'paperclip'
 gem 'mime-types', :require => 'mime/types'
 gem 'will_paginate','>= 3.0.pre'
 gem 'redcarpet'
+gem "friendly_id", "~> 4.0.0.beta14"
 
 # Use unicorn as the web server
 # gem 'unicorn'

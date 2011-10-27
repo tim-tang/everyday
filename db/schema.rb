@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018070547) do
+ActiveRecord::Schema.define(:version => 20111027064423) do
 
   create_table "eyd_avatars", :force => true do |t|
     t.string   "avatar_file_name"
@@ -39,11 +39,13 @@ ActiveRecord::Schema.define(:version => 20111018070547) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "view_count",  :default => 0
+    t.string   "slug"
   end
 
   add_index "eyd_blogs", ["constant_id"], :name => "blog_constant_id_index"
   add_index "eyd_blogs", ["created_at"], :name => "blog_created_at_index"
   add_index "eyd_blogs", ["is_draft"], :name => "blog_is_draft_index"
+  add_index "eyd_blogs", ["slug"], :name => "index_eyd_blogs_on_slug", :unique => true
   add_index "eyd_blogs", ["user_id"], :name => "blog_user_id_index"
 
   create_table "eyd_comments", :force => true do |t|
@@ -60,7 +62,6 @@ ActiveRecord::Schema.define(:version => 20111018070547) do
 
   add_index "eyd_comments", ["blog_id"], :name => "comment_blog_id_index"
   add_index "eyd_comments", ["is_guestbook"], :name => "comment_is_guestbook_index"
-  add_index "eyd_comments", ["updated_at"], :name => "comment_created_at_index"
 
   create_table "eyd_constants", :force => true do |t|
     t.string   "category"
