@@ -33,6 +33,7 @@ GEM
     arel (2.0.9)
     builder (2.1.2)
     cocaine (0.1.0)
+    coderay (1.0.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     friendly_id (4.0.0.beta14)
@@ -81,6 +82,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 2.1.0)
+  coderay
   friendly_id (~> 4.0.0.beta14)
   mime-types
   mysql2

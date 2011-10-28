@@ -6,7 +6,7 @@
       <% if @blog.video_url !=nil&& @blog.video_url !=''%>
       <embed src=<%=@blog.video_url%> quality="high" width="500" height="400" align="middle" allowScriptAccess="always" allowfullscreen="true" type="application/x-shockwave-flash"></embed>
     <% end %>
-      <%=simple_format rich_content(@blog.content)%>
+    <%=simple_format rich_content(parse_coderay(@blog.content))%>
       <div class="dotted_line_nopad"></div>
       <% if @prev_blog !=nil%>
         <span style="float:left;">
