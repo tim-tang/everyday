@@ -7,7 +7,7 @@ pre {
   border: 1px solid black;
   font-family: 'Courier New', 'Terminal', monospace;
   color: #E6E0DB;
-  padding: 3px 5px;
+  padding: 1px 2px;
   overflow: auto;
   font-size: 12px;
   margin: 12px 0;
@@ -16,6 +16,7 @@ pre {
 .CodeRay pre {
   margin: 0px;
   padding: 0px;
+  line-height:8px;
 }
 
 .CodeRay .an { color:#E7BE69 } /* html attribute */
