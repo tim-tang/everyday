@@ -41,11 +41,11 @@ class EydfHomeController < ApplicationController
   end
 
   def index
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=1 and blog.is_draft=false order by blog.created_at desc"], :page => params[:page], :per_page=>10 
+    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=1 and blog.is_draft=false order by blog.created_at desc"], :page => params[:page], :per_page=>20 
   end
 
   def tech_list
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=2 and blog.is_draft=false order by blog.created_at desc"], :page => params[:page], :per_page=>10 
+    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=2 and blog.is_draft=false order by blog.created_at desc"], :page => params[:page], :per_page=>20 
   end
 
   def show_blog
@@ -72,12 +72,12 @@ class EydfHomeController < ApplicationController
 
 
   def tag_list
-    @total_blogs = EydBlog.tagged_with(params[:id]).paginate :page => params[:page], :per_page => 10
+    @total_blogs = EydBlog.tagged_with(params[:id]).paginate :page => params[:page], :per_page => 50
     @tags = EydBlog.tag_counts_on(:tags)
   end
 
   def tag_ibook_list
-    @total_ibooks = EydIbook.tagged_with(params[:id]).paginate :page => params[:page], :per_page => 10
+    @total_ibooks = EydIbook.tagged_with(params[:id]).paginate :page => params[:page], :per_page => 50
   end
 
   def tag_gallery_list
@@ -87,11 +87,11 @@ class EydfHomeController < ApplicationController
   def archival_list
     @start = "'"+params[:id]+"-01'"
     @end = "'"+params[:id]+"-31'"
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:userId]} and blog.is_draft=false and blog.created_at between #{@start} and #{@end} order by blog.created_at desc"], :page => params[:page], :per_page=>10 
+    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:userId]} and blog.is_draft=false and blog.created_at between #{@start} and #{@end} order by blog.created_at desc"], :page => params[:page], :per_page=>50 
   end
 
   def category_list
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:userId]} and blog.is_draft=false and blog.constant_id = #{params[:id]} order by blog.updated_at desc"], :page => params[:page], :per_page=>10 
+    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:userId]} and blog.is_draft=false and blog.constant_id = #{params[:id]} order by blog.updated_at desc"], :page => params[:page], :per_page=>50 
   end
 
   def rss_feed
@@ -104,7 +104,7 @@ class EydfHomeController < ApplicationController
   end
 
   def ibook_list 
-    @total_ibooks = EydIbook.paginate_by_sql ["select ibook.* from eyd_ibooks ibook where ibook.user_id=2 order by ibook.updated_at desc"], :page => params[:page], :per_page=>5 
+    @total_ibooks = EydIbook.paginate_by_sql ["select ibook.* from eyd_ibooks ibook where ibook.user_id=2 order by ibook.updated_at desc"], :page => params[:page], :per_page=>20 
   end
 
   def download
