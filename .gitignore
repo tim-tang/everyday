@@ -1,4 +1,9 @@
+Capfile
+current
+releases/
+shared/
 .bundle
+config/deploy.rb
 db/*.sqlite3
 public/system/
 public/zh/
