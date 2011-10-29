@@ -21,19 +21,21 @@ class EydfHomeController < ApplicationController
   end
 
   def fetch_categories
-    # unless read_fragment({:category_cache=>session[:userId]})
-    @constants = EydConstant.find_by_sql("select constant.* from eyd_constants constant where constant.user_id=#{session[:userId]} order by constant.updated_at desc")
-    # end
+    #unless read_fragment({:category_fragment=>session[:userId]})
+      @constants = EydConstant.find_by_sql("select constant.* from eyd_constants constant where constant.user_id=#{session[:userId]} order by constant.updated_at desc")
+    #end
   end 
 
   def fetch_cloud_tags
-    # unless read_fragment({:tag_cache=>'cloud_tags'})
-    @cloud_tags = EydBlog.tag_counts
-    # end
+    unless read_fragment('tag_fragment')
+      @cloud_tags = EydBlog.tag_counts
+    end
   end
 
   def fetch_comments
-    @comments = EydComment.find_by_sql("select comment.* from eyd_comments comment where comment.is_guestbook = false order by comment.updated_at desc limit 5")
+    unless read_fragment('comment_fragment')
+      @comments = EydComment.find_by_sql("select comment.* from eyd_comments comment where comment.is_guestbook = false order by comment.updated_at desc limit 5")
+    end
   end
 
   def fetch_archivals

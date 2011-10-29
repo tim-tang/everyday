@@ -1,6 +1,7 @@
 class EydConstantController < ApplicationController
   before_filter :authorize
   layout 'admin'
+  #cache_sweeper :eyd_constant_sweeper, :only=>[:create, :update, :delete]
 
   def index
     @total_constants = EydConstant.paginate_by_sql ["select constant.* from eyd_constants constant where constant.user_id=#{session[:user_id]} order by constant.updated_at desc"], :page => params[:page], :per_page=>20 

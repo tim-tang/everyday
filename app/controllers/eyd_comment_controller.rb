@@ -1,6 +1,7 @@
 class EydCommentController < ApplicationController
   skip_before_filter :authorize, :only => [:create]
   layout 'admin'
+  cache_sweeper :eyd_comment_sweeper, :only=>[:create]
 
   def index
     @total_comments = EydComment.paginate_by_sql ["select comment.* from eyd_comments comment order by comment.updated_at desc"], :page => params[:page], :per_page=>20
@@ -11,6 +12,7 @@ class EydCommentController < ApplicationController
       params[:comment_ids].each do |comment_id|
         @eyd_comment = EydComment.find(comment_id)
         @eyd_comment.destroy
+        expire_fragment 'comment_fragment'
       end
     end
     respond_to do |format|

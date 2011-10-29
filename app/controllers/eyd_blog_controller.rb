@@ -1,6 +1,7 @@
 class EydBlogController < ApplicationController
   before_filter :authorize
   layout 'admin'
+  cache_sweeper :eyd_blog_sweeper, :only=>[:create]
 
   def index
     @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:user_id]} and blog.is_draft=false order by blog.updated_at desc"], :page => params[:page], :per_page=>20 
@@ -56,6 +57,7 @@ class EydBlogController < ApplicationController
       params[:blog_ids].each do |blog_id|
         @eyd_blog = EydBlog.find(blog_id)
         @eyd_blog.destroy
+        expire_fragment 'tag_fragment'
       end
     end
     respond_to do |format|
