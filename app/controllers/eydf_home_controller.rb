@@ -21,9 +21,9 @@ class EydfHomeController < ApplicationController
   end
 
   def fetch_categories
-    #unless read_fragment({:category_fragment=>session[:userId]})
+    unless read_fragment('category_fragment'+session[:userId].to_s)
       @constants = EydConstant.find_by_sql("select constant.* from eyd_constants constant where constant.user_id=#{session[:userId]} order by constant.updated_at desc")
-    #end
+    end
   end 
 
   def fetch_cloud_tags
@@ -39,7 +39,9 @@ class EydfHomeController < ApplicationController
   end
 
   def fetch_archivals
-    @archivals = EydBlog.find_by_sql("select year(created_at) as year, month(created_at) as month, count(id)as count from eyd_blogs where user_id=#{session[:userId]} group by year(created_at),month(created_at) order by year(created_at) desc, month(created_at) desc")
+    unless read_fragment('archival_fragment'+session[:userId].to_s)
+      @archivals = EydBlog.find_by_sql("select year(created_at) as year, month(created_at) as month, count(id)as count from eyd_blogs where user_id=#{session[:userId]} group by year(created_at),month(created_at) order by year(created_at) desc, month(created_at) desc")
+    end
   end
 
   def index

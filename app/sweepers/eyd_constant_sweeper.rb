@@ -11,6 +11,6 @@ class EydConstantSweeper < ActionController::Caching::Sweeper
 
   def expire_cache(product)
    # expire_fragment ({:category_fragment=>session[:user_id]})
-    expire_fragment 'category_fragment'
+    expire_fragment 'category_fragment'+session[:user_id].to_s
   end
 end

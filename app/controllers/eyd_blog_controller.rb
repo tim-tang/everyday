@@ -58,6 +58,7 @@ class EydBlogController < ApplicationController
         @eyd_blog = EydBlog.find(blog_id)
         @eyd_blog.destroy
         expire_fragment 'tag_fragment'
+        expire_fragment 'archival_fragment'+session[:user_id].to_s
       end
     end
     respond_to do |format|

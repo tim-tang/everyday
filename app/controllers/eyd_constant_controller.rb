@@ -1,7 +1,7 @@
 class EydConstantController < ApplicationController
   before_filter :authorize
   layout 'admin'
-  #cache_sweeper :eyd_constant_sweeper, :only=>[:create, :update, :delete]
+  cache_sweeper :eyd_constant_sweeper, :only=>[:create, :update, :destroy]
 
   def index
     @total_constants = EydConstant.paginate_by_sql ["select constant.* from eyd_constants constant where constant.user_id=#{session[:user_id]} order by constant.updated_at desc"], :page => params[:page], :per_page=>20 
@@ -47,6 +47,7 @@ class EydConstantController < ApplicationController
       params[:constant_ids].each do |constant_id|
         @eyd_constant = EydConstant.find(constant_id)
         @eyd_constant.destroy
+        expire_fragment 'category_fragment'+session[:user_id].to_s
       end
     end
     respond_to do |format|

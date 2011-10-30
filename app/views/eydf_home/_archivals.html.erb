@@ -1,3 +1,4 @@
+<% cache 'archival_fragment'+session[:userId].to_s do %>
 <div class="sidebar_box">
   <h3><%= t('.archivals')%></h3>
   <ul class="tmo_list">
@@ -7,3 +8,4 @@
     <% end %>
   </ul>
 </div>
+<% end %>

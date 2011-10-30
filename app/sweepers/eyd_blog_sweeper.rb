@@ -11,5 +11,6 @@ class EydBlogSweeper < ActionController::Caching::Sweeper
 
   def expire_cache(blog)
     expire_fragment 'tag_fragment'
+    expire_fragment 'archival_fragment'+session[:user_id].to_s
   end
 end
