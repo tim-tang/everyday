@@ -1,7 +1,7 @@
 class EydBlogController < ApplicationController
   before_filter :authorize
   layout 'admin'
-  cache_sweeper :eyd_blog_sweeper, :only=>[:create]
+  #cache_sweeper :eyd_blog_sweeper, :only=>[:create]
 
   def index
     @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:user_id]} and blog.is_draft=false order by blog.updated_at desc"], :page => params[:page], :per_page=>20 
@@ -24,6 +24,7 @@ class EydBlogController < ApplicationController
         if @eyd_blog.is_draft==true 
           format.html { redirect_to(blog_draft_path, :notice => 'Draft blog was successfully created.') }
         else
+          expire_cache
           format.html { redirect_to(blog_index_path, :notice => 'Blog was successfully created.') }
         end
         format.xml  { render :xml => @eyd_blog, :status => :created, :location => @eyd_blog }
@@ -57,8 +58,7 @@ class EydBlogController < ApplicationController
       params[:blog_ids].each do |blog_id|
         @eyd_blog = EydBlog.find(blog_id)
         @eyd_blog.destroy
-        expire_fragment 'tag_fragment'
-        expire_fragment 'archival_fragment'+session[:user_id].to_s
+        expire_cache
       end
     end
     respond_to do |format|
@@ -78,6 +78,12 @@ class EydBlogController < ApplicationController
     eyd_blog.tag_list=@eyd_blog.blog_tags
     eyd_blog.user_id = session[:user_id]
     eyd_blog.author = session[:user_name]
+  end
+
+  def expire_cache
+    expire_fragment 'category_fragment'+session[:user_id].to_s
+    expire_fragment 'tag_fragment'
+    expire_fragment 'archival_fragment'+session[:user_id].to_s
   end
 
 end
