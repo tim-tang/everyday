@@ -6,7 +6,7 @@ class EydfHomeController < ApplicationController
   before_filter :fetch_guestbook_curt, :only=>[:guest_list]
   before_filter :fetch_gallery_curt, :only=>[:gallery_list]
   before_filter :fetch_right_bar_info 
-  caches_page :gallery_list,:tag_gallery_list
+  #caches_page :gallery_list,:tag_gallery_list
 
   def fetch_right_bar_info
     if session[:curt_tech] =="current" || session[:curt_ibook] =="current"
@@ -81,10 +81,12 @@ class EydfHomeController < ApplicationController
   end
 
   def tag_ibook_list
+    fetch_ibook_curt
     @total_ibooks = EydIbook.tagged_with(params[:id]).paginate :page => params[:page], :per_page => 50
   end
 
   def tag_gallery_list
+    fetch_gallery_curt
     @total_avatars = EydAvatar.tagged_with(params[:id])
   end
 
