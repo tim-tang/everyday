@@ -6,7 +6,7 @@ body {
 	margin: 0px;
 	padding: 0px;
 	color: #6f643a;
-	font-family: "Josefin Slab", "Times New Roman", Times, serif;
+	font-family: "Linden Hill", "Times New Roman", Times, serif;
 	font-size: 12px;
 	line-height: 1.5em; 
 	background-color: #494331;
@@ -294,7 +294,7 @@ em { color: #e55822; }
 #contact_form form { margin: 0px; padding: 0px; }
 #contact_form form .input_field { width: 288px; color: #000; padding: 5px; border: 1px solid #bfbaab; background: #dbd7cb; }
 #contact_form form label { display: block; width: 100px; margin-right: 10px; font-size: 14px; color: #a39d9d; }
-#contact_form form textarea { font-family: Arial, Helvetica, sans-serif; width: 288px; height: 200px; padding: 5px; color: #000; border: 1px solid #bfbaab; background: #dbd7cb; }
+#contact_form form textarea { font-family:'Linden Hill',Arial, Helvetica, sans-serif; width: 288px; height: 200px; padding: 5px; color: #000; border: 1px solid #bfbaab; background: #dbd7cb; }
 #contact_form form .submit_btn { margin: 5px 50px 0px 0px; padding: 7px 14px; border: 1px solid #bfbaab; background: #dbd7cb; }
 
 #templatemo_footer {
