@@ -1,19 +1,34 @@
 class EydfHomeController < ApplicationController
   skip_before_filter :authorize
-  before_filter :fetch_index_curt, :only=>[:index]
-  before_filter :fetch_tech_curt, :only=>[:tech_list]
-  before_filter :fetch_ibook_curt, :only=>[:ibook_list]
-  before_filter :fetch_guestbook_curt, :only=>[:guest_list]
-  before_filter :fetch_gallery_curt, :only=>[:gallery_list]
-  before_filter :fetch_right_bar_info 
+  before_filter :filter_css_curt
+  before_filter :filter_right_fragments
   #caches_page :gallery_list,:tag_gallery_list
 
-  def fetch_right_bar_info
+  def filter_css_curt
+    case params[:action].to_s
+    when 'index' 
+      fetch_index_curt
+    when 'tech_list'
+      fetch_tech_curt
+    when 'ibook_list'||'tag_ibook_list'
+      fetch_ibook_curt
+    when 'guest_list'
+      fetch_guestbook_curt
+    when 'gallery_list'||'tag_gallery_list'
+      fetch_gallery_curt
+    end
+  end
+
+  def filter_right_fragments
     if session[:curt_tech] =="current" || session[:curt_ibook] =="current"
       session[:userId]=2
     else 
-      session[:userId]=1
-    end
+      #if(params[:action].to_s=='show_blog')
+      #  session[:userId]=2
+      #else
+        session[:userId]=1
+      # end
+     end
     fetch_categories
     fetch_cloud_tags
     fetch_comments
@@ -74,11 +89,14 @@ class EydfHomeController < ApplicationController
         end
       end
     end
-    #update view count
-    @blog.view_count+=1
-    @blog.update_attribute("view_count",@blog.view_count);
+    sync_blog_view_count(@blog)
   end
 
+  def sync_blog_view_count(blog)
+    #update blog view count
+    blog.view_count+=1
+    blog.update_attribute("view_count",@blog.view_count);
+  end
 
   def tag_list
     @total_blogs = EydBlog.tagged_with(params[:id]).paginate :page => params[:page], :per_page => 50
@@ -86,12 +104,10 @@ class EydfHomeController < ApplicationController
   end
 
   def tag_ibook_list
-    fetch_ibook_curt
     @total_ibooks = EydIbook.tagged_with(params[:id]).paginate :page => params[:page], :per_page => 50
   end
 
   def tag_gallery_list
-    fetch_gallery_curt
     @total_avatars = EydAvatar.tagged_with(params[:id])
   end
 
@@ -120,12 +136,16 @@ class EydfHomeController < ApplicationController
 
   def download
     @ibook = EydIbook.find(params[:id])
-    @ibook.download_count+=1
-    @ibook.update_attribute("download_count",@ibook.download_count) 
+    sync_download_count(@ibook)
     if @ibook.ibook.url!=nil
       url = @ibook.ibook.url.split("?") 
       send_file "#{RAILS_ROOT}/public/"+url[0] unless @ibook.ibook.url.nil?
     end
+  end
+
+  def sync_download_count(ibook)
+    ibook.download_count+=1
+    ibook.update_attribute("download_count",@ibook.download_count) 
   end
 
   def guest_list
