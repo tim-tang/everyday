@@ -38,6 +38,9 @@ zh:
     comments:
       comments: "最近评论"
       says: "评论:"
+    hottopics:
+      hottopic: "热门文章"
+      viewer: "人阅读"
     archivals:
       archivals: "博客归档"
     tag_list:

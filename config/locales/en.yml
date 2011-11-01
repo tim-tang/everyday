@@ -41,6 +41,9 @@ en:
     comments:
       comments: "Recent Comments"
       says: "says:"
+    hottopics:
+      hottopic: "Hot Topics"
+      viewer: "views"
     archivals:
       archivals: "Blog Archivals"
     tag_list:

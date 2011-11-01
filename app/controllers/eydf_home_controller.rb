@@ -17,6 +17,7 @@ class EydfHomeController < ApplicationController
     fetch_categories
     fetch_cloud_tags
     fetch_comments
+    fetch_hottopics
     fetch_archivals
   end
 
@@ -36,6 +37,10 @@ class EydfHomeController < ApplicationController
     unless read_fragment('comment_fragment')
       @comments = EydComment.find_by_sql("select comment.* from eyd_comments comment where comment.is_guestbook = false order by comment.updated_at desc limit 5")
     end
+  end
+  
+  def fetch_hottopics
+    @hottopics = EydBlog.find_by_sql("select blog.* from eyd_blogs blog where blog.user_id=2 and blog.is_draft=false order by blog.view_count desc limit 5")
   end
 
   def fetch_archivals

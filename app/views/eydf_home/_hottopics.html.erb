@@ -1,0 +1,8 @@
+<div class="sidebar_box">
+  <h3><%= t('.hottopic')%></h3>
+  <ul class="tmo_list">
+    <% @hottopics.each do |topic|%>
+      <li><%= image_tag("topic_hot.png")%><%= link_to topic.title, show_blog_path(topic)%> (<%= topic.view_count%><%= t('.viewer')%>)</li>
+    <% end %>
+  </ul>
+</div>

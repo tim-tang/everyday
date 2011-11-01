@@ -71,6 +71,7 @@ slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
                 <%= render :partial=>'eydf_home/subrss', :locals =>{:object=>"xxx"}%>
                 <%= render :partial=>'eydf_home/categories', :locals =>{:userId=>session[:userId]}%>
                 <%= render :partial=>'eydf_home/cloudtags', :object=>"xxx"%>
+                <%= render :partial=>'eydf_home/hottopics', :object=>"xxx"%>
                 <%= render :partial=>'eydf_home/comments', :object=>"xxx"%>
                 <%= render :partial=>'eydf_home/archivals', :locals=>{:userId=>session[:userId]}%>
               </div>
