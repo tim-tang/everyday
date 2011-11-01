@@ -5,7 +5,6 @@ pre {
 .CodeRay {
   background-color: black;
   border: 1px solid black;
-  font-family:'Linden Hill',helvetica, verdana, monospace;
   color: #E6E0DB;
   padding: 1px 2px;
   overflow: auto;
@@ -14,6 +13,7 @@ pre {
   text-align: left;
 }
 .CodeRay pre {
+  font-family: Times,verdana,monospace;
   margin: 0px;
   padding: 0px;
   line-height:8px;
