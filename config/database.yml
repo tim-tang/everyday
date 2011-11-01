@@ -35,5 +35,5 @@ production:
   database: eyd_dev
   pool: 5
   username: root
-  password: root
+  password:
   socket: /var/run/mysqld/mysqld.sock
