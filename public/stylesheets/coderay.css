@@ -13,7 +13,7 @@ pre {
   text-align: left;
 }
 .CodeRay pre {
-  font-family: Times,verdana,monospace;
+  font-family:'Questrial',Times,verdana,sans-serif,monospace;
   margin: 0px;
   padding: 0px;
   line-height:8px;
