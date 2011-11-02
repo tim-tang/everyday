@@ -1,8 +1,10 @@
-<%= stylesheet_link_tag "galleriffic-2.css", :media => "screen" %>
-<%= stylesheet_link_tag "white/style.css", :media => "screen" %>
-<%= javascript_include_tag "piroBox.1_2.js" %>
-<%= javascript_include_tag "jquery.galleriffic.js" %>
-<%= javascript_include_tag "jquery.opacityrollover.js" %>
+<% content_for :header do %>
+  <%= stylesheet_link_tag "galleriffic-2.css", :media => "screen" %>
+  <%= stylesheet_link_tag "white/style.css", :media => "screen" %>
+  <%= javascript_include_tag "piroBox.1_2.js" %>
+  <%= javascript_include_tag "jquery.galleriffic.js" %>
+  <%= javascript_include_tag "jquery.opacityrollover.js" %>
+<% end %>
 <!--tart Advanced Gallery Html Containers -->
 <div class="content_box">
   <h2>Photo Gallery</h2>
