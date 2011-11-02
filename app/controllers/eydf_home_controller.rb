@@ -139,7 +139,7 @@ class EydfHomeController < ApplicationController
     sync_download_count(@ibook)
     if @ibook.ibook.url!=nil
       url = @ibook.ibook.url.split("?") 
-      send_file "#{RAILS_ROOT}/public/"+url[0] unless @ibook.ibook.url.nil?
+      send_file "#{RAILS_ROOT}/public"+url[0] unless @ibook.ibook.url.nil?
     end
   end
 

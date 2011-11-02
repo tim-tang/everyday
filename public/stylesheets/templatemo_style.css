@@ -285,9 +285,9 @@ em { color: #e55822; }
 #gallery a { border: none; }
 
 #gallery .gallery_box { padding: 8px 0 0px 0; margin: 0 0 0px 0; border-top: 1px dashed #666; }
-#gallery .gallery_box .left { float: left; width: 300px; }	
-#gallery .gallery_box .left img { width: 260px; height: 160px; border: 5px solid #fff; }
-#gallery .gallery_box .right { float: right; width: 300px; }
+#gallery .gallery_box .left { float: left; width: 200px; }	
+#gallery .gallery_box .left img { width: 190px; height: 228px; border: 2px solid #fff; }
+#gallery .gallery_box .right { float: right; width: 360px; }
 #gallery .last { margin: 0; padding: 0; border: none }
 
 #contact_form { padding: 0; width: 300px; }
