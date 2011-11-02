@@ -13,6 +13,7 @@ gem 'will_paginate','>= 3.0.pre'
 gem 'redcarpet'
 gem "friendly_id", "~> 4.0.0.beta14"
 gem 'coderay'
+#gem 'deadweight'
 
 # Use unicorn as the web server
 # gem 'unicorn'
