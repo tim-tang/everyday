@@ -1,27 +1,26 @@
 class EydBlogController < ApplicationController
   before_filter :authorize
+  before_filter :fetch_blog, :only => [:edit, :update]
+  before_filter :build_blog, :only =>[:new, :create]
   layout 'admin'
   #cache_sweeper :eyd_blog_sweeper, :only=>[:create]
 
   def index
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:user_id]} and blog.is_draft=false order by blog.updated_at desc"], :page => params[:page], :per_page=>20 
+    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:user_id]} and blog.is_draft=false order by blog.updated_at desc"], :page => params[:page], :per_page=>20
   end
 
-  def draft 
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:user_id]} and blog.is_draft=true order by blog.updated_at desc"], :page => params[:page], :per_page=>20 
+  def draft
+    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:user_id]} and blog.is_draft=true order by blog.updated_at desc"], :page => params[:page], :per_page=>20
   end
 
   def new
-    @eyd_blog = EydBlog.new
   end
 
   def create
-    #@eyd_blog = EydBlog.new(params[:eyd_blog])
-    @eyd_blog = EydBlog.new
     blog_val_setter(@eyd_blog, params)
     respond_to do |format|
       if @eyd_blog.save
-        if @eyd_blog.is_draft==true 
+        if @eyd_blog.is_draft==true
           format.html { redirect_to(blog_draft_path, :notice => 'Draft blog was successfully created.') }
         else
           expire_cache
@@ -36,12 +35,10 @@ class EydBlogController < ApplicationController
   end
 
   def edit
-    @eyd_blog = EydBlog.find(params[:id]) 
     @eyd_blog.blog_tags = @eyd_blog.tag_list
   end
 
   def update
-    @eyd_blog = EydBlog.find(params[:id])
     respond_to do |format|
       if @eyd_blog.update_attributes(params[:eyd_blog])
         #expire cached_comment for postmeta
@@ -71,13 +68,22 @@ class EydBlogController < ApplicationController
     end
   end
 
-  private 
+  protected
+  def build_blog
+    @eyd_blog = EydBlog.new
+  end
+
+  def fetch_blog
+    @eyd_blog = EydBlog.find(params[:id])
+  end
+
+  private
   def blog_val_setter(eyd_blog, params)
     eyd_blog.title = params[:eyd_blog][:title]
     eyd_blog.content = params[:eyd_blog][:content]
     eyd_blog.constant_id = params[:eyd_blog][:constant_id]
     eyd_blog.video_url = params[:eyd_blog][:video_url]
-    eyd_blog.is_draft = params[:eyd_blog][:is_draft] 
+    eyd_blog.is_draft = params[:eyd_blog][:is_draft]
     eyd_blog.blog_tags = params[:eyd_blog][:blog_tags]
     eyd_blog.tag_list=@eyd_blog.blog_tags
     eyd_blog.user_id = session[:user_id]

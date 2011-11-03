@@ -3,14 +3,14 @@ class EydAvatarController < ApplicationController
   layout 'admin'
 
   def index
-    @total_avatars = EydAvatar.paginate_by_sql ["select ava.* from eyd_avatars ava where ava.user_id=#{session[:user_id]} order by ava.updated_at desc"], :page => params[:page], :per_page=>20 
+    @total_avatars = EydAvatar.paginate_by_sql ["select ava.* from eyd_avatars ava where ava.user_id=#{session[:user_id]} order by ava.updated_at desc"], :page => params[:page], :per_page=>20
   end
 
   def new
     @eydAvatar = EydAvatar.new
   end
 
-  def show 
+  def show
     @eydAvatar = EydAvatar.find(params[:id])
   end
 
@@ -55,21 +55,21 @@ class EydAvatarController < ApplicationController
     end
   end
 
-  private 
+  private
   def coerce(params)
-    if params[:upload].nil? 
-      h = Hash.new 
-      h[:upload] = Hash.new 
-      h[:upload][:title] = params[:title] 
-      h[:upload][:desc] = params[:desc] 
+    if params[:upload].nil?
+      h = Hash.new
+      h[:upload] = Hash.new
+      h[:upload][:title] = params[:title]
+      h[:upload][:desc] = params[:desc]
       h[:upload][:constant_id] = 1
       h[:upload][:user_id] = session[:user_id]
-      h[:upload][:avatar] = params[:Filedata] 
+      h[:upload][:avatar] = params[:Filedata]
       h[:upload][:avatar].content_type = MIME::Types.type_for(h[:upload][:avatar].original_filename).to_s
       h
-    else 
+    else
       params
-    end 
+    end
   end
 
 end

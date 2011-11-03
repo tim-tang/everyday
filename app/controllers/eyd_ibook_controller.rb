@@ -3,7 +3,7 @@ class EydIbookController < ApplicationController
   layout 'admin'
 
   def index
-    @total_ibooks = EydIbook.paginate_by_sql ["select ibook.* from eyd_ibooks ibook where ibook.user_id=#{session[:user_id]} order by ibook.updated_at desc"], :page => params[:page], :per_page=>20 
+    @total_ibooks = EydIbook.paginate_by_sql ["select ibook.* from eyd_ibooks ibook where ibook.user_id=#{session[:user_id]} order by ibook.updated_at desc"], :page => params[:page], :per_page=>20
   end
 
   def show
@@ -27,7 +27,7 @@ class EydIbookController < ApplicationController
       end
     else
       render :action => 'ibook_upload'
-    end 
+    end
   end
 
   def destroy
@@ -43,21 +43,21 @@ class EydIbookController < ApplicationController
     end
   end
 
-  private 
+  private
   def coerce(params)
-    if params[:upload].nil? 
-      h = Hash.new 
-      h[:upload] = Hash.new 
-      h[:upload][:title] = params[:title] 
-      h[:upload][:image_url] = params[:image_url] 
-      h[:upload][:desc] = params[:desc] 
+    if params[:upload].nil?
+      h = Hash.new
+      h[:upload] = Hash.new
+      h[:upload][:title] = params[:title]
+      h[:upload][:image_url] = params[:image_url]
+      h[:upload][:desc] = params[:desc]
       h[:upload][:user_id] = session[:user_id]
-      h[:upload][:ibook] = params[:Filedata] 
+      h[:upload][:ibook] = params[:Filedata]
       h[:upload][:ibook].content_type = MIME::Types.type_for(h[:upload][:ibook].original_filename).to_s
       h
-    else 
+    else
       params
-    end 
+    end
   end
 
 end

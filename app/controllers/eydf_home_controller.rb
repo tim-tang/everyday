@@ -2,11 +2,12 @@ class EydfHomeController < ApplicationController
   skip_before_filter :authorize
   before_filter :filter_css_curt
   before_filter :filter_right_fragments
+  before_filter :build_comment, :only=> [:show_blog, :guest_list]
   #caches_page :gallery_list,:tag_gallery_list
 
   def filter_css_curt
     case params[:action].to_s
-    when 'index' 
+    when 'index'
       fetch_index_curt
     when 'tech_list'
       fetch_tech_curt
@@ -22,7 +23,7 @@ class EydfHomeController < ApplicationController
   def filter_right_fragments
     if session[:curt_tech] =="current" || session[:curt_ibook] =="current"
       session[:userId]=2
-    else 
+    else
       #if(params[:action].to_s=='show_blog')
       #  session[:userId]=2
       #else
@@ -40,7 +41,7 @@ class EydfHomeController < ApplicationController
     unless read_fragment('category_fragment'+session[:userId].to_s)
       @constants = EydConstant.find_by_sql("select constant.* from eyd_constants constant where constant.user_id=#{session[:userId]} order by constant.updated_at desc")
     end
-  end 
+  end
 
   def fetch_cloud_tags
     unless read_fragment('tag_fragment')
@@ -53,7 +54,7 @@ class EydfHomeController < ApplicationController
       @comments = EydComment.find_by_sql("select comment.* from eyd_comments comment where comment.is_guestbook = false order by comment.updated_at desc limit 5")
     end
   end
-  
+
   def fetch_hottopics
     @hottopics = EydBlog.find_by_sql("select blog.* from eyd_blogs blog where blog.user_id=2 and blog.is_draft=false order by blog.view_count desc limit 5")
   end
@@ -65,24 +66,23 @@ class EydfHomeController < ApplicationController
   end
 
   def index
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=1 and blog.is_draft=false order by blog.created_at desc"], :page => params[:page], :per_page=>20 
+    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=1 and blog.is_draft=false order by blog.created_at desc"], :page => params[:page], :per_page=>20
   end
 
   def tech_list
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=2 and blog.is_draft=false order by blog.created_at desc"], :page => params[:page], :per_page=>20 
+    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=2 and blog.is_draft=false order by blog.created_at desc"], :page => params[:page], :per_page=>20
   end
 
   def show_blog
-    @eyd_comment = EydComment.new
     @blog = EydBlog.find(params[:id])
     @total_comments = EydComment.paginate_by_sql ["select comment.* from eyd_comments comment where comment.blog_id=#{@blog.id} order by comment.updated_at asc"], :page => params[:page], :per_page=>10
     @prev_next_blogs = EydComment.find_by_sql("SELECT * FROM eyd_blogs WHERE user_id = #{session[:userId]} and id IN (SELECT CASE WHEN SIGN(id - #{@blog.id}) > 0 THEN MIN(id) WHEN SIGN(id - #{@blog.id}) < 0 THEN MAX(id) END AS id FROM eyd_blogs WHERE id <> #{@blog.id} GROUP BY SIGN(id - #{@blog.id}) ORDER BY SIGN(id - #{@blog.id})) ORDER BY id ASC")
-    if @prev_next_blogs.size >1 
-      @prev_blog = @prev_next_blogs[1] 
+    if @prev_next_blogs.size >1
+      @prev_blog = @prev_next_blogs[1]
       @next_blog = @prev_next_blogs[0]
     else
-      if @prev_next_blogs.size ==1  
-        if @prev_next_blogs[0].id < @blog.id 
+      if @prev_next_blogs.size ==1
+        if @prev_next_blogs[0].id < @blog.id
           @next_blog = @prev_next_blogs[0]
         else
           @prev_blog = @prev_next_blogs[0]
@@ -114,11 +114,11 @@ class EydfHomeController < ApplicationController
   def archival_list
     @start = "'"+params[:id]+"-01'"
     @end = "'"+params[:id]+"-31'"
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:userId]} and blog.is_draft=false and blog.created_at between #{@start} and #{@end} order by blog.created_at desc"], :page => params[:page], :per_page=>50 
+    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:userId]} and blog.is_draft=false and blog.created_at between #{@start} and #{@end} order by blog.created_at desc"], :page => params[:page], :per_page=>50
   end
 
   def category_list
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:userId]} and blog.is_draft=false and blog.constant_id = #{params[:id]} order by blog.updated_at desc"], :page => params[:page], :per_page=>50 
+    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:userId]} and blog.is_draft=false and blog.constant_id = #{params[:id]} order by blog.updated_at desc"], :page => params[:page], :per_page=>50
   end
 
   def rss_feed
@@ -130,35 +130,39 @@ class EydfHomeController < ApplicationController
     end
   end
 
-  def ibook_list 
-    @total_ibooks = EydIbook.paginate_by_sql ["select ibook.* from eyd_ibooks ibook where ibook.user_id=2 order by ibook.updated_at desc"], :page => params[:page], :per_page=>20 
+  def ibook_list
+    @total_ibooks = EydIbook.paginate_by_sql ["select ibook.* from eyd_ibooks ibook where ibook.user_id=2 order by ibook.updated_at desc"], :page => params[:page], :per_page=>20
   end
 
   def download
     @ibook = EydIbook.find(params[:id])
     sync_download_count(@ibook)
     if @ibook.ibook.url!=nil
-      url = @ibook.ibook.url.split("?") 
+      url = @ibook.ibook.url.split("?")
       send_file "#{RAILS_ROOT}/public"+url[0] unless @ibook.ibook.url.nil?
     end
   end
 
   def sync_download_count(ibook)
     ibook.download_count+=1
-    ibook.delay.update_attribute("download_count",ibook.download_count) 
+    ibook.delay.update_attribute("download_count",ibook.download_count)
   end
 
   def guest_list
-    @eyd_comment = EydComment.new
     @total_comments = EydComment.paginate_by_sql ["select comment.* from eyd_comments comment where comment.is_guestbook=true order by comment.updated_at desc"], :page => params[:page], :per_page=>10
   end
 
   def gallery_list
-    @total_avatars = EydAvatar.find_by_sql("select ava.* from eyd_avatars ava where ava.user_id=1 order by ava.updated_at desc limit 280") 
+    @total_avatars = EydAvatar.find_by_sql("select ava.* from eyd_avatars ava where ava.user_id=1 order by ava.updated_at desc limit 280")
+  end
+
+  protected
+  def build_comment
+    @eyd_comment = EydComment.new
   end
 
   private
-  def fetch_index_curt  
+  def fetch_index_curt
     session[:curt_index]="current"
     session[:curt_tech] =""
     session[:curt_ibook] =""
@@ -166,7 +170,7 @@ class EydfHomeController < ApplicationController
     session[:curt_gallery] =""
   end
 
-  def fetch_ibook_curt  
+  def fetch_ibook_curt
     session[:curt_index]=""
     session[:curt_tech] =""
     session[:curt_ibook] ="current"
@@ -174,7 +178,7 @@ class EydfHomeController < ApplicationController
     session[:curt_gallery] =""
   end
 
-  def fetch_gallery_curt  
+  def fetch_gallery_curt
     session[:curt_index]=""
     session[:curt_tech] =""
     session[:curt_ibook] =""
@@ -182,7 +186,7 @@ class EydfHomeController < ApplicationController
     session[:curt_gallery] ="current"
   end
 
-  def fetch_guestbook_curt  
+  def fetch_guestbook_curt
     session[:curt_index]=""
     session[:curt_tech] =""
     session[:curt_ibook] =""
@@ -190,7 +194,7 @@ class EydfHomeController < ApplicationController
     session[:curt_gallery] =""
   end
 
-  def fetch_tech_curt  
+  def fetch_tech_curt
     session[:curt_index]=""
     session[:curt_tech] ="current"
     session[:curt_ibook] =""

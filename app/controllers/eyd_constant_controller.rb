@@ -1,10 +1,11 @@
 class EydConstantController < ApplicationController
   before_filter :authorize
+  before_filter :fetch_constant, :only=>[:edit,:update]
   layout 'admin'
   cache_sweeper :eyd_constant_sweeper, :only=>[:create, :update, :destroy]
 
   def index
-    @total_constants = EydConstant.paginate_by_sql ["select constant.* from eyd_constants constant where constant.user_id=#{session[:user_id]} order by constant.updated_at desc"], :page => params[:page], :per_page=>20 
+    @total_constants = EydConstant.paginate_by_sql ["select constant.* from eyd_constants constant where constant.user_id=#{session[:user_id]} order by constant.updated_at desc"], :page => params[:page], :per_page=>20
   end
 
   def new
@@ -26,14 +27,11 @@ class EydConstantController < ApplicationController
   end
 
   def edit
-    @eyd_constant = EydConstant.find(params[:id]) 
   end
 
   def update
-    @eyd_constant = EydConstant.find(params[:id])
     respond_to do |format|
       if @eyd_constant.update_attributes(params[:eyd_constant])
-
         format.html { redirect_to(constant_index_path, :notice => 'Constant was successfully updated.') }
         format.xml  { render :xml => @eyd_constant, :status => :updated, :location => @eyd_constant }
       else
@@ -55,6 +53,11 @@ class EydConstantController < ApplicationController
       format.html {redirect_to(constant_index_path)}
       format.xml {head ok}
     end
+  end
+
+  protected
+  def fetch_constant
+    @eyd_constant = EydConstant.find(params[:id])
   end
 
 end

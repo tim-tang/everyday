@@ -24,7 +24,7 @@ Everyday::Application.configure do
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
   config.log_level = :warn
-  
+
   config.logger = Logger.new("#{Rails.root}/log/#{Rails.env}#{Date.today.to_s}.log", "daily")
 
   # Use a different cache store in production

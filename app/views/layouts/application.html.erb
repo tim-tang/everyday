@@ -55,7 +55,7 @@ slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
     <div id="templatemo_wrapper_outer">
       <div id="templatemo_wrapper">
         <div id="templatemo_header"> 
-          <%= render :partial=>'eydf_home/header', :object=>"xxx"%>
+          <%= render 'eydf_home/header'%>
         </div>
 
         <div id="templatemo_main_wrapper">
@@ -63,12 +63,12 @@ slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
             <%= yield %>
             <% if session[:curt_gallery] != "current"%>
               <div id="sidebar">
-                <%= render :partial=>'eydf_home/subrss', :locals =>{:object=>"xxx"}%>
-                <%= render :partial=>'eydf_home/categories', :locals =>{:userId=>session[:userId]}%>
-                <%= render :partial=>'eydf_home/cloudtags', :object=>"xxx"%>
-                <%= render :partial=>'eydf_home/hottopics', :object=>"xxx"%>
-                <%= render :partial=>'eydf_home/comments', :object=>"xxx"%>
-                <%= render :partial=>'eydf_home/archivals', :locals=>{:userId=>session[:userId]}%>
+                <%= render 'eydf_home/subrss'%>
+                <%= render 'eydf_home/categories', :userId=>session[:userId]%>
+                <%= render 'eydf_home/cloudtags'%>
+                <%= render 'eydf_home/hottopics'%>
+                <%= render 'eydf_home/comments'%>
+                <%= render 'eydf_home/archivals', :userId=>session[:userId]%>
               </div>
             <% end %>
             <div class="cleaner"></div>
@@ -77,7 +77,7 @@ slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
       </div>
 
       <div id="templatemo_footer">
-        <%= render :partial=>'eydf_home/footer', :object=>"xxx"%>
+        <%= render 'eydf_home/footer'%>
       </div>
     </div>
   </body>

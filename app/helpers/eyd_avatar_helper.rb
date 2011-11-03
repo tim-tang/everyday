@@ -1,2 +1,0 @@
-module EydAvatarHelper
-end

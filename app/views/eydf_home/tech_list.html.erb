@@ -1,7 +1,7 @@
 <div id="content">
   <% @total_blogs.each do |blog|%>
     <div class="post">
-      <%= render :partial=>'eydf_home/postmeta',:locals=> {:blog=>blog}%>
+      <%= render 'eydf_home/postmeta',:blog=>blog%>
       <div class="post_content post_img">
         <h4><%= image_tag "page.png", :align=>"absmiddle"%><%= link_to blog.title, show_blog_path(blog) %></h4>
         <%=simple_format rich_content(parse_coderay(truncate((blog.content), :length=>280)))%>

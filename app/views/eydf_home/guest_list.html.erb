@@ -12,7 +12,7 @@
     <h5><%= t('.comments')%></h5>
   <% end %>
   <div id="comment_section2">
-   <%= render :partial=>'eydf_home/comment_list', :total_comments=>@total_comments%>
+   <%= render 'eydf_home/comment_list', :total_comments=>@total_comments%>
   </div>
 
   <div class="flickr_pagination">
@@ -22,7 +22,7 @@
   <span style="float:right" class="dotted_line">
     <strong><%= link_to t('.home'), root_path, :title=>"Home page"%></strong><%= image_tag "home.png", :align=>"absmiddle"%>
   </span>
-   <%= render :partial=>'eydf_home/comment_form', :eyd_comment=>@eyd_comment%>
+   <%= render 'eydf_home/comment_form', :eyd_comment=>@eyd_comment%>
 </div>
 
 
