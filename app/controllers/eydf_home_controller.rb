@@ -95,7 +95,7 @@ class EydfHomeController < ApplicationController
   def sync_blog_view_count(blog)
     #update blog view count
     blog.view_count+=1
-    blog.update_attribute("view_count",@blog.view_count);
+    blog.delay.update_attribute("view_count",@blog.view_count);
   end
 
   def tag_list

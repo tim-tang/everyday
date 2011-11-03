@@ -2,6 +2,8 @@ Capfile
 current
 releases/
 shared/
+config/rails_best_practices.yml
+rails_best_practices_output.html
 .bundle
 config/deploy.rb
 db/*.sqlite3

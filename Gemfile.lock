@@ -34,6 +34,11 @@ GEM
     builder (2.1.2)
     cocaine (0.1.0)
     coderay (1.0.3)
+    colored (1.2)
+    daemons (1.1.4)
+    delayed_job (2.1.4)
+      activesupport (~> 3.0)
+      daemons
     erubis (2.6.6)
       abstract (>= 1.0.0)
     friendly_id (4.0.0.beta14)
@@ -51,6 +56,7 @@ GEM
       cocaine (>= 0.0.2)
       mime-types
     polyglot (0.3.1)
+    progressbar (0.9.1)
     rack (1.2.2)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
@@ -64,6 +70,13 @@ GEM
       activesupport (= 3.0.7)
       bundler (~> 1.0)
       railties (= 3.0.7)
+    rails_best_practices (1.2.0)
+      activesupport
+      colored
+      erubis
+      i18n
+      progressbar
+      sexp_processor
     railties (3.0.7)
       actionpack (= 3.0.7)
       activesupport (= 3.0.7)
@@ -71,6 +84,7 @@ GEM
       thor (~> 0.14.4)
     rake (0.8.7)
     redcarpet (1.17.2)
+    sexp_processor (3.0.7)
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
@@ -83,10 +97,12 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 2.1.0)
   coderay
+  delayed_job
   friendly_id (~> 4.0.0.beta14)
   mime-types
   mysql2
   paperclip
   rails (= 3.0.7)
+  rails_best_practices
   redcarpet
   will_paginate (>= 3.0.pre)

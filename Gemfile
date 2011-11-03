@@ -14,6 +14,8 @@ gem 'redcarpet'
 gem "friendly_id", "~> 4.0.0.beta14"
 gem 'coderay'
 #gem 'deadweight'
+gem "rails_best_practices"
+gem 'delayed_job'
 
 # Use unicorn as the web server
 # gem 'unicorn'
