@@ -95,7 +95,7 @@ class EydfHomeController < ApplicationController
   def sync_blog_view_count(blog)
     #update blog view count
     blog.view_count+=1
-    blog.delay.update_attribute("view_count",@blog.view_count);
+    blog.delay.update_attribute("view_count",blog.view_count);
   end
 
   def tag_list
@@ -145,7 +145,7 @@ class EydfHomeController < ApplicationController
 
   def sync_download_count(ibook)
     ibook.download_count+=1
-    ibook.update_attribute("download_count",@ibook.download_count) 
+    ibook.delay.update_attribute("download_count",ibook.download_count) 
   end
 
   def guest_list
