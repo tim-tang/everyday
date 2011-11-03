@@ -13,6 +13,10 @@ class EydCommentController < ApplicationController
         @eyd_comment = EydComment.find(comment_id)
         @eyd_comment.destroy
         expire_fragment 'comment_fragment'
+        if @eyd_comment !=nil
+          #expire cached_comment for postmeta
+          Rails.cache.delete("#{@eyd_comment.blog_id}_comments")
+        end
       end
     end
     respond_to do |format|
@@ -28,6 +32,8 @@ class EydCommentController < ApplicationController
         if @eyd_comment.is_guestbook ==true
           format.html { redirect_to(guest_book_path, :notice => 'Category was successfully created.') }
         else
+          #expire cached_comment for postmeta
+          Rails.cache.delete("#{@eyd_comment.blog_id}_comments")
           format.html { redirect_to(show_blog_path(@eyd_comment.blog_id), :notice => 'Category was successfully created.') }
         end
         format.xml  { render :xml => @eyd_comment, :status => :created }

@@ -44,6 +44,8 @@ class EydBlogController < ApplicationController
     @eyd_blog = EydBlog.find(params[:id])
     respond_to do |format|
       if @eyd_blog.update_attributes(params[:eyd_blog])
+        #expire cached_comment for postmeta
+        Rails.cache.delete("#{@eyd_blog.id}_categories")
         format.html { redirect_to(blog_index_path, :notice => 'Blog was successfully updated.') }
         format.xml  { render :xml => @eyd_blog, :status => :updated, :location => @eyd_blog }
       else
@@ -59,6 +61,8 @@ class EydBlogController < ApplicationController
         @eyd_blog = EydBlog.find(blog_id)
         @eyd_blog.destroy
         expire_cache
+        #expire cached_comment for postmeta
+        Rails.cache.delete("#{@eyd_blog.id}_categories")
       end
     end
     respond_to do |format|

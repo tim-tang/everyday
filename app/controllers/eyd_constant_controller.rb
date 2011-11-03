@@ -33,6 +33,7 @@ class EydConstantController < ApplicationController
     @eyd_constant = EydConstant.find(params[:id])
     respond_to do |format|
       if @eyd_constant.update_attributes(params[:eyd_constant])
+
         format.html { redirect_to(constant_index_path, :notice => 'Constant was successfully updated.') }
         format.xml  { render :xml => @eyd_constant, :status => :updated, :location => @eyd_constant }
       else
