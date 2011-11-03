@@ -16,6 +16,7 @@ gem 'coderay'
 #gem 'deadweight'
 gem "rails_best_practices"
 gem 'delayed_job'
+gem 'mail', '2.2.17'
 
 # Use unicorn as the web server
 # gem 'unicorn'
