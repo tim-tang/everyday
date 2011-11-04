@@ -41,6 +41,7 @@ GEM
       daemons
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    escape (0.0.4)
     friendly_id (4.0.0.beta14)
     i18n (0.5.0)
     mail (2.2.17)
@@ -50,12 +51,14 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     mysql2 (0.2.7)
+    nokogiri (1.5.0)
     paperclip (2.3.16)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
     polyglot (0.3.1)
+    pr_geohash (1.0.0)
     progressbar (0.9.1)
     rack (1.2.2)
     rack-mount (0.6.14)
@@ -84,7 +87,16 @@ GEM
       thor (~> 0.14.4)
     rake (0.8.7)
     redcarpet (1.17.2)
+    rsolr (0.12.1)
+      builder (>= 2.1.2)
     sexp_processor (3.0.7)
+    sunspot (1.2.1)
+      escape (= 0.0.4)
+      pr_geohash (~> 1.0)
+      rsolr (= 0.12.1)
+    sunspot_rails (1.2.1)
+      nokogiri
+      sunspot (= 1.2.1)
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
@@ -106,4 +118,5 @@ DEPENDENCIES
   rails (= 3.0.7)
   rails_best_practices
   redcarpet
+  sunspot_rails
   will_paginate (>= 3.0.pre)

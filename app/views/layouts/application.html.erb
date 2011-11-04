@@ -54,7 +54,7 @@ slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
     <%= link_to image_tag("forkme_right_white_ffffff.png"), "https://github.com/tim-tang/everyday", :style=>"position: absolute; top: 0; right: 0; border: 0;", :target=>"_blank"%>
     <div id="templatemo_wrapper_outer">
       <div id="templatemo_wrapper">
-        <div id="templatemo_header"> 
+        <div id="templatemo_header">
           <%= render 'eydf_home/header'%>
         </div>
 
@@ -64,6 +64,7 @@ slideSpeed : 4 //slideshow duration in seconds(3 to 6 Recommended)
             <% if session[:curt_gallery] != "current"%>
               <div id="sidebar">
                 <%= render 'eydf_home/subrss'%>
+                <%= render 'eydf_home/search'%>
                 <%= render 'eydf_home/categories', :userId=>session[:userId]%>
                 <%= render 'eydf_home/cloudtags'%>
                 <%= render 'eydf_home/hottopics'%>

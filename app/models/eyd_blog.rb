@@ -7,4 +7,9 @@ class EydBlog < ActiveRecord::Base
 
   validates :title, :presence => true, :uniqueness => true
 #  validates :blog_tags, :presence => true
+  searchable do
+    text :title, :boost =>5
+    text :content
+  end
+
 end

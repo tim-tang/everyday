@@ -7,6 +7,7 @@ Everyday::Application.routes.draw do
       get 'tag_list/:id' => :tag_list, :as => :tag_list
       get 'archival_list/:id' => :archival_list, :as => :archival_list
       get 'category_list/:id' => :category_list, :as => :category_list
+      get 'search_list' => :search_list, :as => :search_list
       get 'ibook_list' => :ibook_list, :as => :ibook_list
       get 'ibook_download/:id' => :download, :as => :ibook_download
       get 'guest_book' => :guest_list, :as => :guest_book

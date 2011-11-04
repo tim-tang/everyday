@@ -33,9 +33,11 @@ en:
       contact_us: "Contact Us"
       email: "E-Mail: tang.jilong@gmail.com"
       copyright: "All Copyright Reserved by Tim.Tang "
-      host: "Website Hosted On Linode VPS" 
+      host: "Website Hosted On Linode VPS"
+    search:
+      search: "Blog Searching"
     categories:
-      categories: "Categories" 
+      categories: "Categories"
     cloudtags:
       cloud_tag: "Cloud Tags"
     comments:
@@ -51,6 +53,9 @@ en:
       read_more: "Read More..."
     category_list:
       category_list: "Category Listing"
+      read_more: "Read More..."
+    search_list:
+      search_list: "Search Results Listing"
       read_more: "Read More..."
     archival_list:
       archival_list: "Archival Listing"

@@ -119,6 +119,13 @@ class EydfHomeController < ApplicationController
     @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:userId]} and blog.is_draft=false and blog.created_at between #{@start} and #{@end} order by blog.created_at desc"], :page => params[:page], :per_page=>50
   end
 
+  def search_list
+    @search = EydBlog.search do
+       fulltext params[:search]
+    end
+    @total_blogs = @search.results
+  end
+
   def category_list
     @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:userId]} and blog.is_draft=false and blog.constant_id = #{params[:id]} order by blog.updated_at desc"], :page => params[:page], :per_page=>50
   end

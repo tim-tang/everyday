@@ -30,9 +30,11 @@ zh:
       contact_us: "联系我们"
       email: "E-Mail: tang.jilong@gmail.com"
       copyright: "All Copyright Reserved by Tim.Tang "
-      host: "Website Hosted On Linode VPS" 
+      host: "Website Hosted On Linode VPS"
+    search:
+      search: "博客搜索"
     categories:
-      categories: "博客分类" 
+      categories: "博客分类"
     cloudtags:
       cloud_tag: "标签云"
     comments:
@@ -48,6 +50,9 @@ zh:
       read_more: "阅读更多..."
     category_list:
       category_list: "分类博客列表"
+      read_more: "阅读更多..."
+    search_list:
+      search_list: "搜索博客列表"
       read_more: "阅读更多..."
     archival_list:
       archival_list: "归档博客列表"

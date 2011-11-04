@@ -17,7 +17,7 @@ gem 'coderay'
 gem "rails_best_practices"
 gem 'delayed_job'
 gem 'mail', '2.2.17'
-
+gem 'sunspot_rails'
 # Use unicorn as the web server
 # gem 'unicorn'
 
