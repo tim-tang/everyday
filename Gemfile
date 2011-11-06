@@ -18,7 +18,7 @@ gem "rails_best_practices"
 gem 'delayed_job'
 gem 'mail', '2.2.17'
 gem 'sunspot_rails'
-gem 'ruby-debug19', :require => 'ruby-debug'
+#gem 'ruby-debug19', :require => 'ruby-debug'
 # Use unicorn as the web server
 # gem 'unicorn'
 
