@@ -1,24 +1,8 @@
 class EydfHomeController < ApplicationController
   skip_before_filter :authorize
-  before_filter :filter_css_curt
-  before_filter :filter_right_fragments
+  before_filter :filter_right_fragments, :except=>[:gallery_list, :tag_gallery_list]
   before_filter :build_comment, :only=> [:show_blog, :guest_list]
   #caches_page :gallery_list,:tag_gallery_list
-
-  def filter_css_curt
-    case params[:action].to_s
-    when 'index'
-      fetch_index_curt
-    when 'tech_list'
-      fetch_tech_curt
-    when 'ibook_list'||'tag_ibook_list'
-      fetch_ibook_curt
-    when 'guest_list'
-      fetch_guestbook_curt
-    when 'gallery_list'||'tag_gallery_list'
-      fetch_gallery_curt
-    end
-  end
 
   def filter_right_fragments
     if session[:curt_tech] =="current" || session[:curt_ibook] =="current"
@@ -76,6 +60,7 @@ class EydfHomeController < ApplicationController
   end
 
   def show_blog
+    #debugger
     @blog = EydBlog.find(params[:id])
     @total_comments = EydComment.paginate_by_sql ["select comment.* from eyd_comments comment where comment.blog_id=#{@blog.id} order by comment.updated_at asc"], :page => params[:page], :per_page=>10
     @prev_next_blogs = EydComment.find_by_sql("SELECT * FROM eyd_blogs WHERE user_id = #{session[:userId]} and id IN (SELECT CASE WHEN SIGN(id - #{@blog.id}) > 0 THEN MIN(id) WHEN SIGN(id - #{@blog.id}) < 0 THEN MAX(id) END AS id FROM eyd_blogs WHERE id <> #{@blog.id} GROUP BY SIGN(id - #{@blog.id}) ORDER BY SIGN(id - #{@blog.id})) ORDER BY id ASC")
@@ -168,46 +153,5 @@ class EydfHomeController < ApplicationController
   protected
   def build_comment
     @eyd_comment = EydComment.new
-  end
-
-  private
-  def fetch_index_curt
-    session[:curt_index]="current"
-    session[:curt_tech] =""
-    session[:curt_ibook] =""
-    session[:curt_guestbk] =""
-    session[:curt_gallery] =""
-  end
-
-  def fetch_ibook_curt
-    session[:curt_index]=""
-    session[:curt_tech] =""
-    session[:curt_ibook] ="current"
-    session[:curt_guestbk] =""
-    session[:curt_gallery] =""
-  end
-
-  def fetch_gallery_curt
-    session[:curt_index]=""
-    session[:curt_tech] =""
-    session[:curt_ibook] =""
-    session[:curt_guestbk] =""
-    session[:curt_gallery] ="current"
-  end
-
-  def fetch_guestbook_curt
-    session[:curt_index]=""
-    session[:curt_tech] =""
-    session[:curt_ibook] =""
-    session[:curt_guestbk] ="current"
-    session[:curt_gallery] =""
-  end
-
-  def fetch_tech_curt
-    session[:curt_index]=""
-    session[:curt_tech] ="current"
-    session[:curt_ibook] =""
-    session[:curt_guestbk] =""
-    session[:curt_gallery] =""
   end
 end

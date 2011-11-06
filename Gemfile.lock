@@ -30,11 +30,13 @@ GEM
     activesupport (3.0.7)
     acts-as-taggable-on (2.1.1)
       rails
+    archive-tar-minitar (0.5.2)
     arel (2.0.9)
     builder (2.1.2)
     cocaine (0.1.0)
     coderay (1.0.3)
     colored (1.2)
+    columnize (0.3.4)
     daemons (1.1.4)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
@@ -44,6 +46,8 @@ GEM
     escape (0.0.4)
     friendly_id (4.0.0.beta14)
     i18n (0.5.0)
+    linecache19 (0.5.12)
+      ruby_core_source (>= 0.1.4)
     mail (2.2.17)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -89,6 +93,16 @@ GEM
     redcarpet (1.17.2)
     rsolr (0.12.1)
       builder (>= 2.1.2)
+    ruby-debug-base19 (0.11.25)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby_core_source (>= 0.1.4)
+    ruby-debug19 (0.11.6)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby-debug-base19 (>= 0.11.19)
+    ruby_core_source (0.1.5)
+      archive-tar-minitar (>= 0.5.2)
     sexp_processor (3.0.7)
     sunspot (1.2.1)
       escape (= 0.0.4)
@@ -118,5 +132,6 @@ DEPENDENCIES
   rails (= 3.0.7)
   rails_best_practices
   redcarpet
+  ruby-debug19
   sunspot_rails
   will_paginate (>= 3.0.pre)
