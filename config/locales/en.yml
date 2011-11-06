@@ -2,12 +2,7 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  eydf_home:
-    index:
-      read_more: "Read More..."
-    postmeta:
-      comm_num: " Comments"
-      viewer: "Viewer"
+  application:
     header:
       home: "Home"
       gallery: "Gallery"
@@ -48,6 +43,12 @@ en:
       viewer: "views"
     archivals:
       archivals: "Blog Archivals"
+  eydf_home:
+    index:
+      read_more: "Read More..."
+    postmeta:
+      comm_num: " Comments"
+      viewer: "Viewer"
     tag_list:
       tag_list: "Taggable Listing"
       read_more: "Read More..."

@@ -1,10 +1,5 @@
 zh:
-  eydf_home:
-    index:
-      read_more: "阅读更多..."
-    postmeta:
-      comm_num: " 条评论"
-      viewer: "人阅读"
+  application:
     header:
       home: "主页"
       gallery: "图片秀"
@@ -45,6 +40,12 @@ zh:
       viewer: "人阅读"
     archivals:
       archivals: "博客归档"
+  eydf_home:
+    index:
+      read_more: "阅读更多..."
+    postmeta:
+      comm_num: " 条评论"
+      viewer: "人阅读"
     tag_list:
       tag_list: "标签博客列表"
       read_more: "阅读更多..."
