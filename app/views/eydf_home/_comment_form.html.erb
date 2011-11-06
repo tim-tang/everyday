@@ -5,7 +5,7 @@
       <%= render :partial=>'eyd_comment/error', :eyd_comment=>@eyd_comment%>
       <div class="form_row">
         <label><%= t('.name')%></label><br/>
-        <%= f.text_field :name, "value"=>t(".anonymous")%>
+        <%= f.text_field :name, "value"=>t(".anonymous"),:onfocus=>'clearText(this)', :onblur=>'clearText(this)' %>
       </div>
       <div class="form_row">
         <label><%= t('.email')%></label><br/>
@@ -26,4 +26,10 @@
       <%= f.submit t('.submit'), :class=>"submit_btn"%>
     <% end %>
   </div>
-
+<script language="javascript" type="text/javascript">
+  function clearText(field)
+  {
+    if (field.defaultValue == field.value) field.value = '';
+            else if (field.value == '') field.value = field.defaultValue;
+  }
+ </script>
