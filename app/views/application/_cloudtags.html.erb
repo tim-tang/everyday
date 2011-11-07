@@ -5,7 +5,7 @@
     <div class="alphacloud">
       <% if @cloud_tags.length > 0%>
         <% tag_cloud(@cloud_tags, %w(common1 common2 common3 common4)) do |tag, css_class|%>
-          <%= link_to tag.name, {:action=>:tag_list, :id=> tag.name}, :class=>css_class%>
+          <%= link_to tag.name, {:action=>:tag_list, :id=> tag.name, :controller=>:eydf_share}, :class=>css_class%>
         <% end %>
       <% else %>
         <%= content_tag :p, "No tags"%>

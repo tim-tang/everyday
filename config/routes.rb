@@ -1,18 +1,31 @@
 Everyday::Application.routes.draw do
-    root :to => "eydf_home#index"
+
+  root :to => "eydf_home#index"
   scope '(:locale)' do
-    match 'eydf_home/rss_feed' => 'eydf_home#rss_feed', :as => :rss_feed, :defaults=> {:format => 'atom'}
-    controller :eydf_home do
+    controller :eydf_share do
       get 'show_blog/:id' => :show_blog, :as => :show_blog
+      get 'rss_feed' => :rss_feed, :as => :rss_feed, :defaults=> {:format => 'atom'}
       get 'tag_list/:id' => :tag_list, :as => :tag_list
-      get 'archival_list/:id' => :archival_list, :as => :archival_list
       get 'category_list/:id' => :category_list, :as => :category_list
-      get 'search_list' => :search_list, :as => :search_list
-      get 'ibook_list' => :ibook_list, :as => :ibook_list
-      get 'ibook_download/:id' => :download, :as => :ibook_download
-      get 'guest_book' => :guest_list, :as => :guest_book
+      get 'archival_list/:id' => :archival_list, :as => :archival_list
+      get 'search_list'=>:search_list, :as => :search_list
+    end
+
+    controller :eydf_tech do
       get 'tech_list' => :tech_list, :as => :tech_list
+    end
+
+    controller :eydf_ibook do
+      get 'ibook_list' => :ibook_list, :as => :ibook_list
       get 'tag_ibook_list/:id' => :tag_ibook_list, :as => :tag_ibook_list
+      get 'ibook_download/:id' => :download, :as => :ibook_download
+    end
+
+    controller :eydf_guestbk do
+      get 'guest_book' => :guest_list, :as => :guest_book
+    end
+
+    controller :eydf_gallery do
       get 'gallery_list' => :gallery_list, :as => :gallery_list
       get 'tag_gallery_list/:id' => :tag_gallery_list, :as => :tag_gallery_list
     end

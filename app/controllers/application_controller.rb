@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   before_filter :set_i18n_locale_from_params
-  before_filter :authorize
   before_filter :filter_css_curt
+  before_filter :filter_right_fragments, :except=>[:gallery_list, :tag_gallery_list]
+  before_filter :authorize
   protect_from_forgery
 
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
@@ -38,7 +39,6 @@ class ApplicationController < ActionController::Base
   def default_url_options
     { :locale => I18n.locale }
   end
-
 
   def authorize
     unless EydUser.find_by_id(session[:user_id])
@@ -104,4 +104,27 @@ class ApplicationController < ActionController::Base
     session[:curt_guestbk] =""
     session[:curt_gallery] =""
   end
+
+  def filter_right_fragments
+    fetch_cloud_tags
+    fetch_comments
+    fetch_hottopics
+  end
+
+  def fetch_cloud_tags
+    unless read_fragment('tag_fragment')
+      @cloud_tags = EydBlog.tag_counts
+    end
+  end
+
+  def fetch_comments
+    unless read_fragment('comment_fragment')
+      @comments = EydComment.find_by_sql("select comment.* from eyd_comments comment where comment.is_guestbook = false order by comment.updated_at desc limit 5")
+    end
+  end
+
+  def fetch_hottopics
+    @hottopics = EydBlog.find_by_sql("select blog.* from eyd_blogs blog where blog.user_id=2 and blog.is_draft=false order by blog.view_count desc limit 5")
+  end
+
 end

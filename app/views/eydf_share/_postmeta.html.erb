@@ -4,11 +4,11 @@
   <p><span><%= image_tag "user_comment.png", :align=>"absmiddle"%>&nbsp;<%= link_to cached_comments(blog).to_s+t('.comm_num'), show_blog_path(blog), :title=>"Post Comments"%></span></p>
   <p><span> <%= image_tag "tag.png", :align=>"absmiddle"%>&nbsp;
     <% cached_tags(blog).each do |tag|%>
-      <%= link_to tag, {:action => :tag_list, :id=>tag}, :title=>"Tags" %>
-    <% end %> 
+      <%= link_to tag, {:action => :tag_list, :id=>tag, :controller=>:eydf_share}, :title=>"Tags" %>
+    <% end %>
     <span>
   </p>
-  <p><span><%= image_tag "category.png", :align=>"absmiddle" %>&nbsp;<%= link_to cached_categories(blog).category, {:action => :category_list, :id=> cached_categories(blog).id}, :title=>"Categories"%></span></p>
+  <p><span><%= image_tag "category.png", :align=>"absmiddle" %>&nbsp;<%= link_to cached_categories(blog).category, {:action => :category_list, :id=> cached_categories(blog).id, :controller=>:eydf_share}, :title=>"Categories"%></span></p>
   <p><span><%= image_tag "calculator.png", :align=>"absmiddle"%>&nbsp;<%= blog.view_count%> <%= t('.viewer')%></span></p>
       <!--
       <p><script type="text/javascript" charset="utf-8">

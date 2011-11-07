@@ -1,8 +1,7 @@
-class EydfHomeController < ApplicationController
+class EydfGuestbkController < ApplicationController
   skip_before_filter :authorize
-  before_filter :fetch_categories, :fetch_archivals, :except=>[:gallery_list, :tag_gallery_list]
-  before_filter :build_comment, :only=> [:show_blog]
-  #caches_page :gallery_list,:tag_gallery_list
+  before_filter :fetch_categories, :fetch_archivals
+  before_filter :build_comment, :only=> [:guest_list]
 
   def fetch_categories
     session[:userId]=1
@@ -17,9 +16,13 @@ class EydfHomeController < ApplicationController
     end
   end
 
-  def index
-    #EydMailer.delay.mail_new_posts
-    #EydMailer.mail_new_posts.deliver
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=1 and blog.is_draft=false order by blog.created_at desc"], :page => params[:page], :per_page=>20
+  def guest_list
+    @total_comments = EydComment.paginate_by_sql ["select comment.* from eyd_comments comment where comment.is_guestbook=true order by comment.updated_at desc"], :page => params[:page], :per_page=>10
   end
+
+  protected
+  def build_comment
+    @eyd_comment = EydComment.new
+  end
+
 end
