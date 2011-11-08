@@ -3,7 +3,7 @@ class EydIbookController < ApplicationController
   layout 'admin'
 
   def index
-    @total_ibooks = EydIbook.paginate_by_sql ["select ibook.* from eyd_ibooks ibook where ibook.user_id=#{session[:user_id]} order by ibook.updated_at desc"], :page => params[:page], :per_page=>20
+    @total_ibooks = EydIbook.fetch_ibooks(session[:user_id],params[:page])
   end
 
   def show

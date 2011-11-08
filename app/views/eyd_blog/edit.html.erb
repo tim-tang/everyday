@@ -18,7 +18,7 @@
       <br/>
       <p>
       <label for="textfield"><strong>Category :</strong></label>
-      <%= f.collection_select :constant_id, EydConstant.find(:all), :id, :category, {:prompt =>"Please select ..."} %>
+      <%= f.collection_select :constant_id, @constants, :id, :category, {:prompt =>"Please select ..."} %>
       </p>
       <br/>
       <p>
@@ -47,7 +47,7 @@
 </div>
 <div id="footer">
   &copy; Copyright 2011 reserved by tim.tang
-</div> 
+</div>
 <script language="javascript">
   setup_wmd({
     input: "editor-input",

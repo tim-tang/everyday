@@ -18,7 +18,7 @@
       <br/>
       <p>
       <label><strong>Category :</strong></label>
-      <%= f.collection_select :constant_id, EydConstant.find(:all, :conditions=>{:user_id => session[:user_id]}), :id, :category, {:prompt =>"Please select ..."} %>
+      <%= f.collection_select :constant_id, @constants, :id, :category, {:prompt =>"Please select ..."} %>
       </p>
       <br/>
       <p>
@@ -46,7 +46,7 @@
 </div>
 <div id="footer">
   &copy; Copyright 2011 reserved by tim.tang
-</div> 
+</div>
 <script language="javascript">
   setup_wmd({
     input: "editor-input",

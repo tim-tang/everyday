@@ -1,15 +1,15 @@
 class EydConstantController < ApplicationController
   before_filter :authorize
   before_filter :fetch_constant, :only=>[:edit,:update]
+  before_filter :build_constant, :only=>[:new ]
   layout 'admin'
   cache_sweeper :eyd_constant_sweeper, :only=>[:create, :update, :destroy]
 
   def index
-    @total_constants = EydConstant.paginate_by_sql ["select constant.* from eyd_constants constant where constant.user_id=#{session[:user_id]} order by constant.updated_at desc"], :page => params[:page], :per_page=>20
+    @total_constants = EydConstant.fetch_admin_constants(session[:user_id], params[:page])
   end
 
   def new
-    @eyd_constant = EydConstant.new
   end
 
   def create
@@ -58,6 +58,10 @@ class EydConstantController < ApplicationController
   protected
   def fetch_constant
     @eyd_constant = EydConstant.find(params[:id])
+  end
+
+  def build_constant
+    @eyd_constant = EydConstant.new
   end
 
 end

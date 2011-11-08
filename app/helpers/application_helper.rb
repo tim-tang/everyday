@@ -27,19 +27,10 @@ module ApplicationHelper
   def cached_comments(blog)
     @comment_count= Rails.cache.read("#{blog.id}_comments")
      if !@comment_count
-       @comment_count = EydComment.count_by_sql("select count(0) from eyd_comments comment where comment.blog_id = #{blog.id}")
+       @comment_count=blog.eyd_comments.count
        Rails.cache.write("#{blog.id}_comments",@comment_count)
      end
      @comment_count
-  end
-
-  def cached_categories(blog)
-    @category= Rails.cache.read("#{blog.id}_categories")
-     if !@category
-       @category = EydConstant.find_by_sql("select cate.* from eyd_constants cate where cate.id = #{blog.constant_id}")
-       Rails.cache.write("#{blog.id}_categories",@category)
-     end
-     @category[0]
   end
 
   def rich_content(content)

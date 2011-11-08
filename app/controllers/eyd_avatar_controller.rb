@@ -3,7 +3,7 @@ class EydAvatarController < ApplicationController
   layout 'admin'
 
   def index
-    @total_avatars = EydAvatar.paginate_by_sql ["select ava.* from eyd_avatars ava where ava.user_id=#{session[:user_id]} order by ava.updated_at desc"], :page => params[:page], :per_page=>20
+    @total_avatars = EydAvatar.fetch_admin_avatars(session[:user_id], params[:page])
   end
 
   def new

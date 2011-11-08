@@ -8,7 +8,7 @@
     <% end %>
     <span>
   </p>
-  <p><span><%= image_tag "category.png", :align=>"absmiddle" %>&nbsp;<%= link_to cached_categories(blog).category, {:action => :category_list, :id=> cached_categories(blog).id, :controller=>:eydf_share}, :title=>"Categories"%></span></p>
+  <p><span><%= image_tag "category.png", :align=>"absmiddle" %>&nbsp;<%= link_to blog.eyd_constant.category, {:action => :category_list, :id=> blog.eyd_constant.id, :controller=>:eydf_share}, :title=>"Categories"%></span></p>
   <p><span><%= image_tag "calculator.png", :align=>"absmiddle"%>&nbsp;<%= blog.view_count%> <%= t('.viewer')%></span></p>
       <!--
       <p><script type="text/javascript" charset="utf-8">

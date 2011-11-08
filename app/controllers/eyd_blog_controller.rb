@@ -2,15 +2,16 @@ class EydBlogController < ApplicationController
   before_filter :authorize
   before_filter :fetch_blog, :only => [:edit, :update]
   before_filter :build_blog, :only =>[:new, :create]
+  before_filter :fetch_categories, :only =>[:new, :edit]
   layout 'admin'
   #cache_sweeper :eyd_blog_sweeper, :only=>[:create]
 
   def index
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:user_id]} and blog.is_draft=false order by blog.updated_at desc"], :page => params[:page], :per_page=>20
+    @total_blogs = EydBlog.fetch_blogs(session[:user_id], params[:page],false)
   end
 
   def draft
-    @total_blogs = EydBlog.paginate_by_sql ["select blog.* from eyd_blogs blog where blog.user_id=#{session[:user_id]} and blog.is_draft=true order by blog.updated_at desc"], :page => params[:page], :per_page=>20
+    @total_blogs = EydBlog.fetch_admin_blogs(session[:user_id], params[:page],true)
   end
 
   def new
@@ -75,6 +76,10 @@ class EydBlogController < ApplicationController
 
   def fetch_blog
     @eyd_blog = EydBlog.find(params[:id])
+  end
+
+  def fetch_categories
+    @constants = EydConstant.where(:user_id => session[:user_id])
   end
 
   private

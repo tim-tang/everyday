@@ -6,7 +6,7 @@ class EydfGuestbkController < ApplicationController
   def fetch_categories
     session[:userId]=1
     unless read_fragment('category_fragment'+session[:userId].to_s)
-      @constants = EydConstant.find_by_sql("select constant.* from eyd_constants constant where constant.user_id=1 order by constant.updated_at desc")
+      @constants = EydConstant.where(:user_id =>1).order('updated_at desc')
     end
   end
 
@@ -17,7 +17,7 @@ class EydfGuestbkController < ApplicationController
   end
 
   def guest_list
-    @total_comments = EydComment.paginate_by_sql ["select comment.* from eyd_comments comment where comment.is_guestbook=true order by comment.updated_at desc"], :page => params[:page], :per_page=>10
+    @total_comments = EydComment.fetch_guestbk_comments(params[:page],true)
   end
 
   protected

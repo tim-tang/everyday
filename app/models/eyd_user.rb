@@ -1,8 +1,8 @@
 class EydUser < ActiveRecord::Base
-  has_many :eyd_avatars, :dependent=>:destroy
-  has_many :eyd_ibooks, :dependent=>:destroy
-  has_many :eyd_blogs, :dependent=>:destroy
-  has_many :eyd_constants, :dependent=>:destroy
+  has_many :eyd_avatars, :foreign_key=>:user_id,:dependent=>:destroy
+  has_many :eyd_ibooks,  :foreign_key=>:user_id,:dependent=>:destroy
+  has_many :eyd_blogs,  :foreign_key=>:user_id,:dependent=>:destroy
+  has_many :eyd_constants, :foreign_key=>:user_id,:dependent=>:destroy
   validates :name, :presence => true, :uniqueness => true
   validates :password, :confirmation => true
   attr_accessor :password_confirmation
