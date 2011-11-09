@@ -9,6 +9,7 @@ class EydLoginController < ApplicationController
     if user = EydUser.authenticate(params[:name], params[:password])
       session[:user_id] = user.id
       session[:user_name] = user.name
+      flash[:notice] = "User #{user.name} login success"
       redirect_to avatar_index_url
     else
       redirect_to login_url, :alert => "Invalid user/password combination"
