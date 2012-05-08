@@ -2,7 +2,7 @@ class EydWsBlogController < ApplicationController
   skip_before_filter :authorize
 
   def blogs
-    @total_blogs = EydBlog.fetch_blogs(1,params[:id],false)
+    @total_blogs = EydBlog.ws_fetch_blogs(1,params[:id],false)
     respond_to do |format|
       format.xml  { render :xml => @total_blogs}
       format.json { render :json => @total_blogs}

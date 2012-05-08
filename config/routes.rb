@@ -5,7 +5,7 @@ Everyday::Application.routes.draw do
     controller :eyd_ws_blog do
       get 'blogs/:id' => :blogs, :as=> :blogs
       get 'blogs/:key/search' => :search, :as=>:blogs
-      get 'blog/:id' => :blog, :as=>:blog
+      get 'blogs/:id' => :blog, :as=>:blog
       get 'blog/:id/next' => :next_blog, :as=>:blog
       put 'blog/:id/sync' => :sync_count, :as => :blog
     end

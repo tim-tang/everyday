@@ -40,4 +40,8 @@ class EydBlog < ActiveRecord::Base
       EydBlog.select('year(created_at) as year, month(created_at) as month, count(id) as count').where(:user_id=>user_id).group('year(created_at),month(created_at)').order('year(created_at),month(created_at) desc')
   end
 
+  def self.ws_fetch_blogs(user_id,dt,isdraft)
+      EydBlog.where('user_id=? and updated_at < ?',user_id,dt).order('updated_at desc').limit(5)
+  end
+
 end
