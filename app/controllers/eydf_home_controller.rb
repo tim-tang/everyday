@@ -21,5 +21,10 @@ class EydfHomeController < ApplicationController
     #EydMailer.delay.mail_new_posts
     #EydMailer.mail_new_posts.deliver
     @total_blogs = EydBlog.fetch_blogs(1,params[:page],false)
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @total_blogs}
+      format.json { render :json => @total_blogs}
+    end
   end
 end

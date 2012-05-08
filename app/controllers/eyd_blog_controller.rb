@@ -8,6 +8,11 @@ class EydBlogController < ApplicationController
 
   def index
     @total_blogs = EydBlog.fetch_blogs(session[:user_id], params[:page],false)
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @total_blogs}
+      format.json { render :json => @total_blogs}
+    end
   end
 
   def draft

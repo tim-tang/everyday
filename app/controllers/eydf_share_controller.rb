@@ -32,7 +32,12 @@ class EydfShareController < ApplicationController
         end
       end
     end
-    sync_blog_view_count(@blog)
+    #sync_blog_view_count(@blog)
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => {@blog}}
+      format.json { render :json => @blog}
+    end
   end
 
   def sync_blog_view_count(blog)

@@ -18,6 +18,12 @@ class EydfGuestbkController < ApplicationController
 
   def guest_list
     @total_comments = EydComment.fetch_guestbk_comments(params[:page],true)
+
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @total_comments}
+      format.json { render :json => @total_comments}
+    end
   end
 
   protected
