@@ -2,6 +2,26 @@ Everyday::Application.routes.draw do
 
   root :to => "eydf_home#index"
   scope '(:locale)' do
+    controller :eyd_ws_blog do
+      get 'blogs/:id' => :blogs, :as=> :blogs
+      get 'blogs/:key/search' => :search, :as=>:blogs
+      get 'blog/:id' => :blog, :as=>:blog
+      get 'blog/:id/next' => :next_blog, :as=>:blog
+      put 'blog/:id/sync' => :sync_count, :as => :blog
+    end
+
+    controller :eyd_ws_category do
+      get 'categories' =>:categories, :as => :categories
+    end
+
+    controller :eyd_ws_archive do
+      get 'archives/:id' =>:archives, :as => :archives
+    end
+
+    controller :eyd_ws_avatar do
+      get 'avatars' =>:avatars, :as => :avatars
+    end
+
     controller :eydf_share do
       get 'show_blog/:id' => :show_blog, :as => :show_blog
       get 'rss_feed' => :rss_feed, :as => :rss_feed, :defaults=> {:format => 'atom'}

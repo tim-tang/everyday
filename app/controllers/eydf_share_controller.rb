@@ -19,7 +19,7 @@ class EydfShareController < ApplicationController
     #debugger
     @blog = EydBlog.find(params[:id])
     @total_comments = EydComment.fetch_blog_comments(@blog.id, params[:page])
-    @prev_next_blogs = EydComment.find_by_sql("SELECT * FROM eyd_blogs WHERE user_id = #{session[:userId]} and id IN (SELECT CASE WHEN SIGN(id - #{@blog.id}) > 0 THEN MIN(id) WHEN SIGN(id - #{@blog.id}) < 0 THEN MAX(id) END AS id FROM eyd_blogs WHERE id <> #{@blog.id} GROUP BY SIGN(id - #{@blog.id}) ORDER BY SIGN(id - #{@blog.id})) ORDER BY id ASC")
+    @prev_next_blogs = EydBlog.find_by_sql("SELECT * FROM eyd_blogs WHERE user_id = #{session[:userId]} and id IN (SELECT CASE WHEN SIGN(id - #{@blog.id}) > 0 THEN MIN(id) WHEN SIGN(id - #{@blog.id}) < 0 THEN MAX(id) END AS id FROM eyd_blogs WHERE id <> #{@blog.id} GROUP BY SIGN(id - #{@blog.id}) ORDER BY SIGN(id - #{@blog.id})) ORDER BY id ASC")
     if @prev_next_blogs.size >1
       @prev_blog = @prev_next_blogs[1]
       @next_blog = @prev_next_blogs[0]
@@ -35,7 +35,7 @@ class EydfShareController < ApplicationController
     #sync_blog_view_count(@blog)
     respond_to do |format|
       format.html
-      format.xml  { render :xml => {@blog}}
+      format.xml  { render :xml => @blog}
       format.json { render :json => @blog}
     end
   end

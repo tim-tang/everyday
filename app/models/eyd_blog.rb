@@ -19,26 +19,25 @@ class EydBlog < ActiveRecord::Base
     paginate :conditions=> ['user_id = ? and is_draft=?', user_id, isdraft],
       :order=> 'updated_at desc',
       :page => page,
-      :per_page=>20
+      :per_page=>5
   end
 
   def self.fetch_archival_blogs(user_id,start,expire,page,isdraft)
     paginate :conditions=> ['user_id = ? and is_draft=? and created_at between '+start.to_s+ 'and '+expire.to_s, user_id, isdraft],
       :order=> 'updated_at desc',
       :page => page,
-      :per_page=>50
+      :per_page=>5
   end
 
   def self.fetch_category_blogs(user_id,page,constant,isdraft)
     paginate :conditions=> ['user_id = ? and is_draft=? and constant_id = ?', user_id, isdraft,constant.to_i],
       :order=> 'updated_at desc',
       :page => page,
-      :per_page=>50
+      :per_page=>10
   end
 
   def self.fetch_archival_list(user_id)
       EydBlog.select('year(created_at) as year, month(created_at) as month, count(id) as count').where(:user_id=>user_id).group('year(created_at),month(created_at)').order('year(created_at),month(created_at) desc')
-
   end
 
 end
