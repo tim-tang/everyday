@@ -41,7 +41,7 @@ class EydBlog < ActiveRecord::Base
   end
 
   def self.ws_fetch_blogs(user_id,dt,isdraft)
-      EydBlog.where('user_id=? and updated_at < ?',user_id,dt).order('updated_at desc').limit(5)
+      EydBlog.where('user_id=? and created_at < ?',user_id,dt).order('created_at desc').limit(5)
   end
 
 end
