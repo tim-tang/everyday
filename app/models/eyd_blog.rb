@@ -41,7 +41,14 @@ class EydBlog < ActiveRecord::Base
   end
 
   def self.ws_fetch_blogs(user_id,dt,isdraft)
-      EydBlog.where('user_id=? and created_at < ?',user_id,dt).order('created_at desc').limit(5)
+      EydBlog.where('user_id=? and is_draft=? and created_at < ?',user_id,isdraft,dt).order('created_at desc').limit(8)
   end
 
+  def self.ws_hot_blogs(user_id)
+      EydBlog.where('user_id=? and is_draft=?',user_id, false).order('view_count desc').limit(5)
+  end
+
+  def self.ws_fetch_by_category(user_id, categoryId, dt)
+      EydBlog.where('user_id=? and constant_id=? and is_draft=? and created_at < ?',user_id,categoryId ,false,dt).order('created_at desc').limit(10)
+  end
 end

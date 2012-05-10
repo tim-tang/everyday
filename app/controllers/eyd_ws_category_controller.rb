@@ -10,4 +10,12 @@ class EydWsCategoryController < ApplicationController
       format.json { render :json => @constants}
     end
   end
+
+  def category
+    @constant = EydConstant.find(params[:id])
+    respond_to do |format|
+      format.xml  { render :xml => @constant}
+      format.json { render :json => @constant}
+    end
+  end
 end

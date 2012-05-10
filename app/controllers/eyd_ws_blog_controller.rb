@@ -9,6 +9,22 @@ class EydWsBlogController < ApplicationController
     end
   end
 
+  def hot
+    @hot_topics = EydBlog.ws_hot_blogs(1)
+    respond_to do |format|
+      format.xml  { render :xml => @hot_topics}
+      format.json { render :json => @hot_topics}
+    end
+  end
+
+  def category
+    @total_blogs = EydBlog.ws_fetch_by_category(1,params[:id], params[:dt])
+    respond_to do |format|
+      format.xml  { render :xml => @total_blogs}
+      format.json { render :json => @total_blogs}
+    end
+  end
+
   def blog
     @blog = EydBlog.find(params[:id])
     respond_to do |format|
@@ -47,7 +63,7 @@ class EydWsBlogController < ApplicationController
 
   def search
     @search = EydBlog.search do
-      fulltext params[:key]
+      fulltext params[:id]
     end
     @total_blogs = @search.results
     respond_to do |format|

@@ -4,7 +4,9 @@ Everyday::Application.routes.draw do
   scope '(:locale)' do
     controller :eyd_ws_blog do
       get 'blogs/:id' => :blogs, :as=> :blogs
-      get 'blogs/:key/search' => :search, :as=>:blogs
+      get 'blogs/:id/search' => :search, :as=>:search
+      get 'blogs/:id/:dt' => :category, :as=>:category
+      get 'hot/topics' => :hot, :as =>:hot
       get 'blog/:id' => :blog, :as=>:blog
       get 'blog/:id/next' => :next_blog, :as=>:blog
       put 'blog/:id/sync' => :sync_count, :as => :blog
@@ -12,6 +14,7 @@ Everyday::Application.routes.draw do
 
     controller :eyd_ws_category do
       get 'categories' =>:categories, :as => :categories
+      get 'category/:id'=>:category, :as => :category
     end
 
     controller :eyd_ws_archive do
