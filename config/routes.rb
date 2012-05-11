@@ -22,7 +22,7 @@ Everyday::Application.routes.draw do
     end
 
     controller :eyd_ws_avatar do
-      get 'avatars' =>:avatars, :as => :avatars
+      get 'avatars/:id' =>:avatars, :as => :avatars
     end
 
     controller :eydf_share do
