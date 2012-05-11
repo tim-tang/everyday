@@ -45,7 +45,7 @@ class EydBlog < ActiveRecord::Base
   end
 
   def self.ws_hot_blogs(user_id)
-      EydBlog.where('user_id=? and is_draft=?',user_id, false).order('view_count desc').limit(5)
+      EydBlog.where('user_id=? and is_draft=?',user_id, false).order('view_count desc').limit(10)
   end
 
   def self.ws_fetch_by_category(user_id, categoryId, dt)
