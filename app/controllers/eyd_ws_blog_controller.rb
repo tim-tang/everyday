@@ -37,7 +37,6 @@ class EydWsBlogController < ApplicationController
     @prev_next_blogs = EydBlog.find_by_sql("SELECT * FROM eyd_blogs WHERE user_id = 1 and id IN (SELECT CASE WHEN SIGN(id - #{params[:id]}) > 0 THEN MIN(id) WHEN SIGN(id - #{params[:id]}) < 0 THEN MAX(id) END AS id FROM eyd_blogs WHERE id <> #{params[:id]} GROUP BY SIGN(id - #{params[:id]}) ORDER BY SIGN(id - #{params[:id]})) ORDER BY id ASC")
     if @prev_next_blogs.size >1
       @next_blog = @prev_next_blogs[0]
-      puts @next_blog
     else
       if @prev_next_blogs.size ==1
         if @prev_next_blogs[0].id < params[:id].to_i
