@@ -40,7 +40,7 @@ class EydWsBlogController < ApplicationController
       puts @next_blog
     else
       if @prev_next_blogs.size ==1
-        if @prev_next_blogs[0].id < params[:id]
+        if @prev_next_blogs[0].id < params[:id].to_i
           @next_blog = @prev_next_blogs[0]
         end
       end
