@@ -3,7 +3,7 @@
     <img src="images/avatar.png" width="44" height="44" class="hoverimg" alt="Avatar" />
     <p>Welcome to login:</p>
     <p class="username"><%= session[:user_name]%></p>
-    <%= button_to "Log out", root_path, :method => :delete, :class=>"userbtn" %>
+    <%= button_to "Log out", "http://www.everyday-cn.com", :method => :delete, :class=>"userbtn" %>
   </div>
   <ul id="nav">
     <li>
@@ -25,17 +25,17 @@
       <li><%= link_to "Blog Draft Listing", blog_draft_path %></li>
       <li><%= link_to "Blog Creating", blog_new_path %></li>
     </ul>
-    </li>      
+    </li>
     <li><a class="expanded heading">Category Management</a>
     <ul class="navigation">
       <li><%= link_to "Category Listing", constant_index_path %></li>
       <li><%= link_to "Category Creating", constant_new_path %></li>
     </ul>
-    </li>       
+    </li>
     <li><a class="expanded heading">Comments Management</a>
     <ul class="navigation">
       <li><%= link_to "Comments Listing", comment_index_path %></li>
     </ul>
-    </li>       
+    </li>
   </ul>
-<!-- Left Side Bar End --> 
+<!-- Left Side Bar End -->

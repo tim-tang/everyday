@@ -15,24 +15,6 @@ module ApplicationHelper
     end
   end
 
-  def cached_tags(blog)
-    @tag_list= Rails.cache.read("#{blog.id}_tag")
-     if !@tag_list
-     @tag_list= blog.tag_list
-       Rails.cache.write("#{blog.id}_tag",@tag_list)
-     end
-     @tag_list
-  end
-
-  def cached_comments(blog)
-    @comment_count= Rails.cache.read("#{blog.id}_comments")
-     if !@comment_count
-       @comment_count=blog.eyd_comments.count
-       Rails.cache.write("#{blog.id}_comments",@comment_count)
-     end
-     @comment_count
-  end
-
   def rich_content(content)
    # sanitize Redcarpet.new(content, :hard_wrap, :autolink, :no_intraemphasis).to_html
    sanitize Redcarpet.new(content,:hard_wrap, :autolink, :no_intraemphasis).to_html

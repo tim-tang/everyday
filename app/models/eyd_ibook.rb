@@ -9,9 +9,9 @@ class EydIbook < ActiveRecord::Base
 
   private
   def self.fetch_ibooks(user_id,page)
-    paginate :conditions=> ['user_id = ?', user_id],
-      :order=> 'created_at desc',
-      :page => page,
-      :per_page=>20
-  end
+      paginate :conditions=> ['user_id = ?', user_id],
+          :order=> 'created_at desc',
+          :page => page,
+          :per_page=>20
+   end
 end

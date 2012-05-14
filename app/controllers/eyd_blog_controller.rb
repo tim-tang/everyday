@@ -4,10 +4,9 @@ class EydBlogController < ApplicationController
   before_filter :build_blog, :only =>[:new, :create]
   before_filter :fetch_categories, :only =>[:new, :edit]
   layout 'admin'
-  #cache_sweeper :eyd_blog_sweeper, :only=>[:create]
 
   def index
-    @total_blogs = EydBlog.fetch_blogs(session[:user_id], params[:page],false)
+    @total_blogs = EydBlog.fetch_admin_blogs(session[:user_id], params[:page],false)
     respond_to do |format|
       format.html
       format.xml  { render :xml => @total_blogs}
@@ -29,7 +28,6 @@ class EydBlogController < ApplicationController
         if @eyd_blog.is_draft==true
           format.html { redirect_to(blog_draft_path, :notice => 'Draft blog was successfully created.') }
         else
-          expire_cache
           format.html { redirect_to(blog_index_path, :notice => 'Blog was successfully created.') }
         end
         format.xml  { render :xml => @eyd_blog, :status => :created, :location => @eyd_blog }
@@ -47,8 +45,6 @@ class EydBlogController < ApplicationController
   def update
     respond_to do |format|
       if @eyd_blog.update_attributes(params[:eyd_blog])
-        #expire cached_comment for postmeta
-        Rails.cache.delete("#{@eyd_blog.id}_categories")
         format.html { redirect_to(blog_index_path, :notice => 'Blog was successfully updated.') }
         format.xml  { render :xml => @eyd_blog, :status => :updated, :location => @eyd_blog }
       else
@@ -63,9 +59,6 @@ class EydBlogController < ApplicationController
       params[:blog_ids].each do |blog_id|
         @eyd_blog = EydBlog.find(blog_id)
         @eyd_blog.destroy
-        expire_cache
-        #expire cached_comment for postmeta
-        Rails.cache.delete("#{@eyd_blog.id}_categories")
       end
     end
     respond_to do |format|
@@ -99,11 +92,4 @@ class EydBlogController < ApplicationController
     eyd_blog.user_id = session[:user_id]
     eyd_blog.author = session[:user_name]
   end
-
-  def expire_cache
-    expire_fragment 'category_fragment'+session[:user_id].to_s
-    expire_fragment 'tag_fragment'
-    expire_fragment 'archival_fragment'+session[:user_id].to_s
-  end
-
 end

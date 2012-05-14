@@ -3,7 +3,6 @@ class EydConstantController < ApplicationController
   before_filter :fetch_constant, :only=>[:edit,:update]
   before_filter :build_constant, :only=>[:new ]
   layout 'admin'
-  cache_sweeper :eyd_constant_sweeper, :only=>[:create, :update, :destroy]
 
   def index
     @total_constants = EydConstant.fetch_admin_constants(session[:user_id], params[:page])
@@ -46,7 +45,6 @@ class EydConstantController < ApplicationController
       params[:constant_ids].each do |constant_id|
         @eyd_constant = EydConstant.find(constant_id)
         @eyd_constant.destroy
-        expire_fragment 'category_fragment'+session[:user_id].to_s
       end
     end
     respond_to do |format|
