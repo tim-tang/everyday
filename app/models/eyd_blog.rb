@@ -30,6 +30,10 @@ class EydBlog < ActiveRecord::Base
       EydBlog.where('user_id=? and is_draft=? and created_at < ?',user_id,isdraft,dt).order('created_at desc').limit(8)
   end
 
+  def self.ws_next_blog(user_id, blog_id)
+      EydBlog.where('user_id=? and id < ?', user_id, blog_id).order('id desc').limit(1)
+  end
+
   def self.ws_hot_blogs(user_id)
       EydBlog.where('user_id=? and is_draft=?',user_id, false).order('view_count desc').limit(10)
   end

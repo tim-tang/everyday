@@ -1,6 +1,5 @@
 Everyday::Application.routes.draw do
 
-  root  :to=>'eyd_login#login'
   scope '(:locale)' do
     controller :eyd_ws_blog do
       get 'blogs/:id' => :blogs, :as=> :blogs
@@ -27,6 +26,7 @@ Everyday::Application.routes.draw do
   end
 
   controller :eyd_login do
+    get 'login' =>:login
     post 'login' => :authentication
     delete 'logout' => :destroy
   end

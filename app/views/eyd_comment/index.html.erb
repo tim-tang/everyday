@@ -11,6 +11,8 @@
             <th>ID</th>
             <th>UserName</th>
             <th>Content</th>
+            <th>BlogID</th>
+            <th>Email</th>
             <th>Date</th>
             <th>Actions</th>
           </tr>
@@ -21,6 +23,8 @@
               <td><%= eyd_comment.id%></td>
               <td><%= eyd_comment.name%></td>
               <td><%= eyd_comment.content%></td>
+              <td><%= eyd_comment.blog_id%></td>
+              <td><%= eyd_comment.email%></td>
               <td><%= eyd_comment.updated_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
             <td><%= check_box_tag 'comment_ids[]', eyd_comment.id, false,:id=>"comment_#{eyd_comment.id}"%></td>
           </tr>
@@ -43,4 +47,4 @@
 
 <div id="footer">
   &copy; Copyright 2011 reserved by tim.tang
-</div> 
+</div>
