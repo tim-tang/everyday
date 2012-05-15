@@ -1,6 +1,5 @@
 Everyday::Application.routes.draw do
-    root :to=>'login#login
-
+  root :to=>'eyd_login#login'
   scope '(:locale)' do
     controller :eyd_ws_blog do
       get 'blogs/:id' => :blogs, :as=> :blogs
