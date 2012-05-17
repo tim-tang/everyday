@@ -1,5 +1,5 @@
 Everyday::Application.routes.draw do
-  scope '(:locale)' do
+###########################EVERYDAY ################################
     controller :eyd_ws_blog do
       get 'blogs/:id' => :blogs, :as=> :blogs
       get 'blogs/:id/search' => :search, :as=>:search
@@ -22,8 +22,21 @@ Everyday::Application.routes.draw do
     controller :eyd_ws_avatar do
       get 'avatars/:id' =>:avatars, :as => :avatars
     end
-  end
 
+###########################TECH TALK #################################
+    controller :tech_ws_blog do
+      get 'tech/blogs/:id'=>:blogs, :as=>:blogs
+      get 'tech/blogs/category/:id/:page' => :category, :as=>:category
+      get 'tech/blogs/size/:id' => :size, :as=>:size
+      get 'tech/blog/:id'=>:blog, :as=>:blog
+      put 'blogs/tech/blog/:id/sync' => :sync_count, :as => :blog
+    end
+
+    controller :tech_ws_category do
+      get 'tech/categories' =>:categories, :as => :categories
+    end
+
+###########################EVERYDAY CMS ################################
   controller :eyd_login do
     get 'login'=>:login
     post 'login' => :authentication

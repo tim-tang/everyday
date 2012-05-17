@@ -42,9 +42,7 @@ class EydWsBlogController < ApplicationController
   end
 
   def sync_count
-    @blog = EydBlog.find(params[:id])
-    @blog.view_count+=1
-    @blog.update_attribute("view_count",@blog.view_count)
+    EydBlog.ws_sync_count(params[:id])
     respond_to do |format|
       format.xml  { render :xml => "successfully updated."}
       format.json { render :json => "successfully updated."}

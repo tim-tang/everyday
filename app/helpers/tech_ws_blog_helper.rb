@@ -1,0 +1,2 @@
+module TechWsBlogHelper
+end
