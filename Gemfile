@@ -6,6 +6,9 @@ gem 'rails', '3.0.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'mysql2'
+gem 'mongo'
+gem 'mongoid'
+gem 'bson_ext'
 gem "mysql2", "~> 0.2.7"
 gem 'acts-as-taggable-on', '~>2.1.0'
 gem 'paperclip'
@@ -15,7 +18,7 @@ gem 'redcarpet'
 gem "friendly_id", "~> 4.0.0.beta14"
 gem 'coderay'
 #gem 'deadweight'
-gem "rails_best_practices"
+#gem "rails_best_practices"
 gem 'delayed_job'
 gem 'mail', '2.2.17'
 gem 'sunspot_rails'
